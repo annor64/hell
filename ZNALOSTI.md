@@ -104,3 +104,19 @@ Tento soubor slouží jako centrální místo pro průběžné poznatky, rozhodn
 	- `.venv/`
 	- `*.bak` a `*.bak*`
 	- `_archive/`
+
+### 2026-03-02 — Normalizace názvů souborů a složek
+- Oblast: Repo údržba / konzistence názvosloví
+- Kontext: Požadavek na sjednocení názvů pro lepší práci v automatizaci a cross-platform prostředí.
+- Zjištění:
+	- V repozitáři byla směs názvů s mezerami, diakritikou a speciálními znaky.
+	- To zvyšovalo riziko chyb v scriptech a složitější práce s cestami.
+- Rozhodnutí:
+	- Projít projektová data (mimo `.git`, `.venv`, `_archive`) a převést názvy na ASCII.
+	- Mezery a nekompatibilní znaky sjednotit na `_`.
+	- Kolize při přejmenování řešit bezpečně přidáním číselného suffixu.
+- Dopad:
+	- Provedeno 42 přejmenování bez přepisu existujících položek.
+	- Struktura je konzistentnější a vhodnější pro skriptování.
+- Další kroky:
+	- V případě externích návazností ověřit, že odkazy/cesty používají nové názvy.
