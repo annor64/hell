@@ -170,3 +170,36 @@ Tento soubor slouží jako centrální místo pro průběžné poznatky, rozhodn
 	- Konfigurace je dohledatelná v repozitáři a připravená pro další správu VM/LXC.
 - Další kroky:
 	- Zvážit zapnutí `onboot=1`, pokud má CT startovat automaticky po rebootu hostu.
+
+### 2026-03-02 — CT105: TightVNC + noVNC stabilizace
+- Oblast: Proxmox / LXC provoz / vzdálený přístup
+- Kontext: Finální stabilizace přímého vzdáleného přístupu do CT105 bez závislosti na Portainer workflow.
+- Zjištění:
+	- Funkční cílový stav je `TightVNC` na `5901` a `noVNC` na `8080` (`/vnc.html`).
+	- Samotný VNC server nestačí; pro GUI je nutné mít korektní `~/.vnc/xstartup` (spouštění `startxfce4`).
+	- Chyba typu `failed waiting for client: timed out` u proxy je očekávaná, pokud se nepřipojí websocket klient.
+	- Ověřený minimální set kontrol: aktivní systemd služby, otevřené porty `5901/8080`, HTTP 200 na `vnc.html`.
+- Rozhodnutí:
+	- Pro CT105 ponechat přístup přes TightVNC/noVNC (`5901` + `8080`) jako primární cestu.
+	- Nepoužívat pro tento účel code-server instalaci uvnitř CT105.
+	- Ponechat skript `_proxmox_ct105_check.ps1` na `curl.exe` auth flow (stabilnější než PS web cmdlets v tomto prostředí).
+- Dopad:
+	- Přímý browser přístup i RealVNC přístup jsou provozně funkční.
+	- Zjednodušený troubleshooting a menší závislost na vedlejších integračních krocích.
+- Další kroky:
+	- Při reboot testu ověřit perzistenci služeb `tightvncserver@1` a `novnc`.
+	- Volitelně doplnit samostatný runbook pro CT105 services + rollback postup.
+
+### 2026-03-02 — Hardening PowerShell fetch skriptů
+- Oblast: Automatizace / PowerShell kompatibilita
+- Kontext: Opakované pády při stahování logů kvůli interaktivnímu chování `Invoke-WebRequest` v některých host prostředích.
+- Zjištění:
+	- V některých kontextech vyžaduje `Invoke-WebRequest` kompatibilní parametry (`UseBasicParsing`), jinak může dojít k interaktivnímu promptu.
+- Rozhodnutí:
+	- Přidán helper `_invoke_webrequest_compat.ps1` a napojení do `_portainer_fetch_logs.ps1`.
+	- V fetch skriptu ponechána robustní dekódovací logika Docker log streamu + sanitizace výstupu.
+- Dopad:
+	- Stabilnější neinteraktivní běh při fetchi logů.
+	- Menší riziko pádu tasku při dlouhém automatizovaném běhu.
+- Další kroky:
+	- Pokud budou přibývat další IWR skripty, používat stejný helper jako standard.
