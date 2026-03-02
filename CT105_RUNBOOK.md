@@ -32,3 +32,13 @@ Finální skripty jsou v `ct105_tools/`:
 ## Poznámky
 - Dynamický live-resize v `mstsc` proti Linux `xRDP` může být omezený; `smart sizing` je praktický workaround.
 - noVNC je fallback, ne primární pracovní cesta pro Citrix.
+
+## Troubleshooting
+| Symptom | Co zkusit (rychle) |
+|---|---|
+| RDP se nepřipojí | Ověřit port `3389` z Windows (`Test-NetConnection 192.168.0.137 -Port 3389`). |
+| RDP se připojí, ale špatně škáluje | Použít `ct105_tools/CT105-smartsize.rdp`; v relaci přepínat full screen (`Ctrl+Alt+Break`). |
+| noVNC na `8080` neodpovídá | Spustit recovery: `ct105_tools/_ct105_recover_base_novnc.py`. |
+| noVNC se otevře, ale je černá obrazovka | Otevřít čistý URL s autoconnect: `http://192.168.0.137:8080/vnc.html?autoconnect=true&resize=scale&reconnect=true`. |
+| Citrix Workspace neprojde login | Použít desktop launcher `02_Citrix_Web` jako fallback. |
+| Citrix hlásí SSL/auth chybu | Zkontrolovat cert chain + endpoint policy; diagnostika skripty v `ct105_tools/`. |
