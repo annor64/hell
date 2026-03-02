@@ -3,6 +3,15 @@
 Datum ověření: 2026-03-02  
 Zdroj: Proxmox API (`https://192.168.0.135:8006`)
 
+## Quick Start (aktuální provoz)
+1. Z Windows otevřít `mstsc` a připojit se na `192.168.0.137`.
+2. Po přihlášení v CT105 na ploše spustit `01_Citrix_Workspace`.
+3. Pokud app login neprojde, použít `02_Citrix_Web`.
+
+### Fallback přístupy
+- noVNC: `http://192.168.0.137:8080/vnc.html?autoconnect=true&resize=scale&reconnect=true`
+- RDP smart-sizing profil: `ct105_tools/CT105-smartsize.rdp`
+
 ## Dostupnost
 - API port `8006`: dostupný
 - SSH port `22`: dostupný
