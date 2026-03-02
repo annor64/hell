@@ -130,8 +130,27 @@ Tento soubor slouží jako centrální místo pro průběžné poznatky, rozhodn
 - Rozhodnutí:
 	- Založena kořenová složka `CEZ/` s podstrukturou `SQL`, `GROOVY`, `CONVERTY`, `GENERATOR_DLL`, `PREVOD_KOMENTARU`.
 	- SQL domény přesunuty pod `CEZ/SQL` (včetně `ADAPTACE_01`, `ATACAMA_ONE`, `CX01`, `FA06`, `FLEXI`).
+	- Potvrzeno: `Obecne` a `SCALER` jsou součást ČEZ a zůstávají v `CEZ/SQL`.
 - Dopad:
 	- Práce pro ČEZ je oddělená od ostatního obsahu repozitáře.
 	- Srozumitelnější orientace podle typu práce i domény.
 - Další kroky:
-	- Případně rozhodnout, zda `Obecne` a `SCALER` zůstávají v `CEZ/SQL`, nebo se přesunou mimo ČEZ část.
+	- Průběžně udržovat nové materiály pro ČEZ výhradně pod `CEZ/`.
+
+### 2026-03-02 — Sloučení dnešního SETUP logu do znalostí
+- Oblast: Docker / Portainer / Workspace setup
+- Kontext: Stažen a integrován dnešní chat log ze `SETUP-LOG.md` do centrální znalostní báze.
+- Zjištění:
+	- Cílový stack: `code-server` + `postgres:15` + `wiki.js` + Copilot extension.
+	- Hlavní problémy byly ve volume názvech, PostgreSQL Alpine permissions a neexistujícím JetBrains image.
+	- Finální verze `docker-compose` je `3.9` a používá sjednocené názvy volume (`workspace_data`, `db_data`, `wiki_data`).
+- Rozhodnutí:
+	- Preferovat `postgres:15` (non-alpine) kvůli stabilitě socket/permission chování.
+	- IDE volba: `code-server`; IntelliJ image nepoužívat v tomto setupu.
+	- V extension listu ponechat `GitHub.copilot`, nepoužívat `GitHub.copilot-chat` v daném prostředí.
+- Dopad:
+	- Reprodukovatelný setup přes Portainer stack s jasným troubleshooting postupem.
+	- Finální postup a YAML jsou archivované v `SETUP-LOG.md` a shrnuté zde.
+- Další kroky:
+	- Ověřovat běh všech 3 služeb po restartu (`code-server`, `db`, `wiki`).
+	- Průběžně aktualizovat `SETUP-LOG.md` i `ZNALOSTI.md` při změnách stacku.
