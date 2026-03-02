@@ -154,3 +154,19 @@ Tento soubor slouží jako centrální místo pro průběžné poznatky, rozhodn
 - Další kroky:
 	- Ověřovat běh všech 3 služeb po restartu (`code-server`, `db`, `wiki`).
 	- Průběžně aktualizovat `SETUP-LOG.md` i `ZNALOSTI.md` při změnách stacku.
+
+### 2026-03-02 — Ověření Proxmox dostupnosti a konfigurace LXC 105
+- Oblast: Proxmox / LXC provoz
+- Kontext: Ověření dosažitelnosti Proxmox hostu a načtení aktuální konfigurace CT `105`.
+- Zjištění:
+	- Proxmox host `192.168.0.135` je dostupný na portech `8006` (API) i `22` (SSH).
+	- API login proběhl úspěšně, node identifikován jako `hell`.
+	- CT `105` (`work-station`) je ve stavu `running`.
+	- Aktuální zdroje: `4` cores, `4064 MB` RAM, `4064 MB` swap, rootfs `32G`.
+	- Síť: `eth0` na `vmbr0`, IP `192.168.0.137/27`, gateway `192.168.0.1`.
+- Rozhodnutí:
+	- Vytvořen samostatný dokument `PROXMOX_LXC105_KONFIGURACE.md` jako runbook/operativní snapshot.
+- Dopad:
+	- Konfigurace je dohledatelná v repozitáři a připravená pro další správu VM/LXC.
+- Další kroky:
+	- Zvážit zapnutí `onboot=1`, pokud má CT startovat automaticky po rebootu hostu.
