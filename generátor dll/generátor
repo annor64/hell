@@ -1,0 +1,326 @@
+# ======================================================================================
+# HLAVNÍ KONFIGURACE - PROJEKT ATACCAMA ONE (ATO)
+# ======================================================================================
+$Area = "ATO"
+
+$EntityCode = @{
+    # --- Hlavní objekty ---
+    "V_CPR_BUSINESS_TERM"                           = "BTER"
+    "V_CPR_BUSINESS_TERM_DQ"                        = "BTDQ"
+    "V_CPR_BUSINESS_TERM_SHARED_ACCESS"             = "BTSA"
+    "V_CPR_CATALOG_ITEM"                            = "CITE"
+    "V_CPR_CATALOG_ITEM_AGGREGATED_TERM_REFERENCES" = "CIAT"
+    "V_CPR_CATALOG_ITEMS_ATTRIBUTES"                = "CITA"
+    "V_CPR_CATALOG_ITEMS_INSTANCE_ATTRIBUTES"       = "CIIA"
+    "V_CPR_CODE_LIST"                               = "CLIS"
+    "V_CPR_CODE_LIST_COOPERATING_STEWARDS"          = "CLCS"
+    "V_CPR_DQ_RULE"                                 = "DQRL"
+    "V_CPR_DQ_RULE_INSTANCE"                        = "DQRI"
+    "V_CPR_DQ_RULE_INSTANCE_ANCESTOR"               = "DQRA"
+    "V_CPR_DQ_RULE_RELATIONSHIP"                    = "DQRR"
+    "V_CPR_DQ_RULE_TERM_INSTANCE"                   = "DQTI"
+    "V_CPR_LOCATION_0"                              = "LOC0"
+    "V_CPR_LOCATION_1"                              = "LOC1"
+    "V_CPR_LOCATION_2"                              = "LOC2"
+    "V_CPR_LOCATION_3"                              = "LOC3"
+    "V_CPR_LOCATION_4"                              = "LOC4"
+    "V_CPR_METRICS"                                 = "METR"
+    "V_CPR_PERSON_ROLES"                            = "PROL"
+    "V_CPR_PROFILING"                               = "PROF"
+    "V_CPR_REPORT_CATALOG"                          = "RCAT"
+    "V_CPR_REPORT_TERM_INSTANCE"                    = "RTIN"
+    "V_CPR_RULE"                                    = "RULE"
+    "V_CPR_SKC_VL_PROCESSING_METHOD"                = "SVPM"
+    "V_CPR_SKC_VL_REPORT_FORMAT"                    = "SVRF"
+    "V_CPR_SKC_VL_UPDATE_FREQUENCY"                 = "SVUF"
+    "V_CPR_SOURCE"                                  = "SOUR"
+    "V_CPR_STEWARDSHIP"                             = "STEW"
+    "V_CPR_SUBTASK"                                 = "SUBT"
+    "V_CPR_TASK"                                    = "TASK"
+    "V_CPR_TERM_INSTANCES_ATTRIBUTES"               = "TIAT"
+    "V_CPR_TERM_RELATIONSHIP"                       = "TREL"
+    "V_CPR_VL_ACCESS_MANAGEMENT"                    = "VACM"
+    "V_CPR_VL_BUSINESS_DOMAIN"                      = "VBDO"
+    "V_CPR_VL_CATEGORIES"                           = "VCAT"
+    "V_CPR_VL_CONFIDENTIALITY"                      = "VCON"
+    "V_CPR_VL_DQ_CHECK_REQUEST"                     = "VDQC"
+    "V_CPR_VL_LDM_DOMAINS"                          = "VLDM"
+    "V_CPR_VL_QUERYOPTIMALIZATION"                  = "VQOP"
+    "V_CPR_VL_REPORT_CERTIFICATION"                 = "VRCE"
+    "V_CPR_VL_VERSIONING_METHOD"                    = "VMET"
+    "V_CPR_WORKSPACE"                               = "WRKS"
+    "V_CPR_SEMAFOR_VYSTUPU_PRO_ODB"                 = "SEMF"
+}
+
+$InputMetadata = ".\metadata.csv"
+
+$TableDescriptions = @{
+    # --- Hlavní metadatové entity ---
+    "V_CPR_BUSINESS_TERM"                           = "Zdrojové view V_CPR_BUSINESS_TERM – definice business termínů a jejich významů (ATACCAMA_ONE)"
+    "V_CPR_BUSINESS_TERM_DQ"                        = "Zdrojové view V_CPR_BUSINESS_TERM_DQ – vazba business termínů na pravidla kvality dat (ATACCAMA_ONE)"
+    "V_CPR_BUSINESS_TERM_SHARED_ACCESS"             = "Zdrojové view V_CPR_BUSINESS_TERM_SHARED_ACCESS – definice sdíleného přístupu k business termínům (ATACCAMA_ONE)"
+    "V_CPR_CATALOG_ITEM"                            = "Zdrojové view V_CPR_CATALOG_ITEM – položky v katalogu dat (ATACCAMA_ONE)"
+    "V_CPR_CATALOG_ITEM_AGGREGATED_TERM_REFERENCES" = "Zdrojové view V_CPR_CATALOG_ITEM_AGGREGATED_TERM_REFERENCES – agregované reference termínů na položky katalogu (ATACCAMA_ONE)"
+    "V_CPR_CATALOG_ITEMS_ATTRIBUTES"                = "Zdrojové view V_CPR_CATALOG_ITEMS_ATTRIBUTES – atributy položek katalogu (ATACCAMA_ONE)"
+    "V_CPR_CATALOG_ITEMS_INSTANCE_ATTRIBUTES"       = "Zdrojové view V_CPR_CATALOG_ITEMS_INSTANCE_ATTRIBUTES – instanční atributy položek katalogu (ATACCAMA_ONE)"
+    "V_CPR_CODE_LIST"                               = "Zdrojové view V_CPR_CODE_LIST – definice číselníků a referenčních dat (ATACCAMA_ONE)"
+    "V_CPR_CODE_LIST_COOPERATING_STEWARDS"          = "Zdrojové view V_CPR_CODE_LIST_COOPERATING_STEWARDS – seznam spolupracujících správců číselníků (ATACCAMA_ONE)"
+    "V_CPR_DQ_RULE"                                 = "Zdrojové view V_CPR_DQ_RULE – definice pravidel datové kvality (ATACCAMA_ONE)"
+    "V_CPR_DQ_RULE_INSTANCE"                        = "Zdrojové view V_CPR_DQ_RULE_INSTANCE – instance nasazených DQ pravidel (ATACCAMA_ONE)"
+    "V_CPR_DQ_RULE_INSTANCE_ANCESTOR"               = "Zdrojové view V_CPR_DQ_RULE_INSTANCE_ANCESTOR – hierarchie a předci instancí DQ pravidel (ATACCAMA_ONE)"
+    "V_CPR_DQ_RULE_RELATIONSHIP"                    = "Zdrojové view V_CPR_DQ_RULE_RELATIONSHIP – vazby a vztahy mezi pravidly kvality (ATACCAMA_ONE)"
+    "V_CPR_DQ_RULE_TERM_INSTANCE"                   = "Zdrojové view V_CPR_DQ_RULE_TERM_INSTANCE – vazba DQ pravidel na instance termínů (ATACCAMA_ONE)"
+    "V_CPR_LOCATION_0"                              = "Zdrojové view V_CPR_LOCATION_0 – hierarchické umístění objektů úroveň 0 (ATACCAMA_ONE)"
+    "V_CPR_LOCATION_1"                              = "Zdrojové view V_CPR_LOCATION_1 – hierarchické umístění objektů úroveň 1 (ATACCAMA_ONE)"
+    "V_CPR_LOCATION_2"                              = "Zdrojové view V_CPR_LOCATION_2 – hierarchické umístění objektů úroveň 2 (ATACCAMA_ONE)"
+    "V_CPR_LOCATION_3"                              = "Zdrojové view V_CPR_LOCATION_3 – hierarchické umístění objektů úroveň 3 (ATACCAMA_ONE)"
+    "V_CPR_LOCATION_4"                              = "Zdrojové view V_CPR_LOCATION_4 – hierarchické umístění objektů úroveň 4 (ATACCAMA_ONE)"
+    "V_CPR_METRICS"                                 = "Zdrojové view V_CPR_METRICS – definice metrik a ukazatelů (ATACCAMA_ONE)"
+    "V_CPR_PERSON_ROLES"                            = "Zdrojové view V_CPR_PERSON_ROLES – přiřazení rolí konkrétním osobám (ATACCAMA_ONE)"
+    "V_CPR_PROFILING"                               = "Zdrojové view V_CPR_PROFILING – výsledky profilování dat (ATACCAMA_ONE)"
+    "V_CPR_REPORT_CATALOG"                          = "Zdrojové view V_CPR_REPORT_CATALOG – katalog reportů a výstupů (ATACCAMA_ONE)"
+    "V_CPR_REPORT_TERM_INSTANCE"                    = "Zdrojové view V_CPR_REPORT_TERM_INSTANCE – vazba termínů na konkrétní reporty (ATACCAMA_ONE)"
+    "V_CPR_RULE"                                    = "Zdrojové view V_CPR_RULE – obecná definice pravidel (ATACCAMA_ONE)"
+    "V_CPR_SKC_VL_PROCESSING_METHOD"                = "Zdrojové view V_CPR_SKC_VL_PROCESSING_METHOD – číselník metod zpracování (ATACCAMA_ONE)"
+    "V_CPR_SKC_VL_REPORT_FORMAT"                    = "Zdrojové view V_CPR_SKC_VL_REPORT_FORMAT – číselník formátů reportů (ATACCAMA_ONE)"
+    "V_CPR_SKC_VL_UPDATE_FREQUENCY"                 = "Zdrojové view V_CPR_SKC_VL_UPDATE_FREQUENCY – číselník frekvence aktualizací (ATACCAMA_ONE)"
+    "V_CPR_SOURCE"                                  = "Zdrojové view V_CPR_SOURCE – definice zdrojových systémů a databází (ATACCAMA_ONE)"
+    "V_CPR_STEWARDSHIP"                             = "Zdrojové view V_CPR_STEWARDSHIP – definice správy dat a odpovědností (ATACCAMA_ONE)"
+    "V_CPR_SUBTASK"                                 = "Zdrojové view V_CPR_SUBTASK – definice dílčích úloh a procesů (ATACCAMA_ONE)"
+    "V_CPR_TASK"                                    = "Zdrojové view V_CPR_TASK – hlavní úlohy a workflow (ATACCAMA_ONE)"
+    "V_CPR_TERM_INSTANCES_ATTRIBUTES"               = "Zdrojové view V_CPR_TERM_INSTANCES_ATTRIBUTES – atributy instancí termínů (ATACCAMA_ONE)"
+    "V_CPR_TERM_RELATIONSHIP"                       = "Zdrojové view V_CPR_TERM_RELATIONSHIP – vazby mezi byznysovými termíny (ATACCAMA_ONE)"
+    "V_CPR_VL_ACCESS_MANAGEMENT"                    = "Zdrojové view V_CPR_VL_ACCESS_MANAGEMENT – číselník metod řízení přístupu (ATACCAMA_ONE)"
+    "V_CPR_VL_BUSINESS_DOMAIN"                      = "Zdrojové view V_CPR_VL_BUSINESS_DOMAIN – číselník byznysových domén (ATACCAMA_ONE)"
+    "V_CPR_VL_CATEGORIES"                           = "Zdrojové view V_CPR_VL_CATEGORIES – číselník kategorií objektů (ATACCAMA_ONE)"
+    "V_CPR_VL_CONFIDENTIALITY"                      = "Zdrojové view V_CPR_VL_CONFIDENTIALITY – číselník úrovní důvěrnosti (ATACCAMA_ONE)"
+    "V_CPR_VL_DQ_CHECK_REQUEST"                     = "Zdrojové view V_CPR_VL_DQ_CHECK_REQUEST – požadavky na kontrolu kvality (ATACCAMA_ONE)"
+    "V_CPR_VL_LDM_DOMAINS"                          = "Zdrojové view V_CPR_VL_LDM_DOMAINS – číselník logických datových domén (ATACCAMA_ONE)"
+    "V_CPR_VL_QUERYOPTIMALIZATION"                  = "Zdrojové view V_CPR_VL_QUERYOPTIMALIZATION – číselník metod optimalizace dotazů (ATACCAMA_ONE)"
+    "V_CPR_VL_REPORT_CERTIFICATION"                 = "Zdrojové view V_CPR_VL_REPORT_CERTIFICATION – číselník úrovní certifikace reportů (ATACCAMA_ONE)"
+    "V_CPR_VL_VERSIONING_METHOD"                    = "Zdrojové view V_CPR_VL_VERSIONING_METHOD – číselník metod verzování (ATACCAMA_ONE)"
+    "V_CPR_WORKSPACE"                               = "Zdrojové view V_CPR_WORKSPACE – definice pracovních prostorů (ATACCAMA_ONE)"
+    "V_CPR_SEMAFOR_VYSTUPU_PRO_ODB"                 = "Zdrojové view V_CPR_SEMAFOR_VYSTUPU_PRO_ODB – stav zpracování a dostupnosti výstupů pro ODB"
+}
+
+$Timestamp = Get-Date -Format "dd.MM.yyyy HH:mm:ss"
+$MetaDescriptions = @{
+    "ID"               = "Interní technické ID záznamu (sekvence)"
+    "ORIG_ID"          = "Původní ID záznamu ze zdrojového systému"
+    "EFFECTIVE_DATE"   = "Datum účinnosti dat (YYYYMMDD)"
+    "CREATED_DATE"     = "Datum vložení záznamu do DB"
+    "CREATED_PROCESS"  = "ID procesu/runu, který záznam vytvořil"
+    "MODIFIED_DATE"    = "Datum poslední aktualizace záznamu"
+    "MODIFIED_PROCESS" = "ID procesu/runu, který aktualizoval záznam"
+    "VALID_FROM"       = "Začátek platnosti záznamu (YYYYMMDD)"
+    "VALID_TO"         = "Konec platnosti záznamu (YYYYMMDD)"
+    "CURRENT_FLAG"     = "Příznak aktuálně platného záznamu (1=ano)"
+}
+
+function Map-To-OracleType {
+    param ($row)
+    switch ($row.data_type) {
+        "int"        { "NUMBER(10)" }
+        "bigint"     { "NUMBER(19)" }
+        "smallint"   { "NUMBER(5)" } 
+        "tinyint"    { "NUMBER(3)" }
+        "bit"        { "NUMBER(1)" }
+        "decimal"    { "NUMBER($($row.precision),$($row.scale))" }
+        "numeric"    { "NUMBER($($row.precision),$($row.scale))" }
+        "nvarchar"   { if ([int]$row.max_length -eq -1 -or [int]$row.max_length -gt 4000) {"CLOB"} else {"VARCHAR2($($row.max_length) CHAR)"}}
+        "varchar"    { if ([int]$row.max_length -eq -1 -or [int]$row.max_length -gt 4000) {"CLOB"} else {"VARCHAR2($($row.max_length) CHAR)"}}
+        "sysname"    { "VARCHAR2(128 CHAR)" }
+        "char"       { "CHAR($($row.max_length))" }
+        "float"      { "NUMBER" }
+        "real"       { "NUMBER" }
+        "datetime2"  { "TIMESTAMP" }
+        "datetime"   { "TIMESTAMP" }
+        "date"       { "DATE" }
+        "varbinary"  { "BLOB" }
+        default      { throw "Neznámý datový typ: $($row.data_type)" }
+    }
+}
+
+$Schemas = @{ EXT_IMPORT = "XT"; OWNBT_INT = "IT"; OWNBT_ODS = "OT" }
+$LeadingMetaColumns = @{ OWNBT_INT = 'PREFIX_EFFECTIVE_DATE NUMBER(8,0) NOT NULL'; OWNBT_ODS = 'PREFIX_ID NUMBER' }
+$TrailingMetaColumns = @{
+    EXT_IMPORT = @('PREFIX_CREATED_DATE DATE','PREFIX_CREATED_PROCESS VARCHAR2(100 CHAR)')
+    OWNBT_INT  = @('PREFIX_CREATED_DATE DATE','PREFIX_CREATED_PROCESS VARCHAR2(100 CHAR)')
+    OWNBT_ODS  = @('PREFIX_CREATED_DATE DATE','PREFIX_CREATED_PROCESS NUMBER','PREFIX_MODIFIED_DATE DATE','PREFIX_MODIFIED_PROCESS NUMBER','PREFIX_VALID_FROM NUMBER(8,0) NOT NULL','PREFIX_VALID_TO NUMBER(8,0)','PREFIX_CURRENT_FLAG NUMBER(1,0)')
+}
+
+$OutputFolder = ".\output"
+if (!(Test-Path $OutputFolder)) { New-Item -ItemType Directory -Path $OutputFolder | Out-Null }
+
+# Načtení s vynuceným UTF8 a odstraněním případných mezer z názvů sloupců
+$Meta = Import-Csv $InputMetadata -Delimiter ',' -Encoding UTF8 | Select-Object * -ExcludeProperty ""
+
+# --- INICIALIZACE SOUBORŮ ---
+foreach ($sh in $Schemas.Keys) {
+    $filePath = Join-Path $OutputFolder "$sh.sql"
+    @"
+--------------------------------------------------------------------------------
+-- Schema:    $sh
+-- Generated: $Timestamp
+-- Area:      $Area
+--------------------------------------------------------------------------------
+
+"@ | Out-File $filePath -Encoding UTF8 -Force 
+}
+
+$ViewFilePath = Join-Path $OutputFolder "OWNBT_ODS_VIEWS.sql"
+@"
+--------------------------------------------------------------------------------
+-- Schema:    OWNBT_ODS (VIEWS)
+-- Generated: $Timestamp
+-- Area:      $Area
+--------------------------------------------------------------------------------
+
+"@ | Out-File $ViewFilePath -Encoding UTF8 -Force
+
+# --- HLAVNÍ CYKLUS ---
+$Meta | Group-Object { $_."object_name".Trim() } | ForEach-Object {
+    $table = $_.Name.Trim()
+    $rows = $_.Group 
+    
+    # Hledáme kód entity - ošetřeno proti mezerám a malým/velkým písmenům
+    $code = $EntityCode[$table.ToUpper()]
+    
+    if (-not $code) { 
+        Write-Warning "V mapování EntityCode chybí klíč pro: '$table' (Délka názvu: $($table.Length))"
+        return 
+    }
+
+    # Kontrolní výpis do konzole - teď uvidíš všechno
+    Write-Host "Generuji SQL pro entitu: $table (Kód: $code)" -ForegroundColor Cyan
+
+    foreach ($schema in $Schemas.Keys) {
+        $prefix = $Schemas[$schema] + $code
+        $tableName = switch ($schema) { "EXT_IMPORT" { "${Area}T_$code" }; "OWNBT_INT" { "INT_${Area}_$code" }; "OWNBT_ODS" { "ODT_${Area}_$code" } }
+        $ddl = @(); $comments = @(); $currentPKs = @(); $allColumns = @(); $viewComments = @()
+
+        # 1. SEKVENCE (ODS)
+        if ($schema -eq "OWNBT_ODS") {
+            $seqName = $Schemas[$schema] + $Area + "_" + $code + "_ID_SEQ"
+            $ddl += "-- Sequence for $tableName"
+            $ddl += "CREATE SEQUENCE $schema.$seqName MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER NOCYCLE NOKEEP NOSCALE GLOBAL;`n"
+        }
+
+        # 2. TABULKA START
+        $ddl += "-- Table: $tableName"
+        $ddl += "CREATE TABLE $schema.$tableName ("
+        
+        # Leading Meta
+        if ($LeadingMetaColumns.ContainsKey($schema)) {
+            $colDef = $LeadingMetaColumns[$schema] -replace "PREFIX", $prefix
+            $ddl += "    $colDef,"
+            $colName = ($colDef -split ' ')[0]; $allColumns += $colName
+            if ($schema -eq "OWNBT_INT") { $currentPKs += $colName }
+            $key = $colName -replace "^${prefix}_", ""
+            if ($MetaDescriptions.ContainsKey($key)) { 
+                $comments += "COMMENT ON COLUMN $schema.$tableName.$colName IS '$($MetaDescriptions[$key])';" 
+            }
+        }
+
+        # Datové sloupce ze zdroje
+        foreach ($r in $rows) {
+            if ($r.is_computed -eq "True") { continue }
+            $origColName = $r.column_name.ToUpper().Trim()
+            $finalColName = if ($schema -eq "OWNBT_ODS" -and $origColName -eq "ID") { "ORIG_ID" } else { $origColName }
+            $columnName = "${prefix}_$finalColName"
+            $allColumns += $columnName
+            $type = Map-To-OracleType $r
+            $null = if ($r.is_nullable -eq "False" -or $r.is_nullable -eq "0") { " NOT NULL" } else { "" }
+            $ddl += "    $columnName $type$null,"
+            if ($r.is_primary_key -eq "1" -or $r.is_primary_key -eq "True") { $currentPKs += $columnName }
+            $comm = if (![string]::IsNullOrEmpty($r.column_comment)) { $r.column_comment } else { $MetaDescriptions[$finalColName] }
+            if ($comm) { $comments += "COMMENT ON COLUMN $schema.$tableName.$columnName IS '$($comm -replace "'", "''")';" }
+        }
+
+        # Trailing Meta
+        foreach ($meta in $TrailingMetaColumns[$schema]) {
+            $colDef = $meta -replace "PREFIX", $prefix
+            $colName = ($colDef -split ' ')[0]; $allColumns += $colName
+            $ddl += "    $colDef,"
+            if ($schema -eq "OWNBT_ODS" -and $colName -like "*VALID_FROM") { $currentPKs += $colName }
+            $key = $colName -replace "^${prefix}_", ""
+            if ($MetaDescriptions.ContainsKey($key)) { $comments += "COMMENT ON COLUMN $schema.$tableName.$colName IS '$($MetaDescriptions[$key])';" }
+        }
+
+        $ddl[-1] = $ddl[-1].TrimEnd(',')
+        if ($schema -eq "OWNBT_INT") {
+            $ddl += ")"
+            $ddl += "PARTITION BY RANGE (${prefix}_EFFECTIVE_DATE) INTERVAL (1) (PARTITION p0 VALUES LESS THAN (20100000))"
+        } else { $ddl += ")" }
+        $ddl += ";"
+
+        # Komentář k tabulce
+        $baseTableComment = if ($TableDescriptions.ContainsKey($table)) { $TableDescriptions[$table] } else { "Zdrojová tabulka $table" }
+        $ddl += "COMMENT ON TABLE $schema.$tableName IS '$baseTableComment';"
+
+        # PK pro ODS
+        if ($schema -eq "OWNBT_ODS" -and $currentPKs.Count -gt 0) {
+            $pkColumns = $currentPKs -join ", "
+            $ddl += "CREATE UNIQUE INDEX PK_$tableName ON $schema.$tableName ($pkColumns);`nALTER TABLE $schema.$tableName ADD CONSTRAINT PK_$tableName PRIMARY KEY ($pkColumns) USING INDEX ENABLE;"
+        }
+
+        if ($comments) { $ddl += $comments }
+        if ($schema -eq "EXT_IMPORT") {
+            $ddl += "GRANT DELETE, INDEX, ALTER, INSERT, SELECT, UPDATE ON $schema.$tableName TO OWNER_ETL;`nGRANT SELECT ON $schema.$tableName TO ETL_PROVOZ;"
+        }
+
+        if ($schema -eq "OWNBT_INT") {
+            $ddl += "INSERT INTO ""OWNBT_INT"".""INZ_INDE"" VALUES ('$tableName', '${prefix}_PK', 'CREATE UNIQUE INDEX ${prefix}_PK ON $tableName ($($currentPKs -join ', ')) LOCAL UNUSABLE', TO_DATE('$Timestamp', 'DD.MM.YYYY HH24:MI:SS'), '');"
+        }
+
+        $ddl += ""
+        Add-Content (Join-Path $OutputFolder "$schema.sql") ($ddl -join "`n")
+
+        # View pouze pro ODS
+        if ($schema -eq "OWNBT_ODS") {
+            $viewName = "${tableName}_V"
+            $v = @()
+            $v += "CREATE OR REPLACE FORCE EDITIONABLE VIEW $schema.$viewName AS SELECT`n    " + ($allColumns -join ",`n    ") + "`nFROM $schema.$tableName WHERE ${prefix}_CURRENT_FLAG = 1;"
+            
+            # Přidej komentáře k sloupcům view
+            $viewColComments = @()
+            
+            # Leading meta column comment
+            if ($LeadingMetaColumns.ContainsKey($schema)) {
+                $colDef = $LeadingMetaColumns[$schema] -replace "PREFIX", $prefix
+                $colName = ($colDef -split ' ')[0]
+                $key = $colName -replace "^${prefix}_", ""
+                if ($MetaDescriptions.ContainsKey($key)) {
+                    $viewColComments += "COMMENT ON COLUMN $schema.$viewName.$colName IS '$($MetaDescriptions[$key])';"
+                }
+            }
+            
+            # Komentáře pro datové sloupce ze zdroje
+            foreach ($r in $rows) {
+                if ($r.is_computed -eq "True") { continue }
+                $origColName = $r.column_name.ToUpper()
+                $finalColName = if ($origColName -eq "ID") { "ORIG_ID" } else { $origColName }
+                $columnName = "${prefix}_$finalColName"
+                $comm = if (![string]::IsNullOrEmpty($r.column_comment)) { $r.column_comment } else { $MetaDescriptions[$finalColName] }
+                if ($comm) {
+                    $viewColComments += "COMMENT ON COLUMN $schema.$viewName.$columnName IS '$($comm -replace "'", "''")';"
+                }
+            }
+            
+            # Trailing meta column comments
+            foreach ($meta in $TrailingMetaColumns[$schema]) {
+                $colDef = $meta -replace "PREFIX", $prefix
+                $colName = ($colDef -split ' ')[0]
+                $key = $colName -replace "^${prefix}_", ""
+                if ($MetaDescriptions.ContainsKey($key)) {
+                    $viewColComments += "COMMENT ON COLUMN $schema.$viewName.$colName IS '$($MetaDescriptions[$key])';"
+                }
+            }
+            
+            if ($viewColComments.Count -gt 0) { $v += $viewColComments }
+            Add-Content $ViewFilePath ($v -join "`n")
+        }
+    }
+}
+
+Write-Host "Hotovo! Vygenerováno" -ForegroundColor Green

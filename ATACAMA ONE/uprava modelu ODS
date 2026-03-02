@@ -1,0 +1,69 @@
+import oracle.odi.domain.model.OdiModel
+import oracle.odi.domain.model.OdiColumn
+import oracle.odi.core.persistence.transaction.support.DefaultTransactionDefinition
+
+def modelCode = "OWNBT_ODS"
+
+println "--- OPRAVA SCD TYPŮ V MODELU ---"
+
+def tm = odiInstance.getTransactionManager()
+def iem = odiInstance.getTransactionalEntityManager()
+def txn = tm.getTransaction(new DefaultTransactionDefinition())
+
+try {
+    def model = iem.getFinder(OdiModel.class).findByCode(modelCode)
+    
+    // Dynamické získání konstant (aby to nepadalo na verzích)
+    def scd = { name -> 
+        try { return OdiColumn.ScdType.valueOf(name) } catch(e) { return null } 
+    }
+
+    model.getDataStores().each { ds ->
+        if (ds.getName().startsWith("ODT_ATO")) {
+            println "Opravuji tabulku: ${ds.getName()}"
+            
+            ds.getColumns().each { col ->
+                def name = col.getName()
+                def tableShort = ds.getName().substring(8) // Získá např. 'BTDQ' z 'ODT_ATO_BTDQ'
+                
+                // 1. SURROGATE KEY - Pouze hlavní ID tabulky (např. OTBTDQ_ID)
+                if (name == "OT${tableShort}_ID".toString()) {
+                    col.setScdType(scd("SURROGATE_KEY"))
+                }
+                // 2. NATURAL KEY - Původní ID ze zdroje
+                else if (name == "OT${tableShort}_ORIG_ID".toString()) {
+                    col.setScdType(scd("NATURAL_KEY"))
+                }
+                // 3. STARTING TIMESTAMP
+                else if (name.endsWith("_VALID_FROM")) {
+                    col.setScdType(scd("START_TIMESTAMP"))
+                }
+                // 4. ENDING TIMESTAMP
+                else if (name.endsWith("_VALID_TO")) {
+                    col.setScdType(scd("END_TIMESTAMP"))
+                }
+                // 5. CURRENT RECORD FLAG
+                else if (name.endsWith("_CURRENT_FLAG")) {
+                    col.setScdType(scd("CURRENT_RECORD_FLAG"))
+                }
+                // 6. <UNDEFINED> - Auditní a procesní pole (nevyvolávají historii)
+                else if (name.contains("CREATED") || name.contains("MODIFIED") || name.contains("PROCESS")) {
+                    // Nastavíme na tu konstantu, která odpovídá <Undefined> ve tvé verzi
+                    col.setScdType(scd("NONE") ?: scd("SK_SCD_NONE") ?: scd("UNDEFINED"))
+                }
+                // 7. ADD ROW ON CHANGE - Všechno ostatní (včetně STATE_ID, ADAPTATION_TYPE_ID atd.)
+                else {
+                    col.setScdType(scd("ADD_ROW_ON_CHANGE"))
+                }
+            }
+            iem.persist(ds)
+        }
+    }
+
+    tm.commit(txn)
+    println "--- HOTOVO: Model odpovídá screenshotům ---"
+
+} catch (e) {
+    if (txn != null) tm.rollback(txn)
+    println "CHYBA: " + e.toString()
+}

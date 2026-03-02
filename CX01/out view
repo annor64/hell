@@ -1,0 +1,2245 @@
+--------------------------------------------------------
+--  DDL for View OUT_CX01_AC01_01_D1_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_AC01_01_D1_EXP_V" ("UTAC01_XCCPRO_KEY", "UTAC01_EXPORT_FILENAME", "UTAC01_ID", "UTAC01_EFFECTIVE_DATE", "UTAC01_D_ACTIVIT", "UTAC01_D_ID_OBJ", "UTAC01_D_ERDAT", "UTAC01_D_DATUZA", "UTAC01_TIMEZAL", "UTAC01_D_CCATID1", "UTAC01_D_CCATID2", "UTAC01_D_DIRECT", "UTAC01_D_KANAL", "UTAC01_D_ELE_FL", "UTAC01_D_PARTNER", "UTAC01_AD02_TEL", "UTAC01_D_PLY_FL", "UTAC01_D_TELNVO", "UTAC01_EMAIL", "UTAC01_ADRESA_ULICE", "UTAC01_ADRESA_CP", "UTAC01_ADRESA_CO", "UTAC01_ADRESA_MISTO", "UTAC01_ADRESA_MISTNI_CAST", "UTAC01_ADRESA_PSC", "UTAC01_D_ZALOZIL_D_USER", "UTAC01_D_RESITEL_D_USER", "UTAC01_POCET_RESITELU", "UTAC01_D_CRM_UZS", "UTAC01_DDBPAR_NAZEV", "UTAC01_BONITA", "UTAC01_SEGMENTACE", "UTAC01_POCET_MS", "UTAC01_ODHAD_SPOTREBY", "UTAC01_HODNOTA_ZAKAZNIKA", "UTAC01_PRACOVISTE", "UTAC01_ID_KPI", "UTAC01_VLASTNIK_DAT", "UTAC01_ROZHODNE_DATUM", "UTAC01_D_CCATID3", "UTAC01_D_MOB_FL", "UTAC01_D_OSL_DOP", "UTAC01_POHLAVI", "UTAC01_VARIANTA", "UTAC01_D_PROCTYP", "UTAC01_D_OTH_FL", "UTAC01_CREATED_DATE", "UTAC01_CREATED_PROCESS", "UTAC01_MODIFIED_DATE", "UTAC01_MODIFIED_PROCESS") AS 
+  (
+SELECT utac01_xccpro_key 
+      ,utac01_export_filename
+      ,utac01_id             
+      ,utac01_effective_date  
+      ,utac01_d_activit   
+      ,utac01_d_id_obj  
+      ,utac01_d_erdat        
+      ,utac01_d_datuza       
+      ,utac01_timezal     
+      ,utac01_d_ccatid1   
+      ,utac01_d_ccatid2   
+      ,utac01_d_direct   
+      ,utac01_d_kanal     
+      ,utac01_d_ele_fl    
+      ,utac01_d_partner  
+      ,utac01_ad02_tel 
+      ,utac01_d_ply_fl    
+      ,utac01_d_telnvo 
+      ,utac01_email    
+      ,utac01_adresa_ulice
+      ,utac01_adresa_cp   
+      ,utac01_adresa_co   
+      ,utac01_adresa_misto
+      ,utac01_adresa_mistni_cast
+      ,utac01_adresa_psc
+      ,utac01_d_zalozil_d_user
+      ,utac01_d_resitel_d_user
+      ,utac01_pocet_resitelu  
+      ,utac01_d_crm_uzs       
+      ,utac01_ddbpar_nazev    
+      ,utac01_bonita          
+      ,utac01_segmentace      
+      ,utac01_pocet_ms        
+      ,utac01_odhad_spotreby  
+      ,utac01_hodnota_zakaznika
+      ,utac01_pracoviste       
+      ,utac01_id_kpi           
+      ,utac01_vlastnik_dat   
+      ,utac01_rozhodne_datum 
+      ,utac01_d_ccatid3        
+      ,utac01_d_mob_fl  
+      ,utac01_d_osl_dop
+      ,utac01_pohlavi 
+      ,utac01_varianta
+      ,utac01_d_proctyp 
+      ,utac01_d_oth_fl
+      ,utac01_created_date
+      ,utac01_created_process
+      ,utac01_modified_date  
+      ,utac01_modified_process
+ FROM ownbt_out.OUT_CX01_AC01_GDPR
+     ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_AC01_01_D1' 
+   AND xccpro_current_flag = 1
+   AND utac01_effective_date = to_char(xccpro_process_date,'yyyymmdd') 
+   AND utac01_xccpro_key = xccpro_key
+  )
+;
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+--------------------------------------------------------
+--  DDL for View OUT_CX01_AC01_01_D1_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_AC01_01_D1_GDPR_V" ("UTAC01_XCCPRO_KEY", "UTAC01_EFFECTIVE_DATE", "UTAC01_ID", "UTAC01_D_PARTNER") AS 
+  (
+SELECT utac01_xccpro_key
+      ,utac01_effective_date
+      ,utac01_id
+      ,utac01_d_partner
+  FROM ownbt_out.OUT_CX01_AC01_GDPR
+      ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_AC01_01_D1'        
+   AND xccpro_current_flag = 1
+   AND utac01_xccpro_key = xccpro_key
+   AND utac01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD')) )
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_GDPR_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D1_GDPR_V" TO "BISUPPORT" WITH GRANT OPTION;
+--------------------------------------------------------
+--  DDL for View OUT_CX01_AC01_01_D3_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_AC01_01_D3_EXP_V" ("UTAC01_XCCPRO_KEY", "UTAC01_EXPORT_FILENAME", "UTAC01_ID", "UTAC01_EFFECTIVE_DATE", "UTAC01_D_ACTIVIT", "UTAC01_D_ID_OBJ", "UTAC01_D_ERDAT", "UTAC01_D_DATUZA", "UTAC01_TIMEZAL", "UTAC01_D_CCATID1", "UTAC01_D_CCATID2", "UTAC01_D_DIRECT", "UTAC01_D_KANAL", "UTAC01_D_ELE_FL", "UTAC01_D_PARTNER", "UTAC01_AD02_TEL", "UTAC01_D_PLY_FL", "UTAC01_D_TELNVO", "UTAC01_EMAIL", "UTAC01_ADRESA_ULICE", "UTAC01_ADRESA_CP", "UTAC01_ADRESA_CO", "UTAC01_ADRESA_MISTO", "UTAC01_ADRESA_MISTNI_CAST", "UTAC01_ADRESA_PSC", "UTAC01_D_ZALOZIL_D_USER", "UTAC01_D_RESITEL_D_USER", "UTAC01_POCET_RESITELU", "UTAC01_D_CRM_UZS", "UTAC01_DDBPAR_NAZEV", "UTAC01_BONITA", "UTAC01_SEGMENTACE", "UTAC01_POCET_MS", "UTAC01_ODHAD_SPOTREBY", "UTAC01_HODNOTA_ZAKAZNIKA", "UTAC01_PRACOVISTE", "UTAC01_ID_KPI", "UTAC01_VLASTNIK_DAT", "UTAC01_ROZHODNE_DATUM", "UTAC01_D_CCATID3", "UTAC01_D_MOB_FL", "UTAC01_D_OSL_DOP", "UTAC01_POHLAVI", "UTAC01_VARIANTA", "UTAC01_D_PROCTYP", "UTAC01_D_OTH_FL", "UTAC01_CREATED_DATE", "UTAC01_CREATED_PROCESS", "UTAC01_MODIFIED_DATE", "UTAC01_MODIFIED_PROCESS") AS 
+  (
+SELECT utac01_xccpro_key 
+      ,utac01_export_filename
+      ,utac01_id             
+      ,utac01_effective_date  
+      ,utac01_d_activit   
+      ,utac01_d_id_obj  
+      ,utac01_d_erdat        
+      ,utac01_d_datuza       
+      ,utac01_timezal     
+      ,utac01_d_ccatid1   
+      ,utac01_d_ccatid2   
+      ,utac01_d_direct   
+      ,utac01_d_kanal     
+      ,utac01_d_ele_fl    
+      ,utac01_d_partner  
+      ,utac01_ad02_tel 
+      ,utac01_d_ply_fl    
+      ,utac01_d_telnvo 
+      ,utac01_email    
+      ,utac01_adresa_ulice
+      ,utac01_adresa_cp   
+      ,utac01_adresa_co   
+      ,utac01_adresa_misto
+      ,utac01_adresa_mistni_cast
+      ,utac01_adresa_psc
+      ,utac01_d_zalozil_d_user
+      ,utac01_d_resitel_d_user
+      ,utac01_pocet_resitelu  
+      ,utac01_d_crm_uzs       
+      ,utac01_ddbpar_nazev    
+      ,utac01_bonita          
+      ,utac01_segmentace      
+      ,utac01_pocet_ms        
+      ,utac01_odhad_spotreby  
+      ,utac01_hodnota_zakaznika
+      ,utac01_pracoviste       
+      ,utac01_id_kpi           
+      ,utac01_vlastnik_dat   
+      ,utac01_rozhodne_datum 
+      ,utac01_d_ccatid3        
+      ,utac01_d_mob_fl  
+      ,utac01_d_osl_dop
+      ,utac01_pohlavi     
+      ,utac01_varianta
+      ,utac01_d_proctyp 
+      ,utac01_d_oth_fl
+      ,utac01_created_date
+      ,utac01_created_process
+      ,utac01_modified_date  
+      ,utac01_modified_process
+ FROM ownbt_out.OUT_CX01_AC01_GDPR
+     ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CATI_CX01_AC01_01_D3'
+   AND xccpro_current_flag = 1
+   AND utac01_effective_date = to_char(xccpro_process_date,'yyyymmdd')
+   AND utac01_xccpro_key = xccpro_key
+  )
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+--------------------------------------------------------
+--  DDL for View OUT_CX01_AC01_01_D3_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_AC01_01_D3_GDPR_V" ("UTAC01_XCCPRO_KEY", "UTAC01_EFFECTIVE_DATE", "UTAC01_ID", "UTAC01_D_PARTNER") AS 
+  (
+SELECT utac01_xccpro_key
+      ,utac01_effective_date
+      ,utac01_id
+      ,utac01_d_partner
+  FROM ownbt_out.OUT_CX01_AC01_GDPR
+      ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CATI_CX01_AC01_01_D3'        
+   AND xccpro_current_flag = 1
+   AND utac01_xccpro_key = xccpro_key
+   AND utac01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD')) )
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_GDPR_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_01_D3_GDPR_V" TO "BISUPPORT" WITH GRANT OPTION;
+--------------------------------------------------------
+--  DDL for View OUT_CX01_AC01_D1_MAIL_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" ("UTAC01_XCCPRO_KEY", "UTAC01_EXPORT_FILENAME", "UTAC01_ID", "UTAC01_EFFECTIVE_DATE", "UTAC01_D_ACTIVIT", "UTAC01_D_ID_OBJ", "UTAC01_D_ERDAT", "UTAC01_D_DATUZA", "UTAC01_TIMEZAL", "UTAC01_D_CCATID1", "UTAC01_D_CCATID2", "UTAC01_D_DIRECT", "UTAC01_D_KANAL", "UTAC01_D_ELE_FL", "UTAC01_D_PARTNER", "UTAC01_AD02_TEL", "UTAC01_D_PLY_FL", "UTAC01_D_TELNVO", "UTAC01_EMAIL", "UTAC01_ADRESA_ULICE", "UTAC01_ADRESA_CP", "UTAC01_ADRESA_CO", "UTAC01_ADRESA_MISTO", "UTAC01_ADRESA_MISTNI_CAST", "UTAC01_ADRESA_PSC", "UTAC01_D_ZALOZIL_D_USER", "UTAC01_D_RESITEL_D_USER", "UTAC01_POCET_RESITELU", "UTAC01_D_CRM_UZS", "UTAC01_DDBPAR_NAZEV", "UTAC01_BONITA", "UTAC01_SEGMENTACE", "UTAC01_POCET_MS", "UTAC01_ODHAD_SPOTREBY", "UTAC01_HODNOTA_ZAKAZNIKA", "UTAC01_PRACOVISTE", "UTAC01_ID_KPI", "UTAC01_VLASTNIK_DAT", "UTAC01_ROZHODNE_DATUM", "UTAC01_D_CCATID3", "UTAC01_D_MOB_FL", "UTAC01_D_OSL_DOP", "UTAC01_POHLAVI", "UTAC01_VARIANTA", "UTAC01_D_PROCTYP", "UTAC01_D_OTH_FL", "UTAC01_CREATED_DATE", "UTAC01_CREATED_PROCESS", "UTAC01_MODIFIED_DATE", "UTAC01_MODIFIED_PROCESS") AS 
+  SELECT utac01_xccpro_key 
+      ,utac01_export_filename
+      ,utac01_id             
+      ,utac01_effective_date  
+      ,utac01_d_activit   
+      ,utac01_d_id_obj  
+      ,utac01_d_erdat        
+      ,utac01_d_datuza       
+      ,utac01_timezal     
+      ,utac01_d_ccatid1   
+      ,utac01_d_ccatid2   
+      ,utac01_d_direct   
+      ,utac01_d_kanal     
+      ,utac01_d_ele_fl    
+      ,utac01_d_partner  
+      ,utac01_ad02_tel 
+      ,utac01_d_ply_fl    
+      ,utac01_d_telnvo 
+      ,utac01_email    
+      ,utac01_adresa_ulice
+      ,utac01_adresa_cp   
+      ,utac01_adresa_co   
+      ,utac01_adresa_misto
+      ,utac01_adresa_mistni_cast
+      ,utac01_adresa_psc
+      ,utac01_d_zalozil_d_user
+      ,utac01_d_resitel_d_user
+      ,utac01_pocet_resitelu  
+      ,utac01_d_crm_uzs       
+      ,utac01_ddbpar_nazev    
+      ,utac01_bonita          
+      ,utac01_segmentace      
+      ,utac01_pocet_ms        
+      ,utac01_odhad_spotreby  
+      ,utac01_hodnota_zakaznika
+      ,utac01_pracoviste       
+      ,utac01_id_kpi           
+      ,utac01_vlastnik_dat   
+      ,utac01_rozhodne_datum 
+      ,utac01_d_ccatid3        
+      ,utac01_d_mob_fl  
+      ,utac01_d_osl_dop
+      ,utac01_pohlavi
+      ,utac01_varianta
+      ,utac01_d_proctyp 
+      ,utac01_d_oth_fl
+      ,utac01_created_date
+      ,utac01_created_process
+      ,utac01_modified_date  
+      ,utac01_modified_process
+ FROM ownbt_out.OUT_CX01_AC01_GDPR
+     ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_AC01_D1_MAIL'
+   AND xccpro_current_flag = 1
+   AND utac01_effective_date = to_char(xccpro_process_date,'yyyymmdd')
+   AND utac01_xccpro_key = xccpro_key
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_EXP_V" TO "ZIZKAJIR0";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_AC01_D1_MAIL_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" ("UTAC01_XCCPRO_KEY", "UTAC01_EFFECTIVE_DATE", "UTAC01_ID", "UTAC01_D_PARTNER") AS 
+  SELECT utac01_xccpro_key
+      ,utac01_effective_date
+      ,utac01_id
+      ,utac01_d_partner
+FROM ownbt_out.OUT_CX01_AC01_GDPR
+      ,bisupport.xfc_cpro
+WHERE xccpro_key = 'CAWI_CX01_AC01_D1_MAIL'        
+   AND xccpro_current_flag = 1
+   AND utac01_xccpro_key = xccpro_key
+   AND utac01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD'))
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" TO "ZIZKAJIR0";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_MAIL_GDPR_V" TO "BISUPPORT" WITH GRANT OPTION;
+--------------------------------------------------------
+--  DDL for View OUT_CX01_AC01_D1_RET_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_EXP_V" ("UTAC01_XCCPRO_KEY", "UTAC01_EXPORT_FILENAME", "UTAC01_ID", "UTAC01_EFFECTIVE_DATE", "UTAC01_D_ACTIVIT", "UTAC01_D_ID_OBJ", "UTAC01_D_ERDAT", "UTAC01_D_DATUZA", "UTAC01_TIMEZAL", "UTAC01_D_CCATID1", "UTAC01_D_CCATID2", "UTAC01_D_DIRECT", "UTAC01_D_KANAL", "UTAC01_D_ELE_FL", "UTAC01_D_PARTNER", "UTAC01_AD02_TEL", "UTAC01_D_PLY_FL", "UTAC01_D_TELNVO", "UTAC01_EMAIL", "UTAC01_ADRESA_ULICE", "UTAC01_ADRESA_CP", "UTAC01_ADRESA_CO", "UTAC01_ADRESA_MISTO", "UTAC01_ADRESA_MISTNI_CAST", "UTAC01_ADRESA_PSC", "UTAC01_D_ZALOZIL_D_USER", "UTAC01_D_RESITEL_D_USER", "UTAC01_POCET_RESITELU", "UTAC01_D_CRM_UZS", "UTAC01_DDBPAR_NAZEV", "UTAC01_BONITA", "UTAC01_SEGMENTACE", "UTAC01_POCET_MS", "UTAC01_ODHAD_SPOTREBY", "UTAC01_HODNOTA_ZAKAZNIKA", "UTAC01_PRACOVISTE", "UTAC01_ID_KPI", "UTAC01_VLASTNIK_DAT", "UTAC01_ROZHODNE_DATUM", "UTAC01_D_CCATID3", "UTAC01_D_MOB_FL", "UTAC01_D_OSL_DOP", "UTAC01_POHLAVI", "UTAC01_VARIANTA", "UTAC01_D_PROCTYP", "UTAC01_D_OTH_FL", "UTAC01_CREATED_DATE", "UTAC01_CREATED_PROCESS", "UTAC01_MODIFIED_DATE", "UTAC01_MODIFIED_PROCESS") AS 
+  (
+SELECT utac01_xccpro_key 
+      ,utac01_export_filename
+      ,utac01_id             
+      ,utac01_effective_date  
+      ,utac01_d_activit   
+      ,utac01_d_id_obj  
+      ,utac01_d_erdat        
+      ,utac01_d_datuza       
+      ,utac01_timezal     
+      ,utac01_d_ccatid1   
+      ,utac01_d_ccatid2   
+      ,utac01_d_direct   
+      ,utac01_d_kanal     
+      ,utac01_d_ele_fl    
+      ,utac01_d_partner  
+      ,utac01_ad02_tel 
+      ,utac01_d_ply_fl    
+      ,utac01_d_telnvo 
+      ,utac01_email    
+      ,utac01_adresa_ulice
+      ,utac01_adresa_cp   
+      ,utac01_adresa_co   
+      ,utac01_adresa_misto
+      ,utac01_adresa_mistni_cast
+      ,utac01_adresa_psc
+      ,utac01_d_zalozil_d_user
+      ,utac01_d_resitel_d_user
+      ,utac01_pocet_resitelu  
+      ,utac01_d_crm_uzs       
+      ,utac01_ddbpar_nazev    
+      ,utac01_bonita          
+      ,utac01_segmentace      
+      ,utac01_pocet_ms        
+      ,utac01_odhad_spotreby  
+      ,utac01_hodnota_zakaznika
+      ,utac01_pracoviste       
+      ,utac01_id_kpi           
+      ,utac01_vlastnik_dat   
+      ,utac01_rozhodne_datum 
+      ,utac01_d_ccatid3        
+      ,utac01_d_mob_fl  
+      ,utac01_d_osl_dop
+      ,utac01_pohlavi     
+      ,utac01_varianta
+      ,utac01_d_proctyp 
+      ,utac01_d_oth_fl
+      ,utac01_created_date
+      ,utac01_created_process
+      ,utac01_modified_date  
+      ,utac01_modified_process
+ FROM ownbt_out.OUT_CX01_AC01_GDPR
+     ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_AC01_D1_RET'
+   AND xccpro_current_flag = 1
+   AND utac01_effective_date = to_char(xccpro_process_date,'yyyymmdd')
+   AND utac01_xccpro_key = xccpro_key
+  )
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_EXP_V" TO "BISUPPORT";
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_EXP_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_AC01_D1_RET_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_GDPR_V" ("UTAC01_XCCPRO_KEY", "UTAC01_EFFECTIVE_DATE", "UTAC01_ID", "UTAC01_D_PARTNER") AS 
+  (
+SELECT utac01_xccpro_key
+      ,utac01_effective_date
+      ,utac01_id
+      ,utac01_d_partner
+  FROM ownbt_out.OUT_CX01_AC01_GDPR
+      ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_AC01_D1_RET'        
+   AND xccpro_current_flag = 1
+   AND utac01_xccpro_key = xccpro_key
+   AND utac01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD')) )
+;
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_GDPR_V" TO "BISUPPORT";
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_AC01_D1_RET_GDPR_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_AC01_D3D9_EXTC_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_EXP_V" ("UTAC01_XCCPRO_KEY", "UTAC01_EXPORT_FILENAME", "UTAC01_ID", "UTAC01_EFFECTIVE_DATE", "UTAC01_D_ACTIVIT", "UTAC01_D_ID_OBJ", "UTAC01_D_ERDAT", "UTAC01_D_DATUZA", "UTAC01_TIMEZAL", "UTAC01_D_CCATID1", "UTAC01_D_CCATID2", "UTAC01_D_DIRECT", "UTAC01_D_KANAL", "UTAC01_D_ELE_FL", "UTAC01_D_PARTNER", "UTAC01_AD02_TEL", "UTAC01_D_PLY_FL", "UTAC01_D_TELNVO", "UTAC01_D_TELNVO_I", "UTAC01_EMAIL", "UTAC01_ADRESA_ULICE", "UTAC01_ADRESA_CP", "UTAC01_ADRESA_CO", "UTAC01_ADRESA_MISTO", "UTAC01_ADRESA_MISTNI_CAST", "UTAC01_ADRESA_PSC", "UTAC01_D_ZALOZIL", "UTAC01_D_ZALOZIL_D_USER", "UTAC01_D_ZALOZIL_TXTF", "UTAC01_D_ZALOZIL_D_ORGEH", "UTAC01_D_RESITEL", "UTAC01_D_RESITEL_D_USER", "UTAC01_D_RESITEL_TXTF", "UTAC01_D_RESITEL_D_ORGEH", "UTAC01_POCET_RESITELU", "UTAC01_D_CRM_UZS", "UTAC01_DDBPAR_NAZEV", "UTAC01_BONITA", "UTAC01_SEGMENTACE", "UTAC01_POCET_MS", "UTAC01_ODHAD_SPOTREBY", "UTAC01_HODNOTA_ZAKAZNIKA", "UTAC01_PRACOVISTE", "UTAC01_ID_KPI", "UTAC01_VLASTNIK_DAT", "UTAC01_ROZHODNE_DATUM", "UTAC01_D_CCATID3", "UTAC01_D_MOB_FL", "UTAC01_D_OSL_DOP", "UTAC01_POHLAVI", "UTAC01_VARIANTA", "UTAC01_CTRL_ITEM_1", "UTAC01_CTRL_ITEM_2", "UTAC01_CTRL_ITEM_3", "UTAC01_CTRL_ITEM_4", "UTAC01_CREATED_DATE", "UTAC01_CREATED_PROCESS", "UTAC01_MODIFIED_DATE", "UTAC01_MODIFIED_PROCESS") AS 
+  SELECT utac01_xccpro_key 
+      ,utac01_export_filename
+      ,utac01_id             
+      ,utac01_effective_date  
+      ,utac01_d_activit   
+      ,utac01_d_id_obj  
+      ,utac01_d_erdat        
+      ,utac01_d_datuza       
+      ,utac01_timezal     
+      ,utac01_d_ccatid1   
+
+      ,utac01_d_ccatid2   
+      ,utac01_d_direct   
+      ,utac01_d_kanal     
+      ,utac01_d_ele_fl    
+      ,utac01_d_partner  
+      ,utac01_ad02_tel 
+      ,utac01_d_ply_fl    
+      ,utac01_d_telnvo 
+      ,utac01_d_telnvo_i 
+      ,utac01_email    
+      ,utac01_adresa_ulice
+      ,utac01_adresa_cp   
+      ,utac01_adresa_co   
+      ,utac01_adresa_misto
+      ,utac01_adresa_mistni_cast
+      ,utac01_adresa_psc
+      ,utac01_d_zalozil
+      ,utac01_d_zalozil_d_user
+      ,utac01_d_zalozil_txtf
+      ,utac01_d_zalozil_d_orgeh
+      ,utac01_d_resitel      
+      ,utac01_d_resitel_d_user
+      ,utac01_d_resitel_txtf
+      ,utac01_d_resitel_d_orgeh
+      ,utac01_pocet_resitelu  
+      ,utac01_d_crm_uzs       
+      ,utac01_ddbpar_nazev    
+      ,utac01_bonita          
+      ,utac01_segmentace      
+      ,utac01_pocet_ms        
+      ,utac01_odhad_spotreby  
+      ,utac01_hodnota_zakaznika
+      ,utac01_pracoviste       
+      ,utac01_id_kpi           
+      ,utac01_vlastnik_dat   
+      ,utac01_rozhodne_datum 
+      ,utac01_d_ccatid3        
+      ,utac01_d_mob_fl  
+      ,utac01_d_osl_dop
+      ,utac01_pohlavi        
+      ,CASE WHEN utac01_d_datuza - utac01_d_erdat BETWEEN 0 AND 21 THEN 1 ELSE 2 END  as UTAC01_VARIANTA
+      ,utac01_ctrl_item_1
+      ,utac01_ctrl_item_2
+      ,utac01_ctrl_item_3
+      ,utac01_ctrl_item_4
+      ,utac01_created_date
+      ,utac01_created_process
+      ,utac01_modified_date  
+      ,utac01_modified_process
+ FROM ownbt_out.OUT_CX01_AC01_GDPR
+     ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CATI_CX01_AC01_D3D9_EXTC'
+   AND xccpro_current_flag = 1
+   AND utac01_effective_date = to_char(xccpro_process_date,'yyyymmdd')
+   AND utac01_xccpro_key = xccpro_key
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+--------------------------------------------------------
+--  DDL for View OUT_CX01_AC01_D3D9_EXTC_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_GDPR_V" ("UTAC01_XCCPRO_KEY", "UTAC01_EFFECTIVE_DATE", "UTAC01_ID", "UTAC01_D_PARTNER") AS 
+  SELECT utac01_xccpro_key
+      ,utac01_effective_date
+      ,utac01_id
+      ,utac01_d_partner
+FROM ownbt_out.OUT_CX01_AC01_GDPR
+      ,bisupport.xfc_cpro
+WHERE xccpro_key = 'CATI_CX01_AC01_D3D9_EXTC'        
+   AND xccpro_current_flag = 1
+   AND utac01_xccpro_key = xccpro_key
+   AND utac01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD'))
+;
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_GDPR_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_GDPR_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_EXTC_GDPR_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_AC01_D3D9_REKL_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_EXP_V" ("UTAC01_XCCPRO_KEY", "UTAC01_EXPORT_FILENAME", "UTAC01_ID", "UTAC01_EFFECTIVE_DATE", "UTAC01_D_ACTIVIT", "UTAC01_D_ID_OBJ", "UTAC01_D_ERDAT", "UTAC01_D_DATUZA", "UTAC01_TIMEZAL", "UTAC01_D_CCATID1", "UTAC01_D_CCATID2", "UTAC01_D_DIRECT", "UTAC01_D_KANAL", "UTAC01_D_ELE_FL", "UTAC01_D_PARTNER", "UTAC01_AD02_TEL", "UTAC01_D_PLY_FL", "UTAC01_D_TELNVO", "UTAC01_EMAIL", "UTAC01_ADRESA_ULICE", "UTAC01_ADRESA_CP", "UTAC01_ADRESA_CO", "UTAC01_ADRESA_MISTO", "UTAC01_ADRESA_MISTNI_CAST", "UTAC01_ADRESA_PSC", "UTAC01_D_ZALOZIL_D_USER", "UTAC01_D_RESITEL_D_USER", "UTAC01_POCET_RESITELU", "UTAC01_D_CRM_UZS", "UTAC01_DDBPAR_NAZEV", "UTAC01_BONITA", "UTAC01_SEGMENTACE", "UTAC01_POCET_MS", "UTAC01_ODHAD_SPOTREBY", "UTAC01_HODNOTA_ZAKAZNIKA", "UTAC01_PRACOVISTE", "UTAC01_ID_KPI", "UTAC01_VLASTNIK_DAT", "UTAC01_ROZHODNE_DATUM", "UTAC01_D_CCATID3", "UTAC01_D_MOB_FL", "UTAC01_D_OSL_DOP", "UTAC01_POHLAVI", "UTAC01_VARIANTA", "UTAC01_CREATED_DATE", "UTAC01_CREATED_PROCESS", "UTAC01_MODIFIED_DATE", "UTAC01_MODIFIED_PROCESS") AS 
+  SELECT utac01_xccpro_key 
+      ,utac01_export_filename
+      ,utac01_id             
+      ,utac01_effective_date  
+      ,utac01_d_activit   
+      ,utac01_d_id_obj  
+      ,utac01_d_erdat        
+      ,utac01_d_datuza       
+      ,utac01_timezal     
+      ,utac01_d_ccatid1   
+      ,utac01_d_ccatid2   
+      ,utac01_d_direct   
+      ,utac01_d_kanal     
+      ,utac01_d_ele_fl    
+      ,utac01_d_partner  
+      ,utac01_ad02_tel 
+      ,utac01_d_ply_fl    
+      ,utac01_d_telnvo 
+      ,utac01_email    
+      ,utac01_adresa_ulice
+      ,utac01_adresa_cp   
+      ,utac01_adresa_co   
+      ,utac01_adresa_misto
+      ,utac01_adresa_mistni_cast
+      ,utac01_adresa_psc
+      ,utac01_d_zalozil_d_user
+      ,utac01_d_resitel_d_user
+      ,utac01_pocet_resitelu  
+      ,utac01_d_crm_uzs       
+      ,utac01_ddbpar_nazev    
+      ,utac01_bonita          
+      ,utac01_segmentace      
+      ,utac01_pocet_ms        
+      ,utac01_odhad_spotreby  
+      ,utac01_hodnota_zakaznika
+      ,utac01_pracoviste       
+      ,utac01_id_kpi           
+      ,utac01_vlastnik_dat   
+      ,utac01_rozhodne_datum 
+      ,utac01_d_ccatid3        
+      ,utac01_d_mob_fl  
+      ,utac01_d_osl_dop
+      ,utac01_pohlavi   
+      ,utac01_varianta
+      ,utac01_created_date
+      ,utac01_created_process
+      ,utac01_modified_date  
+      ,utac01_modified_process
+ FROM ownbt_out.OUT_CX01_AC01_GDPR
+     ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CATI_CX01_AC01_D3D9_REKL'
+   AND xccpro_current_flag = 1
+   AND utac01_effective_date = to_char(xccpro_process_date,'yyyymmdd')
+   AND utac01_xccpro_key = xccpro_key
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_EXP_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_AC01_D3D9_REKL_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_GDPR_V" ("UTAC01_XCCPRO_KEY", "UTAC01_EFFECTIVE_DATE", "UTAC01_ID", "UTAC01_D_PARTNER") AS 
+  SELECT utac01_xccpro_key
+      ,utac01_effective_date
+      ,utac01_id
+      ,utac01_d_partner
+FROM ownbt_out.OUT_CX01_AC01_GDPR
+      ,bisupport.xfc_cpro
+WHERE xccpro_key = 'CATI_CX01_AC01_D3D9_REKL'        
+   AND xccpro_current_flag = 1
+   AND utac01_xccpro_key = xccpro_key
+   AND utac01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD'))
+;
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_GDPR_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_GDPR_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_AC01_D3D9_REKL_GDPR_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_AKVI_01_D1_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_EXP_V" ("UTAKVI_XCCPRO_KEY", "UTAKVI_EXPORT_FILENAME", "UTAKVI_ID", "UTAKVI_EFFECTIVE_DATE", "UTAKVI_D_CRM_LEA", "UTAKVI_D_ID_OBJ", "UTAKVI_D_ERDAT", "UTAKVI_D_DATUZA", "UTAKVI_TIMEZAL", "UTAKVI_D_CCATID1", "UTAKVI_D_CCATID2", "UTAKVI_D_DIRECT", "UTAKVI_D_KANAL", "UTAKVI_D_ELE_FL", "UTAKVI_D_PARTNER", "UTAKVI_AD02_TEL", "UTAKVI_D_PLY_FL", "UTAKVI_D_TELNVO", "UTAKVI_EMAIL", "UTAKVI_ADRESA_ULICE", "UTAKVI_ADRESA_CP", "UTAKVI_ADRESA_CO", "UTAKVI_ADRESA_MISTO", "UTAKVI_ADRESA_MISTNI_CAST", "UTAKVI_ADRESA_PSC", "UTAKVI_ZALOZIL_KPJM", "UTAKVI_D_ZALOZIL_D_USER", "UTAKVI_D_ZALOZIL_TXTF", "UTAKVI_D_ZALOZIL_D_ORGEH", "UTAKVI_D_RESITEL", "UTAKVI_D_RESITEL_D_USER", "UTAKVI_D_RESITEL_TXTF", "UTAKVI_D_RESITEL_D_ORGEH", "UTAKVI_POCET_RESITELU", "UTAKVI_D_CRM_UZS", "UTAKVI_DDBPAR_NAZEV", "UTAKVI_BONITA", "UTAKVI_SEGMENTACE", "UTAKVI_POCET_MS", "UTAKVI_ODHAD_SPOTREBY", "UTAKVI_HODNOTA_ZAKAZNIKA", "UTAKVI_PRACOVISTE", "UTAKVI_ID_KPI", "UTAKVI_VLASTNIK_DAT", "UTAKVI_ROZHODNE_DATUM", "UTAKVI_D_CCATID3", "UTAKVI_D_MOB_FL", "UTAKVI_D_OSL_DOP", "UTAKVI_POHLAVI", "UTAKVI_VARIANTA", "UTAKVI_CTRL_ITEM_1", "UTAKVI_CTRL_ITEM_2", "UTAKVI_CTRL_ITEM_3", "UTAKVI_CTRL_ITEM_4", "UTAKVI_CREATED_DATE", "UTAKVI_CREATED_PROCESS", "UTAKVI_MODIFIED_DATE", "UTAKVI_MODIFIED_PROCESS") AS 
+  SELECT 
+        UTAKVI_xccpro_key,
+        UTAKVI_export_filename,
+        UTAKVI_id             ,
+        UTAKVI_effective_date  ,
+        -- vystup
+        DECODE(UTAKVI_D_CRM_LEA	, 'N/A', null,UTAKVI_D_CRM_LEA) as UTAKVI_D_CRM_LEA,
+        DECODE(UTAKVI_D_ID_OBJ	, 'N/A', null,UTAKVI_D_ID_OBJ) as UTAKVI_D_ID_OBJ,
+        DECODE(UTAKVI_D_ERDAT	, 'N/A', null,UTAKVI_D_ERDAT) as UTAKVI_D_ERDAT,
+        DECODE(UTAKVI_D_DATUZA	, 'N/A', null,UTAKVI_D_DATUZA) as UTAKVI_D_DATUZA,
+        DECODE(UTAKVI_TIMEZAL	, 'N/A', null,UTAKVI_TIMEZAL) as UTAKVI_TIMEZAL,
+        DECODE(UTAKVI_D_CCATID1	, 'N/A', null,UTAKVI_D_CCATID1) as UTAKVI_D_CCATID1,
+        DECODE(UTAKVI_D_CCATID2	, 'N/A', null,UTAKVI_D_CCATID2) as UTAKVI_D_CCATID2,
+        DECODE(UTAKVI_D_DIRECT	, 'N/A', null,UTAKVI_D_DIRECT) as UTAKVI_D_DIRECT,
+        DECODE(UTAKVI_D_KANAL	, 'N/A', null,UTAKVI_D_KANAL) as UTAKVI_D_KANAL,
+        DECODE(UTAKVI_D_ELE_FL	, 'N/A', null,UTAKVI_D_ELE_FL) as UTAKVI_D_ELE_FL,
+        DECODE(UTAKVI_D_PARTNER	, 'N/A', null,UTAKVI_D_PARTNER) as UTAKVI_D_PARTNER,
+        DECODE(UTAKVI_AD02_TEL	, 'N/A', null,UTAKVI_AD02_TEL) as UTAKVI_AD02_TEL,
+        DECODE(UTAKVI_D_PLY_FL	, 'N/A', null,UTAKVI_D_PLY_FL) as UTAKVI_D_PLY_FL,
+        DECODE(UTAKVI_D_TELNVO	, 'N/A', null,UTAKVI_D_TELNVO) as UTAKVI_D_TELNVO,
+        DECODE(UTAKVI_EMAIL	, 'N/A', null,UTAKVI_EMAIL) as UTAKVI_EMAIL,
+        DECODE(UTAKVI_ADRESA_ULICE	, 'N/A', null,UTAKVI_ADRESA_ULICE) as UTAKVI_ADRESA_ULICE,
+        DECODE(UTAKVI_ADRESA_CP	, 'N/A', null,UTAKVI_ADRESA_CP) as UTAKVI_ADRESA_CP,
+        DECODE(UTAKVI_ADRESA_CO	, 'N/A', null,UTAKVI_ADRESA_CO) as UTAKVI_ADRESA_CO,
+        DECODE(UTAKVI_ADRESA_MISTO	, 'N/A', null,UTAKVI_ADRESA_MISTO) as UTAKVI_ADRESA_MISTO,
+        DECODE(UTAKVI_ADRESA_MISTNI_CAST	, 'N/A', null,UTAKVI_ADRESA_MISTNI_CAST) as UTAKVI_ADRESA_MISTNI_CAST,
+        DECODE(UTAKVI_ADRESA_PSC	, 'N/A', null,UTAKVI_ADRESA_PSC) as UTAKVI_ADRESA_PSC,
+        DECODE(UTAKVI_ZALOZIL_KPJM	,'N/A',null,UTAKVI_ZALOZIL_KPJM) as UTAKVI_ZALOZIL_KPJM,
+        DECODE(UTAKVI_D_ZALOZIL_D_USER	, 'N/A', null,UTAKVI_D_ZALOZIL_D_USER) as UTAKVI_D_ZALOZIL_D_USER,
+	DECODE(UTAKVI_D_ZALOZIL_TXTF	,'N/A', null,UTAKVI_D_ZALOZIL_TXTF) as UTAKVI_D_ZALOZIL_TXTF,
+	DECODE(UTAKVI_D_ZALOZIL_D_ORGEH	,'N/A', null,UTAKVI_D_ZALOZIL_D_ORGEH) as UTAKVI_D_ZALOZIL_D_ORGEH,
+	DECODE(UTAKVI_D_RESITEL	, 'N/A', null, UTAKVI_D_RESITEL) as UTAKVI_D_RESITEL,
+        DECODE(UTAKVI_D_RESITEL_D_USER	, 'N/A', null,UTAKVI_D_RESITEL_D_USER) as UTAKVI_D_RESITEL_D_USER,
+	DECODE(UTAKVI_D_RESITEL_TXTF	,'N/A', null,UTAKVI_D_RESITEL_TXTF) as UTAKVI_D_RESITEL_TXTF,
+	DECODE(UTAKVI_D_RESITEL_D_ORGEH	,'N/A', null, UTAKVI_D_RESITEL_D_ORGEH) as UTAKVI_D_RESITEL_D_ORGEH,
+        DECODE(UTAKVI_POCET_RESITELU	, 'N/A', null,UTAKVI_POCET_RESITELU) as UTAKVI_POCET_RESITELU,
+        DECODE(UTAKVI_D_CRM_UZS	, 'N/A', null,UTAKVI_D_CRM_UZS) as UTAKVI_D_CRM_UZS,
+        DECODE(UTAKVI_DDBPAR_NAZEV	, 'N/A', null,UTAKVI_DDBPAR_NAZEV) as UTAKVI_DDBPAR_NAZEV,
+        DECODE(UTAKVI_BONITA	, 'N/A', null,UTAKVI_BONITA) as UTAKVI_BONITA,
+        DECODE(UTAKVI_SEGMENTACE	, 'N/A', null,UTAKVI_SEGMENTACE) as UTAKVI_SEGMENTACE,
+        DECODE(UTAKVI_POCET_MS	, 'N/A', null,UTAKVI_POCET_MS) as UTAKVI_POCET_MS,
+        DECODE(UTAKVI_ODHAD_SPOTREBY	, 'N/A', null,UTAKVI_ODHAD_SPOTREBY) as UTAKVI_ODHAD_SPOTREBY,
+        DECODE(UTAKVI_HODNOTA_ZAKAZNIKA	, 'N/A', null,UTAKVI_HODNOTA_ZAKAZNIKA) as UTAKVI_HODNOTA_ZAKAZNIKA,
+        DECODE(UTAKVI_PRACOVISTE	, 'N/A', null,UTAKVI_PRACOVISTE) as UTAKVI_PRACOVISTE,
+        DECODE(UTAKVI_ID_KPI	, 'N/A', null,UTAKVI_ID_KPI) as UTAKVI_ID_KPI,
+        DECODE(UTAKVI_VLASTNIK_DAT	, 'N/A', null,UTAKVI_VLASTNIK_DAT) as UTAKVI_VLASTNIK_DAT,
+        DECODE(UTAKVI_ROZHODNE_DATUM	, 'N/A', null,UTAKVI_ROZHODNE_DATUM) as UTAKVI_ROZHODNE_DATUM,
+        DECODE(UTAKVI_D_CCATID3	, 'N/A', null,UTAKVI_D_CCATID3) as UTAKVI_D_CCATID3,
+        DECODE(UTAKVI_D_MOB_FL	, 'N/A', null,UTAKVI_D_MOB_FL) as UTAKVI_D_MOB_FL,
+        DECODE(UTAKVI_D_OSL_DOP	, 'N/A', null,UTAKVI_D_OSL_DOP) as UTAKVI_D_OSL_DOP,
+        DECODE(UTAKVI_POHLAVI	, 'N/A', null,UTAKVI_POHLAVI) as UTAKVI_POHLAVI,
+	DECODE(utakvi_varianta, 'N/A',null,utakvi_varianta) as UTAKVI_VARIANTA,
+        DECODE(UTAKVI_CTRL_ITEM_1, 'N/A', NULL, UTAKVI_CTRL_ITEM_1) AS UTAKVI_CTRL_ITEM_1,
+        DECODE(UTAKVI_CTRL_ITEM_2, 'N/A', NULL, UTAKVI_CTRL_ITEM_2) AS UTAKVI_CTRL_ITEM_2,
+        DECODE(UTAKVI_CTRL_ITEM_3, 'N/A', NULL, UTAKVI_CTRL_ITEM_3) AS UTAKVI_CTRL_ITEM_3,
+        DECODE(UTAKVI_CTRL_ITEM_4, 'N/A', NULL, UTAKVI_CTRL_ITEM_4) AS UTAKVI_CTRL_ITEM_4
+        -- konec
+
+        ,UTAKVI_created_date,
+        UTAKVI_created_process,
+        UTAKVI_modified_date  ,
+        UTAKVI_modified_process
+
+ FROM ownbt_out.OUT_CX01_AKVI_GDPR
+     , bisupport.xfc_cpro 
+ WHERE xccpro_key = 'CATI_CX01_AKVI_01_D1'   
+   AND xccpro_current_flag = 1
+   AND UTAKVI_effective_date = to_char(xccpro_process_date,'yyyymmdd') 
+   AND UTAKVI_xccpro_key = xccpro_key
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+--------------------------------------------------------
+--  DDL for View OUT_CX01_AKVI_01_D1_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_GDPR_V" ("UTAKVI_XCCPRO_KEY", "UTAKVI_EFFECTIVE_DATE", "UTAKVI_ID", "UTAKVI_D_PARTNER") AS 
+  SELECT utakvi_xccpro_key
+      ,utakvi_effective_date
+      ,utakvi_id
+      ,utakvi_d_partner
+  FROM ownbt_out.OUT_CX01_AKVI_GDPR
+       ,bisupport.xfc_cpro  
+ WHERE xccpro_key = 'CATI_CX01_AKVI_01_D1'      
+   AND xccpro_current_flag = 1
+   AND utakvi_xccpro_key = xccpro_key
+   AND utakvi_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date + xccpro_date_offset_from,'YYYYMMDD'))
+;
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_GDPR_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_GDPR_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_AKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_CL04_01_D1_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_CL04_01_D1_EXP_V" ("UTCL04_XCCPRO_KEY", "UTCL04_EXPORT_FILENAME", "UTCL04_ID", "UTCL04_D_PARTNER", "UTCL04_BPAR_NAZEV", "UTCL04_COL_USER", "UTCL04_DATE_VALID", "UTCL04_TIME_VALID", "UTCL04_RESPONSE_1", "UTCL04_RESPONSE_4", "UTCL04_D_ID_OBJ", "UTCL04_D_XCATID1", "UTCL04_D_XCATID2", "UTCL04_D_XCATID3", "UTCL04_D_KANAL", "UTCL04_D_ZALOZIL", "UTCL04_D_RESITEL", "UTCL04_RESPONSE_2", "UTCL04_RESPONSE_3") AS 
+  SELECT 
+    UTCL04_XCCPRO_KEY,
+    UTCL04_EXPORT_FILENAME,
+    utcl04_id,
+    UTCL04_D_PARTNER,
+    UTCL04_BPAR_NAZEV,
+    UTCL04_COL_USER,
+    UTCL04_DATE_VALID,
+    UTCL04_TIME_VALID,
+    UTCL04_RESPONSE_1,
+    UTCL04_RESPONSE_4,
+    UTCL04_D_ID_OBJ,
+    UTCL04_D_XCATID1,
+    UTCL04_D_XCATID2,
+    UTCL04_D_XCATID3,
+    UTCL04_D_KANAL,
+    UTCL04_D_ZALOZIL,
+    UTCL04_D_RESITEL,
+    UTCL04_RESPONSE_2,
+    UTCL04_RESPONSE_3
+ FROM 
+     ownbt_out.OUT_CX01_CL04_GDPR
+     ,bisupport.xfc_cpro 
+ WHERE xccpro_key = 'COL1_CX01_CL04_01_D1' 
+   AND xccpro_current_flag = 1
+   AND utcl04_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD')) 
+   AND utcl04_xccpro_key = xccpro_key
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+--------------------------------------------------------
+--  DDL for View OUT_CX01_CL04_01_D1_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_CL04_01_D1_GDPR_V" ("UTCL04_XCCPRO_KEY", "UTCL04_EFFECTIVE_DATE", "UTCL04_ID", "UTCL04_D_PARTNER") AS 
+  SELECT utcl04_xccpro_key
+      ,utcl04_effective_date
+      ,utcl04_id
+      ,utcl04_d_partner
+  FROM 
+      ownbt_out.OUT_CX01_CL04_GDPR
+      ,bisupport.xfc_cpro  
+ WHERE xccpro_key = 'COL1_CX01_CL04_01_D1'      
+   AND xccpro_current_flag = 1
+   AND utcl04_xccpro_key = xccpro_key
+   AND utcl04_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date + xccpro_date_offset_from,'YYYYMMDD'))
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_GDPR_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_CL04_01_D1_GDPR_V" TO "BISUPPORT" WITH GRANT OPTION;
+--------------------------------------------------------
+--  DDL for View OUT_CX01_LE01_01_D1_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_LE01_01_D1_GDPR_V" ("UTLE01_XCCPRO_KEY", "UTLE01_EFFECTIVE_DATE", "UTLE01_ID", "UTLE01_D_PARTNER") AS 
+  SELECT utle01_xccpro_key
+      ,utle01_effective_date
+      ,utle01_id
+      ,utle01_d_partner
+  FROM ownbt_out.OUT_CX01_LE01_GDPR
+      ,bisupport.xfc_cpro 
+ WHERE xccpro_key = 'SMS1_CX01_LE01_01_D1'        
+   AND xccpro_current_flag = 1
+   AND utle01_xccpro_key = xccpro_key
+   AND utle01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD'))
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LE01_01_D1_GDPR_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LE01_01_D1_GDPR_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_LE01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_LE01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LE01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_LE01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_LE01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_LE01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_LE01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_LE01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_LE01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_LE01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_LE01_01_D1_GDPR_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_LE01_D1_SMS_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_LE01_D1_SMS_EXP_V" ("UTLE01_XCCPRO_KEY", "UTLE01_EXPORT_FILENAME", "UTLE01_ID", "UTLE01_EFFECTIVE_DATE", "UTLE01_D_CRM_LEA", "UTLE01_D_ID_OBJ", "UTLE01_D_ERDAT", "UTLE01_D_DATUZA", "UTLE01_TIMEZAL", "UTLE01_D_CCATID1", "UTLE01_D_CCATID2", "UTLE01_D_DIRECT", "UTLE01_D_KANAL", "UTLE01_D_ELE_FL", "UTLE01_D_PARTNER", "UTLE01_AD02_TEL", "UTLE01_D_PLY_FL", "UTLE01_D_TELNVO", "UTLE01_EMAIL", "UTLE01_ADRESA_ULICE", "UTLE01_ADRESA_CP", "UTLE01_ADRESA_CO", "UTLE01_ADRESA_MISTO", "UTLE01_ADRESA_MISTNI_CAST", "UTLE01_ADRESA_PSC", "UTLE01_D_ZALOZIL_D_USER", "UTLE01_D_RESITEL_D_USER", "UTLE01_POCET_RESITELU", "UTLE01_D_CRM_UZS", "UTLE01_DDBPAR_NAZEV", "UTLE01_BONITA", "UTLE01_SEGMENTACE", "UTLE01_POCET_MS", "UTLE01_ODHAD_SPOTREBY", "UTLE01_HODNOTA_ZAKAZNIKA", "UTLE01_PRACOVISTE", "UTLE01_ID_KPI", "UTLE01_VLASTNIK_DAT", "UTLE01_ROZHODNE_DATUM", "UTLE01_D_CCATID3", "UTLE01_D_MOB_FL", "UTLE01_D_OSL_DOP", "UTLE01_POHLAVI", "UTLE01_VARIANTA", "UTLE01_CTRL_ITEM_1", "UTLE01_CTRL_ITEM_2", "UTLE01_CTRL_ITEM_3", "UTLE01_CTRL_ITEM_4", "UTLE01_CREATED_DATE", "UTLE01_CREATED_PROCESS", "UTLE01_MODIFIED_DATE", "UTLE01_MODIFIED_PROCESS") AS 
+  SELECT 
+        utle01_xccpro_key,
+        utle01_export_filename,
+        utle01_id             ,
+        utle01_effective_date  ,
+        -- vystup
+        DECODE(UTLE01_D_CRM_LEA	, 'N/A', null,UTLE01_D_CRM_LEA) as UTLE01_D_CRM_LEA,
+        DECODE(UTLE01_D_ID_OBJ	, 'N/A', null,UTLE01_D_ID_OBJ) as UTLE01_D_ID_OBJ,
+        DECODE(UTLE01_D_ERDAT	, 'N/A', null,UTLE01_D_ERDAT) as UTLE01_D_ERDAT,
+        DECODE(UTLE01_D_DATUZA	, 'N/A', null,UTLE01_D_DATUZA) as UTLE01_D_DATUZA,
+        DECODE(UTLE01_TIMEZAL	, 'N/A', null,UTLE01_TIMEZAL) as UTLE01_TIMEZAL,
+        DECODE(UTLE01_D_CCATID1	, 'N/A', null,UTLE01_D_CCATID1) as UTLE01_D_CCATID1,
+        DECODE(UTLE01_D_CCATID2	, 'N/A', null,UTLE01_D_CCATID2) as UTLE01_D_CCATID2,
+        DECODE(UTLE01_D_DIRECT	, 'N/A', null,UTLE01_D_DIRECT) as UTLE01_D_DIRECT,
+        DECODE(UTLE01_D_KANAL	, 'N/A', null,UTLE01_D_KANAL) as UTLE01_D_KANAL,
+        DECODE(UTLE01_D_ELE_FL	, 'N/A', null,UTLE01_D_ELE_FL) as UTLE01_D_ELE_FL,
+        DECODE(UTLE01_D_PARTNER	, 'N/A', null,UTLE01_D_PARTNER) as UTLE01_D_PARTNER,
+        DECODE(UTLE01_AD02_TEL	, 'N/A', null,UTLE01_AD02_TEL) as UTLE01_AD02_TEL,
+        DECODE(UTLE01_D_PLY_FL	, 'N/A', null,UTLE01_D_PLY_FL) as UTLE01_D_PLY_FL,
+        DECODE(UTLE01_D_TELNVO	, 'N/A', null,UTLE01_D_TELNVO) as UTLE01_D_TELNVO,
+        DECODE(UTLE01_EMAIL	, 'N/A', null,UTLE01_EMAIL) as UTLE01_EMAIL,
+        DECODE(UTLE01_ADRESA_ULICE	, 'N/A', null,UTLE01_ADRESA_ULICE) as UTLE01_ADRESA_ULICE,
+        DECODE(UTLE01_ADRESA_CP	, 'N/A', null,UTLE01_ADRESA_CP) as UTLE01_ADRESA_CP,
+        DECODE(UTLE01_ADRESA_CO	, 'N/A', null,UTLE01_ADRESA_CO) as UTLE01_ADRESA_CO,
+        DECODE(UTLE01_ADRESA_MISTO	, 'N/A', null,UTLE01_ADRESA_MISTO) as UTLE01_ADRESA_MISTO,
+        DECODE(UTLE01_ADRESA_MISTNI_CAST	, 'N/A', null,UTLE01_ADRESA_MISTNI_CAST) as UTLE01_ADRESA_MISTNI_CAST,
+        DECODE(UTLE01_ADRESA_PSC	, 'N/A', null,UTLE01_ADRESA_PSC) as UTLE01_ADRESA_PSC,
+        DECODE(UTLE01_D_ZALOZIL_D_USER	, 'N/A', null,UTLE01_D_ZALOZIL_D_USER) as UTLE01_D_ZALOZIL_D_USER,
+        DECODE(UTLE01_D_RESITEL_D_USER	, 'N/A', null,UTLE01_D_RESITEL_D_USER) as UTLE01_D_RESITEL_D_USER,
+        DECODE(UTLE01_POCET_RESITELU	, 'N/A', null,UTLE01_POCET_RESITELU) as UTLE01_POCET_RESITELU,
+        DECODE(UTLE01_D_CRM_UZS	, 'N/A', null,UTLE01_D_CRM_UZS) as UTLE01_D_CRM_UZS,
+        DECODE(UTLE01_DDBPAR_NAZEV	, 'N/A', null,UTLE01_DDBPAR_NAZEV) as UTLE01_DDBPAR_NAZEV,
+        DECODE(UTLE01_BONITA	, 'N/A', null,UTLE01_BONITA) as UTLE01_BONITA,
+        DECODE(UTLE01_SEGMENTACE	, 'N/A', null,UTLE01_SEGMENTACE) as UTLE01_SEGMENTACE,
+        DECODE(UTLE01_POCET_MS	, 'N/A', null,UTLE01_POCET_MS) as UTLE01_POCET_MS,
+        DECODE(UTLE01_ODHAD_SPOTREBY	, 'N/A', null,UTLE01_ODHAD_SPOTREBY) as UTLE01_ODHAD_SPOTREBY,
+        DECODE(UTLE01_HODNOTA_ZAKAZNIKA	, 'N/A', null,UTLE01_HODNOTA_ZAKAZNIKA) as UTLE01_HODNOTA_ZAKAZNIKA,
+        DECODE(UTLE01_PRACOVISTE	, 'N/A', null,UTLE01_PRACOVISTE) as UTLE01_PRACOVISTE,
+        DECODE(UTLE01_ID_KPI	, 'N/A', null,UTLE01_ID_KPI) as UTLE01_ID_KPI,
+        DECODE(UTLE01_VLASTNIK_DAT	, 'N/A', null,UTLE01_VLASTNIK_DAT) as UTLE01_VLASTNIK_DAT,
+        DECODE(UTLE01_ROZHODNE_DATUM	, 'N/A', null,UTLE01_ROZHODNE_DATUM) as UTLE01_ROZHODNE_DATUM,
+        DECODE(UTLE01_D_CCATID3	, 'N/A', null,UTLE01_D_CCATID3) as UTLE01_D_CCATID3,
+        DECODE(UTLE01_D_MOB_FL	, 'N/A', null,UTLE01_D_MOB_FL) as UTLE01_D_MOB_FL,
+        DECODE(UTLE01_D_OSL_DOP	, 'N/A', null,UTLE01_D_OSL_DOP) as UTLE01_D_OSL_DOP,
+        DECODE(UTLE01_POHLAVI	, 'N/A', null,UTLE01_POHLAVI) as UTLE01_POHLAVI,
+        DECODE(UTLE01_VARIANTA	, 'N/A', null,UTLE01_VARIANTA) as UTLE01_VARIANTA,
+
+        DECODE(UTLE01_CTRL_ITEM_1	, 'N/A', null,UTLE01_CTRL_ITEM_1) as UTLE01_CTRL_ITEM_1,
+        DECODE(UTLE01_CTRL_ITEM_2	, 'N/A', null,UTLE01_CTRL_ITEM_2) as UTLE01_CTRL_ITEM_2,
+        DECODE(UTLE01_CTRL_ITEM_3	, 'N/A', null,UTLE01_CTRL_ITEM_3) as UTLE01_CTRL_ITEM_3,
+        DECODE(UTLE01_CTRL_ITEM_4	, 'N/A', null,UTLE01_CTRL_ITEM_4) as UTLE01_CTRL_ITEM_4,
+
+        -- konec
+        utle01_created_date,
+        utle01_created_process,
+        utle01_modified_date  ,
+        utle01_modified_process
+ FROM ownbt_out.OUT_CX01_LE01_GDPR
+     ,bisupport.xfc_cpro 
+ WHERE xccpro_key = 'SMS1_CX01_LE01_01_D1' 
+   AND xccpro_current_flag = 1
+   AND utle01_effective_date = to_char(xccpro_process_date,'yyyymmdd') 
+   AND utle01_xccpro_key = xccpro_key
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LE01_D1_SMS_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LE01_D1_SMS_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_LE01_D1_SMS_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_LE01_D1_SMS_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LE01_D1_SMS_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_LE01_D1_SMS_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_LE01_D1_SMS_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_LE01_D1_SMS_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_LE01_D1_SMS_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_LE01_D1_SMS_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_LE01_D1_SMS_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_LE01_D1_SMS_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_LE01_D1_SMS_EXP_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_LEOS_01_D1_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_EXP_V" ("UTLEOS_XCCPRO_KEY", "UTLEOS_EXPORT_FILENAME", "UTLEOS_ID", "UTLEOS_EFFECTIVE_DATE", "UTLEOS_D_ACTIVIT", "UTLEOS_D_ID_OBJ", "UTLEOS_D_ERDAT", "UTLEOS_D_DATUZA", "UTLEOS_TIMEZAL", "UTLEOS_D_CCATID1", "UTLEOS_D_CCATID2", "UTLEOS_D_DIRECT", "UTLEOS_D_KANAL", "UTLEOS_D_ELE_FL", "UTLEOS_D_PARTNER", "UTLEOS_AD02_TEL", "UTLEOS_D_PLY_FL", "UTLEOS_D_TELNVO", "UTLEOS_EMAIL", "UTLEOS_ADRESA_ULICE", "UTLEOS_ADRESA_CP", "UTLEOS_ADRESA_CO", "UTLEOS_ADRESA_MISTO", "UTLEOS_ADRESA_MISTNI_CAST", "UTLEOS_ADRESA_PSC", "UTLEOS_D_ZALOZIL_D_USER", "UTLEOS_D_RESITEL_D_USER", "UTLEOS_POCET_RESITELU", "UTLEOS_D_CRM_UZS", "UTLEOS_DDBPAR_NAZEV", "UTLEOS_BONITA", "UTLEOS_SEGMENTACE", "UTLEOS_POCET_MS", "UTLEOS_ODHAD_SPOTREBY", "UTLEOS_HODNOTA_ZAKAZNIKA", "UTLEOS_PRACOVISTE", "UTLEOS_ID_KPI", "UTLEOS_VLASTNIK_DAT", "UTLEOS_ROZHODNE_DATUM", "UTLEOS_D_CCATID3", "UTLEOS_D_MOB_FL", "UTLEOS_D_OSL_DOP", "UTLEOS_POHLAVI", "UTLEOS_VARIANTA", "UTLEOS_D_PROCTYP", "UTLEOS_D_OTH_FL", "UTLEOS_CREATED_DATE", "UTLEOS_CREATED_PROCESS", "UTLEOS_MODIFIED_DATE", "UTLEOS_MODIFIED_PROCESS") AS 
+  (
+SELECT utleos_xccpro_key 
+      ,utleos_export_filename
+      ,utleos_id             
+      ,utleos_effective_date  
+      ,utleos_d_activit   
+      ,utleos_d_id_obj  
+      ,utleos_d_erdat        
+      ,utleos_d_datuza       
+      ,utleos_timezal     
+      ,utleos_d_ccatid1   
+      ,utleos_d_ccatid2   
+      ,utleos_d_direct   
+      ,utleos_d_kanal     
+      ,utleos_d_ele_fl    
+      ,utleos_d_partner  
+      ,utleos_ad02_tel 
+      ,utleos_d_ply_fl    
+      ,utleos_d_telnvo 
+      ,utleos_email    
+      ,utleos_adresa_ulice
+      ,utleos_adresa_cp   
+      ,utleos_adresa_co   
+      ,utleos_adresa_misto
+      ,utleos_adresa_mistni_cast
+      ,utleos_adresa_psc
+      ,utleos_d_zalozil_d_user
+      ,utleos_d_resitel_d_user
+      ,utleos_pocet_resitelu  
+      ,utleos_d_crm_uzs       
+      ,utleos_ddbpar_nazev    
+      ,utleos_bonita          
+      ,utleos_segmentace      
+      ,utleos_pocet_ms        
+      ,utleos_odhad_spotreby  
+      ,utleos_hodnota_zakaznika
+      ,utleos_pracoviste       
+      ,utleos_id_kpi           
+      ,utleos_vlastnik_dat   
+      ,utleos_rozhodne_datum 
+      ,utleos_d_ccatid3        
+      ,utleos_d_mob_fl  
+      ,utleos_d_osl_dop
+      ,utleos_pohlavi     
+      ,utleos_varianta
+      ,utleos_d_proctyp 
+      ,utleos_d_oth_fl
+      ,utleos_created_date
+      ,utleos_created_process
+      ,utleos_modified_date  
+      ,utleos_modified_process
+ FROM ownbt_out.OUT_CX01_LEOS_GDPR
+     ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_LEOS_01_D1'
+   AND xccpro_current_flag = 1
+   AND utleos_effective_date = to_char(xccpro_process_date,'yyyymmdd')
+   AND utleos_xccpro_key = xccpro_key
+ )
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_EXP_V" TO "BISUPPORT";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_EXP_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_LEOS_01_D1_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_GDPR_V" ("UTLEOS_XCCPRO_KEY", "UTLEOS_EFFECTIVE_DATE", "UTLEOS_ID", "UTLEOS_D_PARTNER") AS 
+  (
+SELECT utleos_xccpro_key
+      ,utleos_effective_date
+      ,utleos_id
+      ,utleos_d_partner
+  FROM ownbt_out.OUT_CX01_LEOS_GDPR
+      ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_LEOS_01_D1'        
+   AND xccpro_current_flag = 1
+   AND utleos_xccpro_key = xccpro_key
+   AND utleos_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD')) )
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_GDPR_V" TO "BISUPPORT";
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D1_GDPR_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_LEOS_01_D3_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_EXP_V" ("UTLEOS_XCCPRO_KEY", "UTLEOS_EXPORT_FILENAME", "UTLEOS_ID", "UTLEOS_EFFECTIVE_DATE", "UTLEOS_D_ACTIVIT", "UTLEOS_D_ID_OBJ", "UTLEOS_D_ERDAT", "UTLEOS_D_DATUZA", "UTLEOS_TIMEZAL", "UTLEOS_D_CCATID1", "UTLEOS_D_CCATID2", "UTLEOS_D_DIRECT", "UTLEOS_D_KANAL", "UTLEOS_D_ELE_FL", "UTLEOS_D_PARTNER", "UTLEOS_AD02_TEL", "UTLEOS_D_PLY_FL", "UTLEOS_D_TELNVO", "UTLEOS_EMAIL", "UTLEOS_ADRESA_ULICE", "UTLEOS_ADRESA_CP", "UTLEOS_ADRESA_CO", "UTLEOS_ADRESA_MISTO", "UTLEOS_ADRESA_MISTNI_CAST", "UTLEOS_ADRESA_PSC", "UTLEOS_D_ZALOZIL_D_USER", "UTLEOS_D_RESITEL_D_USER", "UTLEOS_POCET_RESITELU", "UTLEOS_D_CRM_UZS", "UTLEOS_DDBPAR_NAZEV", "UTLEOS_BONITA", "UTLEOS_SEGMENTACE", "UTLEOS_POCET_MS", "UTLEOS_ODHAD_SPOTREBY", "UTLEOS_HODNOTA_ZAKAZNIKA", "UTLEOS_PRACOVISTE", "UTLEOS_ID_KPI", "UTLEOS_VLASTNIK_DAT", "UTLEOS_ROZHODNE_DATUM", "UTLEOS_D_CCATID3", "UTLEOS_D_MOB_FL", "UTLEOS_D_OSL_DOP", "UTLEOS_POHLAVI", "UTLEOS_VARIANTA", "UTLEOS_D_PROCTYP", "UTLEOS_D_OTH_FL", "UTLEOS_CREATED_DATE", "UTLEOS_CREATED_PROCESS", "UTLEOS_MODIFIED_DATE", "UTLEOS_MODIFIED_PROCESS") AS 
+  (
+SELECT utleos_xccpro_key 
+      ,utleos_export_filename
+      ,utleos_id             
+      ,utleos_effective_date  
+      ,utleos_d_activit   
+      ,utleos_d_id_obj  
+      ,utleos_d_erdat        
+      ,utleos_d_datuza       
+      ,utleos_timezal     
+      ,utleos_d_ccatid1   
+      ,utleos_d_ccatid2   
+      ,utleos_d_direct   
+      ,utleos_d_kanal     
+      ,utleos_d_ele_fl    
+      ,utleos_d_partner  
+      ,utleos_ad02_tel 
+      ,utleos_d_ply_fl    
+      ,utleos_d_telnvo 
+      ,utleos_email    
+      ,utleos_adresa_ulice
+      ,utleos_adresa_cp   
+      ,utleos_adresa_co   
+      ,utleos_adresa_misto
+      ,utleos_adresa_mistni_cast
+      ,utleos_adresa_psc
+      ,utleos_d_zalozil_d_user
+      ,utleos_d_resitel_d_user
+      ,utleos_pocet_resitelu  
+      ,utleos_d_crm_uzs       
+      ,utleos_ddbpar_nazev    
+      ,utleos_bonita          
+      ,utleos_segmentace      
+      ,utleos_pocet_ms        
+      ,utleos_odhad_spotreby  
+      ,utleos_hodnota_zakaznika
+      ,utleos_pracoviste       
+      ,utleos_id_kpi           
+      ,utleos_vlastnik_dat   
+      ,utleos_rozhodne_datum 
+      ,utleos_d_ccatid3        
+      ,utleos_d_mob_fl  
+      ,utleos_d_osl_dop
+      ,utleos_pohlavi     
+      ,utleos_varianta
+      ,utleos_d_proctyp 
+      ,utleos_d_oth_fl
+      ,utleos_created_date
+      ,utleos_created_process
+      ,utleos_modified_date  
+      ,utleos_modified_process
+ FROM ownbt_out.OUT_CX01_LEOS_GDPR
+     ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CATI_CX01_LEOS_01_D3'
+   AND xccpro_current_flag = 1
+   AND utleos_effective_date = to_char(xccpro_process_date,'yyyymmdd')
+   AND utleos_xccpro_key = xccpro_key 
+   )
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_EXP_V" TO "OWNBT_STG";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_EXP_V" TO "BISUPPORT";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_LEOS_01_D3_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_GDPR_V" ("UTLEOS_XCCPRO_KEY", "UTLEOS_EFFECTIVE_DATE", "UTLEOS_ID", "UTLEOS_D_PARTNER") AS 
+  (
+SELECT utleos_xccpro_key
+      ,utleos_effective_date
+      ,utleos_id
+      ,utleos_d_partner
+  FROM ownbt_out.OUT_CX01_LEOS_GDPR
+      ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CATI_CX01_LEOS_01_D3'        
+   AND xccpro_current_flag = 1
+   AND utleos_xccpro_key = xccpro_key
+   AND utleos_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD')) )
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_GDPR_V" TO "OWNBT_STG";
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_01_D3_GDPR_V" TO "BISUPPORT";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_LEOS_D1_SPK_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_EXP_V" ("UTLEOS_XCCPRO_KEY", "UTLEOS_EXPORT_FILENAME", "UTLEOS_ID", "UTLEOS_EFFECTIVE_DATE", "UTLEOS_D_ACTIVIT", "UTLEOS_D_ID_OBJ", "UTLEOS_D_ERDAT", "UTLEOS_D_DATUZA", "UTLEOS_TIMEZAL", "UTLEOS_D_CCATID1", "UTLEOS_D_CCATID2", "UTLEOS_D_DIRECT", "UTLEOS_D_KANAL", "UTLEOS_D_ELE_FL", "UTLEOS_D_PARTNER", "UTLEOS_AD02_TEL", "UTLEOS_D_PLY_FL", "UTLEOS_D_TELNVO", "UTLEOS_EMAIL", "UTLEOS_ADRESA_ULICE", "UTLEOS_ADRESA_CP", "UTLEOS_ADRESA_CO", "UTLEOS_ADRESA_MISTO", "UTLEOS_ADRESA_MISTNI_CAST", "UTLEOS_ADRESA_PSC", "UTLEOS_D_ZALOZIL_D_USER", "UTLEOS_D_RESITEL_D_USER", "UTLEOS_POCET_RESITELU", "UTLEOS_D_CRM_UZS", "UTLEOS_DDBPAR_NAZEV", "UTLEOS_BONITA", "UTLEOS_SEGMENTACE", "UTLEOS_POCET_MS", "UTLEOS_ODHAD_SPOTREBY", "UTLEOS_HODNOTA_ZAKAZNIKA", "UTLEOS_PRACOVISTE", "UTLEOS_ID_KPI", "UTLEOS_VLASTNIK_DAT", "UTLEOS_ROZHODNE_DATUM", "UTLEOS_D_CCATID3", "UTLEOS_D_MOB_FL", "UTLEOS_D_OSL_DOP", "UTLEOS_POHLAVI", "UTLEOS_VARIANTA", "UTLEOS_D_PROCTYP", "UTLEOS_D_OTH_FL", "UTLEOS_CREATED_DATE", "UTLEOS_CREATED_PROCESS", "UTLEOS_MODIFIED_DATE", "UTLEOS_MODIFIED_PROCESS") AS 
+  (
+SELECT utleos_xccpro_key 
+      ,utleos_export_filename
+      ,utleos_id             
+      ,utleos_effective_date  
+      ,utleos_d_activit   
+      ,utleos_d_id_obj  
+      ,utleos_d_erdat        
+      ,utleos_d_datuza       
+      ,utleos_timezal     
+      ,utleos_d_ccatid1   
+      ,utleos_d_ccatid2   
+      ,utleos_d_direct   
+      ,utleos_d_kanal     
+      ,utleos_d_ele_fl    
+      ,utleos_d_partner  
+      ,utleos_ad02_tel 
+      ,utleos_d_ply_fl    
+      ,utleos_d_telnvo 
+      ,utleos_email    
+      ,utleos_adresa_ulice
+      ,utleos_adresa_cp   
+      ,utleos_adresa_co   
+      ,utleos_adresa_misto
+      ,utleos_adresa_mistni_cast
+      ,utleos_adresa_psc
+      ,utleos_d_zalozil_d_user
+      ,utleos_d_resitel_d_user
+      ,utleos_pocet_resitelu  
+      ,utleos_d_crm_uzs       
+      ,utleos_ddbpar_nazev    
+      ,utleos_bonita          
+      ,utleos_segmentace      
+      ,utleos_pocet_ms        
+      ,utleos_odhad_spotreby  
+      ,utleos_hodnota_zakaznika
+      ,utleos_pracoviste       
+      ,utleos_id_kpi           
+      ,utleos_vlastnik_dat   
+      ,utleos_rozhodne_datum 
+      ,utleos_d_ccatid3        
+      ,utleos_d_mob_fl  
+      ,utleos_d_osl_dop
+      ,utleos_pohlavi     
+      ,utleos_varianta
+      ,utleos_d_proctyp 
+      ,utleos_d_oth_fl
+      ,utleos_created_date
+      ,utleos_created_process
+      ,utleos_modified_date  
+      ,utleos_modified_process
+ FROM ownbt_out.OUT_CX01_LEOS_GDPR
+     ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_LEOS_D1_SPK'
+   AND xccpro_current_flag = 1
+   AND utleos_effective_date = to_char(xccpro_process_date,'yyyymmdd')
+   AND utleos_xccpro_key = xccpro_key
+ )
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_EXP_V" TO "BISUPPORT";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_EXP_V" TO "OWNBT_STG";
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_EXP_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_LEOS_D1_SPK_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_GDPR_V" ("UTLEOS_XCCPRO_KEY", "UTLEOS_EFFECTIVE_DATE", "UTLEOS_ID", "UTLEOS_D_PARTNER") AS 
+  (
+SELECT utleos_xccpro_key
+      ,utleos_effective_date
+      ,utleos_id
+      ,utleos_d_partner
+  FROM ownbt_out.OUT_CX01_LEOS_GDPR
+      ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_LEOS_D1_SPK'        
+   AND xccpro_current_flag = 1
+   AND utleos_xccpro_key = xccpro_key
+   AND utleos_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD')) )
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_GDPR_V" TO "OWNBT_STG";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_LEOS_D1_SPK_GDPR_V" TO "BISUPPORT";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_NAKVI_01_D1_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_EXP_V" ("UTAKVI_XCCPRO_KEY", "UTAKVI_EXPORT_FILENAME", "UTAKVI_OTCL05_ID", "UTAKVI_EFFECTIVE_DATE", "UTAKVI_D_CL05_OBJ", "UTAKVI_D_ID_OBJ", "UTAKVI_D_ERDAT", "UTAKVI_D_DATUZA", "UTAKVI_TIMEZAL", "UTAKVI_D_CCATID1", "UTAKVI_D_CCATID2", "UTAKVI_D_DIRECT", "UTAKVI_D_KANAL", "UTAKVI_D_ELE_FL", "UTAKVI_D_PARTNER", "UTAKVI_AD02_TEL", "UTAKVI_D_PLY_FL", "UTAKVI_D_TELNVO", "UTAKVI_EMAIL", "UTAKVI_ADRESA_ULICE", "UTAKVI_ADRESA_CP", "UTAKVI_ADRESA_CO", "UTAKVI_ADRESA_MISTO", "UTAKVI_ADRESA_MISTNI_CAST", "UTAKVI_ADRESA_PSC", "UTAKVI_ZALOZIL_KPJM", "UTAKVI_D_ZALOZIL_D_USER", "UTAKVI_D_ZALOZIL_TXTF", "UTAKVI_D_ZALOZIL_D_ORGEH", "UTAKVI_D_RESITEL", "UTAKVI_D_RESITEL_D_USER", "UTAKVI_D_RESITEL_TXTF", "UTAKVI_D_RESITEL_D_ORGEH", "UTAKVI_POCET_RESITELU", "UTAKVI_D_CRM_UZS", "UTAKVI_DDBPAR_NAZEV", "UTAKVI_BONITA", "UTAKVI_SEGMENTACE", "UTAKVI_POCET_MS", "UTAKVI_ODHAD_SPOTREBY", "UTAKVI_HODNOTA_ZAKAZNIKA", "UTAKVI_PRACOVISTE", "UTAKVI_ID_KPI", "UTAKVI_VLASTNIK_DAT", "UTAKVI_ROZHODNE_DATUM", "UTAKVI_D_CCATID3", "UTAKVI_D_MOB_FL", "UTAKVI_D_OSL_DOP", "UTAKVI_POHLAVI", "UTAKVI_VARIANTA", "UTAKVI_CTRL_ITEM_1", "UTAKVI_CTRL_ITEM_2", "UTAKVI_CTRL_ITEM_3", "UTAKVI_CTRL_ITEM_4", "UTAKVI_D_PROCTYP", "UTAKVI_D_OTH_FL", "UTAKVI_DB_SOURCE", "UTAKVI_CREATED_DATE", "UTAKVI_CREATED_PROCESS", "UTAKVI_MODIFIED_DATE", "UTAKVI_MODIFIED_PROCESS") AS 
+  SELECT 
+        UTAKVI_xccpro_key,
+        UTAKVI_export_filename,
+        UTAKVI_ID             ,
+        UTAKVI_effective_date  ,
+        -- vystup
+        DECODE(UTAKVI_D_CL05_OBJ, 'N/A', null,UTAKVI_D_CL05_OBJ) as UTAKVI_D_CL05_OBJ,
+        DECODE(UTAKVI_D_ID_OBJ	, 'N/A', null,UTAKVI_D_ID_OBJ) as UTAKVI_D_ID_OBJ,
+        DECODE(UTAKVI_D_ERDAT	, 'N/A', null,UTAKVI_D_ERDAT) as UTAKVI_D_ERDAT,
+        DECODE(UTAKVI_D_DATUZA	, 'N/A', null,UTAKVI_D_DATUZA) as UTAKVI_D_DATUZA,
+        DECODE(UTAKVI_TIMEZAL	, 'N/A', null,UTAKVI_TIMEZAL) as UTAKVI_TIMEZAL,
+        DECODE(UTAKVI_D_CCATID1	, 'N/A', null,UTAKVI_D_CCATID1) as UTAKVI_D_CCATID1,
+        DECODE(UTAKVI_D_CCATID2	, 'N/A', null,UTAKVI_D_CCATID2) as UTAKVI_D_CCATID2,
+        DECODE(UTAKVI_D_DIRECT	, 'N/A', null,UTAKVI_D_DIRECT) as UTAKVI_D_DIRECT,
+        DECODE(UTAKVI_D_KANAL	, 'N/A', null,UTAKVI_D_KANAL) as UTAKVI_D_KANAL,
+        DECODE(UTAKVI_D_ELE_FL	, 'N/A', null,UTAKVI_D_ELE_FL) as UTAKVI_D_ELE_FL,
+        DECODE(UTAKVI_D_PARTNER	, 'N/A', null,UTAKVI_D_PARTNER) as UTAKVI_D_PARTNER,
+        DECODE(UTAKVI_AD02_TEL	, 'N/A', null,UTAKVI_AD02_TEL) as UTAKVI_AD02_TEL,
+        DECODE(UTAKVI_D_PLY_FL	, 'N/A', null,UTAKVI_D_PLY_FL) as UTAKVI_D_PLY_FL,
+        DECODE(UTAKVI_D_TELNVO	, 'N/A', null,UTAKVI_D_TELNVO) as UTAKVI_D_TELNVO,
+        DECODE(UTAKVI_EMAIL	, 'N/A', null,UTAKVI_EMAIL) as UTAKVI_EMAIL,
+        DECODE(UTAKVI_ADRESA_ULICE	, 'N/A', null,UTAKVI_ADRESA_ULICE) as UTAKVI_ADRESA_ULICE,
+        DECODE(UTAKVI_ADRESA_CP	, 'N/A', null,UTAKVI_ADRESA_CP) as UTAKVI_ADRESA_CP,
+        DECODE(UTAKVI_ADRESA_CO	, 'N/A', null,UTAKVI_ADRESA_CO) as UTAKVI_ADRESA_CO,
+        DECODE(UTAKVI_ADRESA_MISTO	, 'N/A', null,UTAKVI_ADRESA_MISTO) as UTAKVI_ADRESA_MISTO,
+        DECODE(UTAKVI_ADRESA_MISTNI_CAST	, 'N/A', null,UTAKVI_ADRESA_MISTNI_CAST) as UTAKVI_ADRESA_MISTNI_CAST,
+        DECODE(UTAKVI_ADRESA_PSC	, 'N/A', null,UTAKVI_ADRESA_PSC) as UTAKVI_ADRESA_PSC,
+        DECODE(UTAKVI_ZALOZIL_KPJM	,'N/A',null,UTAKVI_ZALOZIL_KPJM) as UTAKVI_ZALOZIL_KPJM,
+        DECODE(UTAKVI_D_ZALOZIL_D_USER	, 'N/A', null,UTAKVI_D_ZALOZIL_D_USER) as UTAKVI_D_ZALOZIL_D_USER,
+        DECODE(UTAKVI_D_ZALOZIL_TXTF	,'N/A', null,UTAKVI_D_ZALOZIL_TXTF) as UTAKVI_D_ZALOZIL_TXTF,
+        DECODE(UTAKVI_D_ZALOZIL_D_ORGEH	,'N/A', null,UTAKVI_D_ZALOZIL_D_ORGEH) as UTAKVI_D_ZALOZIL_D_ORGEH,
+        DECODE(UTAKVI_D_RESITEL	, 'N/A', null, UTAKVI_D_RESITEL) as UTAKVI_D_RESITEL,
+        DECODE(UTAKVI_D_RESITEL_D_USER	, 'N/A', null,UTAKVI_D_RESITEL_D_USER) as UTAKVI_D_RESITEL_D_USER,
+        DECODE(UTAKVI_D_RESITEL_TXTF	,'N/A', null,UTAKVI_D_RESITEL_TXTF) as UTAKVI_D_RESITEL_TXTF,
+    	DECODE(UTAKVI_D_RESITEL_D_ORGEH	,'N/A', null, UTAKVI_D_RESITEL_D_ORGEH) as UTAKVI_D_RESITEL_D_ORGEH,
+        DECODE(UTAKVI_POCET_RESITELU	, 'N/A', null,UTAKVI_POCET_RESITELU) as UTAKVI_POCET_RESITELU,
+        DECODE(UTAKVI_D_CRM_UZS	, 'N/A', null,UTAKVI_D_CRM_UZS) as UTAKVI_D_CRM_UZS,
+        DECODE(UTAKVI_DDBPAR_NAZEV	, 'N/A', null,UTAKVI_DDBPAR_NAZEV) as UTAKVI_DDBPAR_NAZEV,
+        DECODE(UTAKVI_BONITA	, 'N/A', null,UTAKVI_BONITA) as UTAKVI_BONITA,
+        DECODE(UTAKVI_SEGMENTACE	, 'N/A', null,UTAKVI_SEGMENTACE) as UTAKVI_SEGMENTACE,
+        DECODE(UTAKVI_POCET_MS	, 'N/A', null,UTAKVI_POCET_MS) as UTAKVI_POCET_MS,
+        DECODE(UTAKVI_ODHAD_SPOTREBY	, 'N/A', null,UTAKVI_ODHAD_SPOTREBY) as UTAKVI_ODHAD_SPOTREBY,
+        DECODE(UTAKVI_HODNOTA_ZAKAZNIKA	, 'N/A', null,UTAKVI_HODNOTA_ZAKAZNIKA) as UTAKVI_HODNOTA_ZAKAZNIKA,
+        DECODE(UTAKVI_PRACOVISTE	, 'N/A', null,UTAKVI_PRACOVISTE) as UTAKVI_PRACOVISTE,
+        DECODE(UTAKVI_ID_KPI	, 'N/A', null,UTAKVI_ID_KPI) as UTAKVI_ID_KPI,
+        DECODE(UTAKVI_VLASTNIK_DAT	, 'N/A', null,UTAKVI_VLASTNIK_DAT) as UTAKVI_VLASTNIK_DAT,
+        DECODE(UTAKVI_ROZHODNE_DATUM	, 'N/A', null,UTAKVI_ROZHODNE_DATUM) as UTAKVI_ROZHODNE_DATUM,
+        DECODE(UTAKVI_D_CCATID3	, 'N/A', null,UTAKVI_D_CCATID3) as UTAKVI_D_CCATID3,
+        DECODE(UTAKVI_D_MOB_FL	, 'N/A', null,UTAKVI_D_MOB_FL) as UTAKVI_D_MOB_FL,
+        DECODE(UTAKVI_D_OSL_DOP	, 'N/A', null,UTAKVI_D_OSL_DOP) as UTAKVI_D_OSL_DOP,
+        DECODE(UTAKVI_POHLAVI	, 'N/A', null,UTAKVI_POHLAVI) as UTAKVI_POHLAVI,
+        DECODE(utakvi_varianta, 'N/A',null,utakvi_varianta) as UTAKVI_VARIANTA,
+        DECODE(UTAKVI_CTRL_ITEM_1, 'N/A', NULL, UTAKVI_CTRL_ITEM_1) AS UTAKVI_CTRL_ITEM_1,
+        DECODE(UTAKVI_CTRL_ITEM_2, 'N/A', NULL, UTAKVI_CTRL_ITEM_2) AS UTAKVI_CTRL_ITEM_2,
+        DECODE(UTAKVI_CTRL_ITEM_3, 'N/A', NULL, UTAKVI_CTRL_ITEM_3) AS UTAKVI_CTRL_ITEM_3,
+        DECODE(UTAKVI_CTRL_ITEM_4, 'N/A', NULL, UTAKVI_CTRL_ITEM_4) AS UTAKVI_CTRL_ITEM_4,
+        DECODE(UTAKVI_D_PROCTYP, 'N/A', NULL, UTAKVI_D_PROCTYP) AS UTAKVI_D_PROCTYP,
+        DECODE(UTAKVI_D_OTH_FL, 'N/A', NULL, UTAKVI_D_OTH_FL) AS UTAKVI_D_OTH_FL,
+        DECODE(UTAKVI_DB_SOURCE, 'N/A', NULL, UTAKVI_DB_SOURCE) AS UTAKVI_DB_SOURCE
+        -- konec
+
+        ,UTAKVI_created_date
+        ,UTAKVI_created_process
+        ,UTAKVI_modified_date  
+        ,UTAKVI_modified_process
+
+ FROM ownbt_out.OUT_CX01_AKVI_GDPR
+     inner join bisupport.xfc_cpro 
+     on
+     xccpro_key = 'CATI_CX01_NAKVI_01_D1'   
+   AND xccpro_current_flag = 1
+   AND UTAKVI_effective_date = to_char(xccpro_process_date,'yyyymmdd') 
+   AND UTAKVI_xccpro_key = xccpro_key
+
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_EXP_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_NAKVI_01_D1_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_GDPR_V" ("UTAKVI_XCCPRO_KEY", "UTAKVI_EFFECTIVE_DATE", "UTAKVI_ID", "UTAKVI_D_PARTNER") AS 
+  SELECT utakvi_xccpro_key
+      ,utakvi_effective_date
+      ,utakvi_id
+      ,utakvi_d_partner
+  FROM ownbt_out.OUT_CX01_AKVI_GDPR
+      inner join bisupport.xfc_cpro  
+ on xccpro_key = 'CATI_CX01_NAKVI_01_D1'      
+   AND xccpro_current_flag = 1
+   AND utakvi_xccpro_key = xccpro_key
+   AND utakvi_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date + xccpro_date_offset_from,'YYYYMMDD'))
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_GDPR_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_GDPR_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_NAKVI_01_D1_GDPR_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_SS01_01_D1_CT_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_EXP_V" ("UTSS01_XCCPRO_KEY", "UTSS01_EXPORT_FILENAME", "UTSS01_ID", "UTSS01_D_CRM_SES", "UTSS01_D_ID_OBJ", "UTSS01_D_ERDAT", "UTSS01_D_DATUZA", "UTSS01_TIMEZAL", "UTSS01_D_CCATID1", "UTSS01_D_CCATID2", "UTSS01_D_DIRECT", "UTSS01_D_KANAL", "UTSS01_D_ELE_FL", "UTSS01_D_PARTNER", "UTSS01_AD02_TEL", "UTSS01_D_PLY_FL", "UTSS01_D_TELNVO", "UTSS01_EMAIL", "UTSS01_ADRESA_ULICE", "UTSS01_ADRESA_CP", "UTSS01_ADRESA_CO", "UTSS01_ADRESA_MISTO", "UTSS01_ADRESA_MISTNI_CAST", "UTSS01_ADRESA_PSC", "UTSS01_D_ZALOZIL", "UTSS01_D_RESITEL", "UTSS01_POCET_RESITELU", "UTSS01_D_CRM_UZS", "UTSS01_DDBPAR_NAZEV", "UTSS01_BONITA", "UTSS01_SEGMENTACE", "UTSS01_POCET_MS", "UTSS01_ODHAD_SPOTREBY", "UTSS01_HODNOTA_ZAKAZNIKA", "UTSS01_PRACOVISTE", "UTSS01_ID_KPI", "UTSS01_VLASTNIK_DAT", "UTSS01_ROZHODNE_DATUM", "UTSS01_D_CCATID3", "UTSS01_D_MOB_FL", "UTSS01_D_OSL_DOP", "UTSS01_POHLAVI", "UTSS01_VARIANTA", "UTSS01_D_PROCTYP", "UTSS01_D_OTH_FL") AS 
+  SELECT xccpro_key  as utss01_xccpro_key,
+        /*xccpro_filename_templ||'_'||replace(xccpro_filename_key,'YYYYMMDD',to_char(xccpro_filename_date,'YYYYMMDD')) as */utss01_export_filename,
+        UTSS01_ID	,
+        UTSS01_D_CRM_SES	,
+        DECODE(UTSS01_D_ID_OBJ, 'N/A', null,UTSS01_D_ID_OBJ) as UTSS01_D_ID_OBJ,
+        to_number(to_char(UTSS01_D_ERDAT,'yyyymmdd')) as utss01_d_erdat	,
+        to_number(to_char(UTSS01_D_DATUZA,'yyyymmdd'))	as UTSS01_D_DATUZA,
+        UTSS01_TIMEZAL	,
+        DECODE(UTSS01_D_CCATID1, 'N/A', null,UTSS01_D_CCATID1) as UTSS01_D_CCATID1,
+        DECODE(UTSS01_D_CCATID2, 'N/A', null,UTSS01_D_CCATID2) as UTSS01_D_CCATID2,
+        UTSS01_D_DIRECT	,
+        UTSS01_D_KANAL	,
+        UTSS01_D_ELE_FL	,
+        DECODE(UTSS01_D_PARTNER, 'N/A', null,UTSS01_D_PARTNER) as UTSS01_D_PARTNER,
+        DECODE(UTSS01_AD02_TEL, 'N/A', null,UTSS01_AD02_TEL) as UTSS01_AD02_TEL,
+        UTSS01_D_PLY_FL	,
+        DECODE(UTSS01_D_TELNVO, 'N/A', null,UTSS01_D_TELNVO) as UTSS01_D_TELNVO,
+        DECODE(UTSS01_EMAIL, 'N/A', null,UTSS01_EMAIL) as UTSS01_EMAIL,
+        DECODE(UTSS01_ADRESA_ULICE, 'N/A', null,UTSS01_ADRESA_ULICE) as UTSS01_ADRESA_ULICE,
+        DECODE(UTSS01_ADRESA_CP, 'N/A', null,UTSS01_ADRESA_CP) as UTSS01_ADRESA_CP,
+        DECODE(UTSS01_ADRESA_CO, 'N/A', null,UTSS01_ADRESA_CO) as UTSS01_ADRESA_CO,
+        DECODE(UTSS01_ADRESA_MISTO, 'N/A', null,UTSS01_ADRESA_MISTO) as UTSS01_ADRESA_MISTO,
+        DECODE(UTSS01_ADRESA_MISTNI_CAST, 'N/A', null,UTSS01_ADRESA_MISTNI_CAST) as UTSS01_ADRESA_MISTNI_CAST,
+        DECODE(UTSS01_ADRESA_PSC, 'N/A', null,UTSS01_ADRESA_PSC) as UTSS01_ADRESA_PSC,
+        DECODE(UTSS01_D_ZALOZIL, 'N/A', null,UTSS01_D_ZALOZIL) as UTSS01_D_ZALOZIL,
+        DECODE(UTSS01_D_RESITEL, 'N/A', null,UTSS01_D_RESITEL) as UTSS01_D_RESITEL,
+        to_number(UTSS01_POCET_RESITELU) as UTSS01_POCET_RESITELU	,
+        DECODE(UTSS01_D_CRM_UZS, 'N/A', null,UTSS01_D_CRM_UZS) as UTSS01_D_CRM_UZS,
+        DECODE(UTSS01_DDBPAR_NAZEV, 'N/A', null,UTSS01_DDBPAR_NAZEV) as UTSS01_DDBPAR_NAZEV,
+        DECODE(UTSS01_BONITA, 'N/A', null,UTSS01_BONITA) as UTSS01_BONITA,
+        DECODE(UTSS01_SEGMENTACE, 'N/A', null,UTSS01_SEGMENTACE) as UTSS01_SEGMENTACE,
+        to_number(UTSS01_POCET_MS) as UTSS01_POCET_MS	,
+        to_number(UTSS01_ODHAD_SPOTREBY) as UTSS01_ODHAD_SPOTREBY	,
+
+        DECODE(UTSS01_HODNOTA_ZAKAZNIKA, 'N/A', null,UTSS01_HODNOTA_ZAKAZNIKA) as UTSS01_HODNOTA_ZAKAZNIKA,
+        DECODE(UTSS01_PRACOVISTE, 'N/A', null,UTSS01_PRACOVISTE) as UTSS01_PRACOVISTE,
+        UTSS01_ID_KPI	,
+        DECODE(UTSS01_VLASTNIK_DAT, 'N/A', null,UTSS01_VLASTNIK_DAT) as UTSS01_VLASTNIK_DAT,
+        to_number(to_char(UTSS01_ROZHODNE_DATUM,'yyyymmdd')) as UTSS01_ROZHODNE_DATUM	,
+        DECODE(UTSS01_D_CCATID3, 'N/A', null,UTSS01_D_CCATID3) as UTSS01_D_CCATID3,
+        UTSS01_D_MOB_FL	,
+        DECODE(UTSS01_D_OSL_DOP, 'N/A', null,UTSS01_D_OSL_DOP) as UTSS01_D_OSL_DOP,
+        UTSS01_POHLAVI	,
+        to_number(UTSS01_VARIANTA)	as UTSS01_VARIANTA
+        ,UTSS01_d_proctyp 
+        ,UTSS01_d_oth_fl
+
+/*
+      ,utss01_created_date
+      ,utss01_created_process
+      ,utss01_modified_date  
+      ,utss01_modified_process 
+*/
+ FROM OUT_CX01_SS01_GDPR
+     , bisupport.xfc_cpro
+ WHERE xccpro_key = 'CATI_CX01_SS01_01_D1_CT'
+   AND xccpro_current_flag = 1
+   AND utss01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD')) 
+   AND utss01_xccpro_key = xccpro_key
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_EXP_V" TO "OWNBT_STG";
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_EXP_V" TO "BISUPPORT";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_SS01_01_D1_CT_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_GDPR_V" ("UTSS01_XCCPRO_KEY", "UTSS01_EFFECTIVE_DATE", "UTSS01_ID", "UTSS01_D_PARTNER") AS 
+  SELECT 
+       UTSS01_XCCPRO_KEY
+      ,utss01_effective_date
+      ,utss01_id
+      ,utss01_d_partner
+  FROM OUT_CX01_SS01_GDPR
+      ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CATI_CX01_SS01_01_D1_CT'        
+   AND xccpro_current_flag = 1
+   AND utss01_xccpro_key = xccpro_key
+   AND utss01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD'))
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_GDPR_V" TO "OWNBT_STG";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CT_GDPR_V" TO "BISUPPORT";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_SS01_01_D1_CW_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_EXP_V" ("UTSS01_XCCPRO_KEY", "UTSS01_EXPORT_FILENAME", "UTSS01_ID", "UTSS01_D_CRM_SES", "UTSS01_D_ID_OBJ", "UTSS01_D_ERDAT", "UTSS01_D_DATUZA", "UTSS01_TIMEZAL", "UTSS01_D_CCATID1", "UTSS01_D_CCATID2", "UTSS01_D_DIRECT", "UTSS01_D_KANAL", "UTSS01_D_ELE_FL", "UTSS01_D_PARTNER", "UTSS01_AD02_TEL", "UTSS01_D_PLY_FL", "UTSS01_D_TELNVO", "UTSS01_EMAIL", "UTSS01_ADRESA_ULICE", "UTSS01_ADRESA_CP", "UTSS01_ADRESA_CO", "UTSS01_ADRESA_MISTO", "UTSS01_ADRESA_MISTNI_CAST", "UTSS01_ADRESA_PSC", "UTSS01_D_ZALOZIL", "UTSS01_D_RESITEL", "UTSS01_POCET_RESITELU", "UTSS01_D_CRM_UZS", "UTSS01_DDBPAR_NAZEV", "UTSS01_BONITA", "UTSS01_SEGMENTACE", "UTSS01_POCET_MS", "UTSS01_ODHAD_SPOTREBY", "UTSS01_HODNOTA_ZAKAZNIKA", "UTSS01_PRACOVISTE", "UTSS01_ID_KPI", "UTSS01_VLASTNIK_DAT", "UTSS01_ROZHODNE_DATUM", "UTSS01_D_CCATID3", "UTSS01_D_MOB_FL", "UTSS01_D_OSL_DOP", "UTSS01_POHLAVI", "UTSS01_VARIANTA", "UTSS01_D_PROCTYP", "UTSS01_D_OTH_FL") AS 
+  SELECT xccpro_key  as utss01_xccpro_key,
+        /*xccpro_filename_templ||'_'||replace(xccpro_filename_key,'YYYYMMDD',to_char(xccpro_filename_date,'YYYYMMDD')) as */utss01_export_filename,
+        UTSS01_ID	,
+        UTSS01_D_CRM_SES	,
+        DECODE(UTSS01_D_ID_OBJ, 'N/A', null,UTSS01_D_ID_OBJ) as UTSS01_D_ID_OBJ,
+        to_number(to_char(UTSS01_D_ERDAT,'yyyymmdd')) as utss01_d_erdat	,
+        to_number(to_char(UTSS01_D_DATUZA,'yyyymmdd'))	as UTSS01_D_DATUZA,
+        UTSS01_TIMEZAL	,
+        DECODE(UTSS01_D_CCATID1, 'N/A', null,UTSS01_D_CCATID1) as UTSS01_D_CCATID1,
+        DECODE(UTSS01_D_CCATID2, 'N/A', null,UTSS01_D_CCATID2) as UTSS01_D_CCATID2,
+        UTSS01_D_DIRECT	,
+        UTSS01_D_KANAL	,
+        UTSS01_D_ELE_FL	,
+        DECODE(UTSS01_D_PARTNER, 'N/A', null,UTSS01_D_PARTNER) as UTSS01_D_PARTNER,
+        DECODE(UTSS01_AD02_TEL, 'N/A', null,UTSS01_AD02_TEL) as UTSS01_AD02_TEL,
+        UTSS01_D_PLY_FL	,
+        DECODE(UTSS01_D_TELNVO, 'N/A', null,UTSS01_D_TELNVO) as UTSS01_D_TELNVO,
+        DECODE(UTSS01_EMAIL, 'N/A', null,UTSS01_EMAIL) as UTSS01_EMAIL,
+        DECODE(UTSS01_ADRESA_ULICE, 'N/A', null,UTSS01_ADRESA_ULICE) as UTSS01_ADRESA_ULICE,
+        DECODE(UTSS01_ADRESA_CP, 'N/A', null,UTSS01_ADRESA_CP) as UTSS01_ADRESA_CP,
+        DECODE(UTSS01_ADRESA_CO, 'N/A', null,UTSS01_ADRESA_CO) as UTSS01_ADRESA_CO,
+        DECODE(UTSS01_ADRESA_MISTO, 'N/A', null,UTSS01_ADRESA_MISTO) as UTSS01_ADRESA_MISTO,
+        DECODE(UTSS01_ADRESA_MISTNI_CAST, 'N/A', null,UTSS01_ADRESA_MISTNI_CAST) as UTSS01_ADRESA_MISTNI_CAST,
+        DECODE(UTSS01_ADRESA_PSC, 'N/A', null,UTSS01_ADRESA_PSC) as UTSS01_ADRESA_PSC,
+        DECODE(UTSS01_D_ZALOZIL, 'N/A', null,UTSS01_D_ZALOZIL) as UTSS01_D_ZALOZIL,
+        DECODE(UTSS01_D_RESITEL, 'N/A', null,UTSS01_D_RESITEL) as UTSS01_D_RESITEL,
+        to_number(UTSS01_POCET_RESITELU) as UTSS01_POCET_RESITELU	,
+        DECODE(UTSS01_D_CRM_UZS, 'N/A', null,UTSS01_D_CRM_UZS) as UTSS01_D_CRM_UZS,
+        DECODE(UTSS01_DDBPAR_NAZEV, 'N/A', null,UTSS01_DDBPAR_NAZEV) as UTSS01_DDBPAR_NAZEV,
+        DECODE(UTSS01_BONITA, 'N/A', null,UTSS01_BONITA) as UTSS01_BONITA,
+        DECODE(UTSS01_SEGMENTACE, 'N/A', null,UTSS01_SEGMENTACE) as UTSS01_SEGMENTACE,
+        to_number(UTSS01_POCET_MS) as UTSS01_POCET_MS	,
+        to_number(UTSS01_ODHAD_SPOTREBY) as UTSS01_ODHAD_SPOTREBY	,
+
+        DECODE(UTSS01_HODNOTA_ZAKAZNIKA, 'N/A', null,UTSS01_HODNOTA_ZAKAZNIKA) as UTSS01_HODNOTA_ZAKAZNIKA,
+        DECODE(UTSS01_PRACOVISTE, 'N/A', null,UTSS01_PRACOVISTE) as UTSS01_PRACOVISTE,
+        UTSS01_ID_KPI	,
+        DECODE(UTSS01_VLASTNIK_DAT, 'N/A', null,UTSS01_VLASTNIK_DAT) as UTSS01_VLASTNIK_DAT,
+        to_number(to_char(UTSS01_ROZHODNE_DATUM,'yyyymmdd')) as UTSS01_ROZHODNE_DATUM	,
+        DECODE(UTSS01_D_CCATID3, 'N/A', null,UTSS01_D_CCATID3) as UTSS01_D_CCATID3,
+        UTSS01_D_MOB_FL	,
+        DECODE(UTSS01_D_OSL_DOP, 'N/A', null,UTSS01_D_OSL_DOP) as UTSS01_D_OSL_DOP,
+        UTSS01_POHLAVI	,
+        to_number(UTSS01_VARIANTA)	as UTSS01_VARIANTA
+        ,UTSS01_d_proctyp 
+        ,UTSS01_d_oth_fl
+
+/*
+      ,utss01_created_date
+      ,utss01_created_process
+      ,utss01_modified_date  
+      ,utss01_modified_process 
+*/
+ FROM OUT_CX01_SS01_GDPR
+     , bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_SS01_01_D1_CW'
+   AND xccpro_current_flag = 1
+   AND utss01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD')) 
+   AND utss01_xccpro_key = xccpro_key
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_EXP_V" TO "OWNBT_STG";
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_EXP_V" TO "BISUPPORT";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_SS01_01_D1_CW_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_GDPR_V" ("UTSS01_XCCPRO_KEY", "UTSS01_EFFECTIVE_DATE", "UTSS01_ID", "UTSS01_D_PARTNER") AS 
+  SELECT 
+       UTSS01_XCCPRO_KEY
+      ,utss01_effective_date
+      ,utss01_id
+      ,utss01_d_partner
+  FROM OUT_CX01_SS01_GDPR
+      ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_SS01_01_D1_CW'        
+   AND xccpro_current_flag = 1
+   AND utss01_xccpro_key = xccpro_key
+   AND utss01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD'))
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_GDPR_V" TO "BISUPPORT";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_CW_GDPR_V" TO "OWNBT_STG";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_SS01_01_D1_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_SS01_01_D1_EXP_V" ("UTSS01_XCCPRO_KEY", "UTSS01_EXPORT_FILENAME", "UTSS01_ID", "UTSS01_D_CRM_SES", "UTSS01_D_ID_OBJ", "UTSS01_D_ERDAT", "UTSS01_D_DATUZA", "UTSS01_TIMEZAL", "UTSS01_D_CCATID1", "UTSS01_D_CCATID2", "UTSS01_D_DIRECT", "UTSS01_D_KANAL", "UTSS01_D_ELE_FL", "UTSS01_D_PARTNER", "UTSS01_AD02_TEL", "UTSS01_D_PLY_FL", "UTSS01_D_TELNVO", "UTSS01_EMAIL", "UTSS01_ADRESA_ULICE", "UTSS01_ADRESA_CP", "UTSS01_ADRESA_CO", "UTSS01_ADRESA_MISTO", "UTSS01_ADRESA_MISTNI_CAST", "UTSS01_ADRESA_PSC", "UTSS01_D_ZALOZIL", "UTSS01_D_RESITEL", "UTSS01_POCET_RESITELU", "UTSS01_D_CRM_UZS", "UTSS01_DDBPAR_NAZEV", "UTSS01_BONITA", "UTSS01_SEGMENTACE", "UTSS01_POCET_MS", "UTSS01_ODHAD_SPOTREBY", "UTSS01_HODNOTA_ZAKAZNIKA", "UTSS01_PRACOVISTE", "UTSS01_ID_KPI", "UTSS01_VLASTNIK_DAT", "UTSS01_ROZHODNE_DATUM", "UTSS01_D_CCATID3", "UTSS01_D_MOB_FL", "UTSS01_D_OSL_DOP", "UTSS01_POHLAVI", "UTSS01_VARIANTA", "UTSS01_D_PROCTYP", "UTSS01_D_OTH_FL") AS 
+  SELECT xccpro_key  as utss01_xccpro_key,
+        /*xccpro_filename_templ||'_'||replace(xccpro_filename_key,'YYYYMMDD',to_char(xccpro_filename_date,'YYYYMMDD')) as */utss01_export_filename,
+        UTSS01_ID	,
+        UTSS01_D_CRM_SES	,
+        DECODE(UTSS01_D_ID_OBJ, 'N/A', null,UTSS01_D_ID_OBJ) as UTSS01_D_ID_OBJ,
+        to_number(to_char(UTSS01_D_ERDAT,'yyyymmdd')) as utss01_d_erdat	,
+        to_number(to_char(UTSS01_D_DATUZA,'yyyymmdd'))	as UTSS01_D_DATUZA,
+        UTSS01_TIMEZAL	,
+        DECODE(UTSS01_D_CCATID1, 'N/A', null,UTSS01_D_CCATID1) as UTSS01_D_CCATID1,
+        DECODE(UTSS01_D_CCATID2, 'N/A', null,UTSS01_D_CCATID2) as UTSS01_D_CCATID2,
+        UTSS01_D_DIRECT	,
+        UTSS01_D_KANAL	,
+        UTSS01_D_ELE_FL	,
+        DECODE(UTSS01_D_PARTNER, 'N/A', null,UTSS01_D_PARTNER) as UTSS01_D_PARTNER,
+        DECODE(UTSS01_AD02_TEL, 'N/A', null,UTSS01_AD02_TEL) as UTSS01_AD02_TEL,
+        UTSS01_D_PLY_FL	,
+        DECODE(UTSS01_D_TELNVO, 'N/A', null,UTSS01_D_TELNVO) as UTSS01_D_TELNVO,
+        DECODE(UTSS01_EMAIL, 'N/A', null,UTSS01_EMAIL) as UTSS01_EMAIL,
+        DECODE(UTSS01_ADRESA_ULICE, 'N/A', null,UTSS01_ADRESA_ULICE) as UTSS01_ADRESA_ULICE,
+        DECODE(UTSS01_ADRESA_CP, 'N/A', null,UTSS01_ADRESA_CP) as UTSS01_ADRESA_CP,
+        DECODE(UTSS01_ADRESA_CO, 'N/A', null,UTSS01_ADRESA_CO) as UTSS01_ADRESA_CO,
+        DECODE(UTSS01_ADRESA_MISTO, 'N/A', null,UTSS01_ADRESA_MISTO) as UTSS01_ADRESA_MISTO,
+        DECODE(UTSS01_ADRESA_MISTNI_CAST, 'N/A', null,UTSS01_ADRESA_MISTNI_CAST) as UTSS01_ADRESA_MISTNI_CAST,
+        DECODE(UTSS01_ADRESA_PSC, 'N/A', null,UTSS01_ADRESA_PSC) as UTSS01_ADRESA_PSC,
+        DECODE(UTSS01_D_ZALOZIL, 'N/A', null,UTSS01_D_ZALOZIL) as UTSS01_D_ZALOZIL,
+        DECODE(UTSS01_D_RESITEL, 'N/A', null,UTSS01_D_RESITEL) as UTSS01_D_RESITEL,
+        to_number(UTSS01_POCET_RESITELU) as UTSS01_POCET_RESITELU	,
+        DECODE(UTSS01_D_CRM_UZS, 'N/A', null,UTSS01_D_CRM_UZS) as UTSS01_D_CRM_UZS,
+        DECODE(UTSS01_DDBPAR_NAZEV, 'N/A', null,UTSS01_DDBPAR_NAZEV) as UTSS01_DDBPAR_NAZEV,
+        DECODE(UTSS01_BONITA, 'N/A', null,UTSS01_BONITA) as UTSS01_BONITA,
+        DECODE(UTSS01_SEGMENTACE, 'N/A', null,UTSS01_SEGMENTACE) as UTSS01_SEGMENTACE,
+        to_number(UTSS01_POCET_MS) as UTSS01_POCET_MS	,
+        to_number(UTSS01_ODHAD_SPOTREBY) as UTSS01_ODHAD_SPOTREBY	,
+
+        DECODE(UTSS01_HODNOTA_ZAKAZNIKA, 'N/A', null,UTSS01_HODNOTA_ZAKAZNIKA) as UTSS01_HODNOTA_ZAKAZNIKA,
+        DECODE(UTSS01_PRACOVISTE, 'N/A', null,UTSS01_PRACOVISTE) as UTSS01_PRACOVISTE,
+        UTSS01_ID_KPI	,
+        DECODE(UTSS01_VLASTNIK_DAT, 'N/A', null,UTSS01_VLASTNIK_DAT) as UTSS01_VLASTNIK_DAT,
+        to_number(to_char(UTSS01_ROZHODNE_DATUM,'yyyymmdd')) as UTSS01_ROZHODNE_DATUM	,
+        DECODE(UTSS01_D_CCATID3, 'N/A', null,UTSS01_D_CCATID3) as UTSS01_D_CCATID3,
+        UTSS01_D_MOB_FL	,
+        DECODE(UTSS01_D_OSL_DOP, 'N/A', null,UTSS01_D_OSL_DOP) as UTSS01_D_OSL_DOP,
+        UTSS01_POHLAVI	,
+        to_number(UTSS01_VARIANTA)	as UTSS01_VARIANTA
+        ,UTSS01_d_proctyp 
+        ,UTSS01_d_oth_fl
+
+/*
+      ,utss01_created_date
+      ,utss01_created_process
+      ,utss01_modified_date  
+      ,utss01_modified_process 
+*/
+ FROM OUT_CX01_SS01_GDPR
+     , bisupport.xfc_cpro
+ WHERE xccpro_key = 'CATI_CX01_SS01_01_D1'
+   AND xccpro_current_flag = 1
+   AND utss01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD')) 
+   AND utss01_xccpro_key = xccpro_key
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+--------------------------------------------------------
+--  DDL for View OUT_CX01_SS01_01_D1_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_SS01_01_D1_GDPR_V" ("UTSS01_XCCPRO_KEY", "UTSS01_EFFECTIVE_DATE", "UTSS01_ID", "UTSS01_D_PARTNER") AS 
+  SELECT 
+       UTSS01_XCCPRO_KEY
+      ,utss01_effective_date
+      ,utss01_id
+      ,utss01_d_partner
+  FROM OUT_CX01_SS01_GDPR
+      ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CATI_CX01_SS01_01_D1'        
+   AND xccpro_current_flag = 1
+   AND utss01_xccpro_key = xccpro_key
+   AND utss01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD'))
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_GDPR_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_GDPR_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_SS01_01_D1_GDPR_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_TI01_01_D1_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_TI01_01_D1_EXP_V" ("UTTI01_XCCPRO_KEY", "UTTI01_EXPORT_FILENAME", "UTTI01_ID", "UTTI01_EFFECTIVE_DATE", "UTTI01_D_ACTIVIT", "UTTI01_D_ID_OBJ", "UTTI01_D_ERDAT", "UTTI01_D_DATUZA", "UTTI01_TIMEZAL", "UTTI01_D_CCATID1", "UTTI01_D_CCATID2", "UTTI01_D_DIRECT", "UTTI01_D_KANAL", "UTTI01_D_ELE_FL", "UTTI01_D_PARTNER", "UTTI01_AD02_TEL", "UTTI01_D_PLY_FL", "UTTI01_D_TELNVO", "UTTI01_EMAIL", "UTTI01_ADRESA_ULICE", "UTTI01_ADRESA_CP", "UTTI01_ADRESA_CO", "UTTI01_ADRESA_MISTO", "UTTI01_ADRESA_MISTNI_CAST", "UTTI01_ADRESA_PSC", "UTTI01_D_ZALOZIL_D_USER", "UTTI01_D_RESITEL_D_USER", "UTTI01_POCET_RESITELU", "UTTI01_D_CRM_UZS", "UTTI01_DDBPAR_NAZEV", "UTTI01_BONITA", "UTTI01_SEGMENTACE", "UTTI01_POCET_MS", "UTTI01_ODHAD_SPOTREBY", "UTTI01_HODNOTA_ZAKAZNIKA", "UTTI01_PRACOVISTE", "UTTI01_ID_KPI", "UTTI01_VLASTNIK_DAT", "UTTI01_ROZHODNE_DATUM", "UTTI01_D_CCATID3", "UTTI01_D_MOB_FL", "UTTI01_D_OSL_DOP", "UTTI01_POHLAVI", "UTTI01_VARIANTA", "UTTI01_D_PROCTYP", "UTTI01_D_OTH_FL", "UTTI01_PORADI", "UTTI01_CREATED_DATE", "UTTI01_CREATED_PROCESS", "UTTI01_MODIFIED_DATE", "UTTI01_MODIFIED_PROCESS") AS 
+  (
+SELECT utti01_xccpro_key  
+      ,utti01_export_filename
+      ,utti01_id             
+      ,utti01_effective_date 
+      ,utti01_d_activit   
+      ,utti01_d_id_obj    
+      ,utti01_d_erdat
+      ,utti01_d_datuza
+      ,utti01_timezal     
+      ,utti01_d_ccatid1   
+      ,utti01_d_ccatid2   
+      ,utti01_d_direct
+      ,utti01_d_kanal     
+      ,utti01_d_ele_fl    
+      ,utti01_d_partner   
+      ,utti01_ad02_tel
+      ,utti01_d_ply_fl    
+      ,utti01_d_telnvo
+      ,utti01_email
+      ,utti01_adresa_ulice
+      ,utti01_adresa_cp   
+      ,utti01_adresa_co   
+      ,utti01_adresa_misto
+      ,utti01_adresa_mistni_cast
+      ,utti01_adresa_psc   
+      ,utti01_d_zalozil_d_user
+      ,utti01_d_resitel_d_user
+      ,utti01_pocet_resitelu  
+      ,utti01_d_crm_uzs       
+      ,utti01_ddbpar_nazev    
+      ,utti01_bonita          
+      ,utti01_segmentace      
+      ,utti01_pocet_ms        
+      ,utti01_odhad_spotreby  
+      ,utti01_hodnota_zakaznika
+      ,utti01_pracoviste       
+      ,utti01_id_kpi           
+      ,utti01_vlastnik_dat     
+      ,utti01_rozhodne_datum          
+      ,utti01_d_ccatid3        
+      ,utti01_d_mob_fl         
+      ,utti01_d_osl_dop        
+      ,utti01_pohlavi
+      ,utti01_varianta
+      ,utti01_d_proctyp 
+      ,utti01_d_oth_fl
+      ,utti01_poradi
+      ,utti01_created_date
+      ,utti01_created_process
+      ,utti01_modified_date
+      ,utti01_modified_process
+ FROM ownbt_out.OUT_CX01_TI01_GDPR
+     ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_TI01_01_D1'  
+   AND xccpro_current_flag = 1
+   AND utti01_effective_date = to_char(xccpro_process_date,'yyyymmdd')
+   AND utti01_xccpro_key = xccpro_key
+)
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_EXP_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_TI01_01_D1_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_TI01_01_D1_GDPR_V" ("UTTI01_XCCPRO_KEY", "UTTI01_EFFECTIVE_DATE", "UTTI01_ID", "UTTI01_D_PARTNER") AS 
+  (
+SELECT utti01_xccpro_key
+      ,utti01_effective_date
+      ,utti01_id
+      ,utti01_d_partner
+  FROM ownbt_out.OUT_CX01_TI01_GDPR
+      ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_TI01_01_D1'        
+   AND xccpro_current_flag = 1
+   AND utti01_xccpro_key = xccpro_key
+   AND utti01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD')) )
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_GDPR_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_GDPR_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_TI01_01_D1_GDPR_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_TI01_01_D3_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_TI01_01_D3_EXP_V" ("UTTI01_XCCPRO_KEY", "UTTI01_EXPORT_FILENAME", "UTTI01_ID", "UTTI01_EFFECTIVE_DATE", "UTTI01_D_ACTIVIT", "UTTI01_D_ID_OBJ", "UTTI01_D_ERDAT", "UTTI01_D_DATUZA", "UTTI01_TIMEZAL", "UTTI01_D_CCATID1", "UTTI01_D_CCATID2", "UTTI01_D_DIRECT", "UTTI01_D_KANAL", "UTTI01_D_ELE_FL", "UTTI01_D_PARTNER", "UTTI01_AD02_TEL", "UTTI01_D_PLY_FL", "UTTI01_D_TELNVO", "UTTI01_EMAIL", "UTTI01_ADRESA_ULICE", "UTTI01_ADRESA_CP", "UTTI01_ADRESA_CO", "UTTI01_ADRESA_MISTO", "UTTI01_ADRESA_MISTNI_CAST", "UTTI01_ADRESA_PSC", "UTTI01_D_ZALOZIL_D_USER", "UTTI01_D_RESITEL_D_USER", "UTTI01_POCET_RESITELU", "UTTI01_D_CRM_UZS", "UTTI01_DDBPAR_NAZEV", "UTTI01_BONITA", "UTTI01_SEGMENTACE", "UTTI01_POCET_MS", "UTTI01_ODHAD_SPOTREBY", "UTTI01_HODNOTA_ZAKAZNIKA", "UTTI01_PRACOVISTE", "UTTI01_ID_KPI", "UTTI01_VLASTNIK_DAT", "UTTI01_ROZHODNE_DATUM", "UTTI01_D_CCATID3", "UTTI01_D_MOB_FL", "UTTI01_D_OSL_DOP", "UTTI01_POHLAVI", "UTTI01_VARIANTA", "UTTI01_D_PROCTYP", "UTTI01_D_OTH_FL", "UTTI01_PORADI", "UTTI01_CREATED_DATE", "UTTI01_CREATED_PROCESS", "UTTI01_MODIFIED_DATE", "UTTI01_MODIFIED_PROCESS") AS 
+  (
+SELECT utti01_xccpro_key  
+      ,utti01_export_filename
+      ,utti01_id             
+      ,utti01_effective_date 
+      ,utti01_d_activit   
+      ,utti01_d_id_obj    
+      ,utti01_d_erdat
+      ,utti01_d_datuza
+      ,utti01_timezal     
+      ,utti01_d_ccatid1   
+      ,utti01_d_ccatid2   
+      ,utti01_d_direct
+      ,utti01_d_kanal     
+      ,utti01_d_ele_fl    
+      ,utti01_d_partner   
+      ,utti01_ad02_tel
+      ,utti01_d_ply_fl    
+      ,utti01_d_telnvo
+      ,utti01_email
+      ,utti01_adresa_ulice
+      ,utti01_adresa_cp   
+      ,utti01_adresa_co   
+      ,utti01_adresa_misto
+      ,utti01_adresa_mistni_cast
+      ,utti01_adresa_psc   
+      ,utti01_d_zalozil_d_user
+      ,utti01_d_resitel_d_user
+      ,utti01_pocet_resitelu  
+      ,utti01_d_crm_uzs       
+      ,utti01_ddbpar_nazev    
+      ,utti01_bonita          
+      ,utti01_segmentace      
+      ,utti01_pocet_ms        
+      ,utti01_odhad_spotreby  
+      ,utti01_hodnota_zakaznika
+      ,utti01_pracoviste       
+      ,utti01_id_kpi           
+      ,utti01_vlastnik_dat     
+      ,utti01_rozhodne_datum          
+      ,utti01_d_ccatid3        
+      ,utti01_d_mob_fl         
+      ,utti01_d_osl_dop        
+      ,utti01_pohlavi
+      ,utti01_varianta
+      ,utti01_d_proctyp 
+      ,utti01_d_oth_fl
+      ,utti01_poradi
+      ,utti01_created_date
+      ,utti01_created_process
+      ,utti01_modified_date
+      ,utti01_modified_process
+ FROM ownbt_out.OUT_CX01_TI01_GDPR
+     ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CATI_CX01_TI01_01_D3'  
+   AND xccpro_current_flag = 1
+   AND utti01_effective_date = to_char(xccpro_process_date,'yyyymmdd')
+   AND utti01_xccpro_key = xccpro_key
+)
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_EXP_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_TI01_01_D3_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_TI01_01_D3_GDPR_V" ("UTTI01_XCCPRO_KEY", "UTTI01_EFFECTIVE_DATE", "UTTI01_ID", "UTTI01_D_PARTNER") AS 
+  (
+SELECT utti01_xccpro_key
+      ,utti01_effective_date
+      ,utti01_id
+      ,utti01_d_partner
+  FROM ownbt_out.OUT_CX01_TI01_GDPR
+      ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CATI_CX01_TI01_01_D3'        
+   AND xccpro_current_flag = 1
+   AND utti01_xccpro_key = xccpro_key
+   AND utti01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD')) )
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_TI01_01_D3_GDPR_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_TI01_01_D5_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_TI01_01_D5_EXP_V" ("UTTI01_XCCPRO_KEY", "UTTI01_EXPORT_FILENAME", "UTTI01_ID", "UTTI01_EFFECTIVE_DATE", "UTTI01_D_ACTIVIT", "UTTI01_D_ID_OBJ", "UTTI01_D_ERDAT", "UTTI01_D_DATUZA", "UTTI01_TIMEZAL", "UTTI01_D_CCATID1", "UTTI01_D_CCATID2", "UTTI01_D_DIRECT", "UTTI01_D_KANAL", "UTTI01_D_ELE_FL", "UTTI01_D_PARTNER", "UTTI01_AD02_TEL", "UTTI01_D_PLY_FL", "UTTI01_D_TELNVO", "UTTI01_EMAIL", "UTTI01_ADRESA_ULICE", "UTTI01_ADRESA_CP", "UTTI01_ADRESA_CO", "UTTI01_ADRESA_MISTO", "UTTI01_ADRESA_MISTNI_CAST", "UTTI01_ADRESA_PSC", "UTTI01_D_ZALOZIL_D_USER", "UTTI01_D_RESITEL_D_USER", "UTTI01_POCET_RESITELU", "UTTI01_D_CRM_UZS", "UTTI01_DDBPAR_NAZEV", "UTTI01_BONITA", "UTTI01_SEGMENTACE", "UTTI01_POCET_MS", "UTTI01_ODHAD_SPOTREBY", "UTTI01_HODNOTA_ZAKAZNIKA", "UTTI01_PRACOVISTE", "UTTI01_ID_KPI", "UTTI01_VLASTNIK_DAT", "UTTI01_ROZHODNE_DATUM", "UTTI01_D_CCATID3", "UTTI01_D_MOB_FL", "UTTI01_D_OSL_DOP", "UTTI01_POHLAVI", "UTTI01_VARIANTA", "UTTI01_D_PROCTYP", "UTTI01_D_OTH_FL", "UTTI01_PORADI", "UTTI01_CREATED_DATE", "UTTI01_CREATED_PROCESS", "UTTI01_MODIFIED_DATE", "UTTI01_MODIFIED_PROCESS") AS 
+  (
+SELECT utti01_xccpro_key  
+      ,utti01_export_filename
+      ,utti01_id             
+      ,utti01_effective_date 
+      ,utti01_d_activit   
+      ,utti01_d_id_obj    
+      ,utti01_d_erdat
+      ,utti01_d_datuza
+      ,utti01_timezal     
+      ,utti01_d_ccatid1   
+      ,utti01_d_ccatid2   
+      ,utti01_d_direct
+      ,utti01_d_kanal     
+      ,utti01_d_ele_fl    
+      ,utti01_d_partner   
+      ,utti01_ad02_tel
+      ,utti01_d_ply_fl    
+      ,utti01_d_telnvo
+      ,utti01_email
+      ,utti01_adresa_ulice
+      ,utti01_adresa_cp   
+      ,utti01_adresa_co   
+      ,utti01_adresa_misto
+      ,utti01_adresa_mistni_cast
+      ,utti01_adresa_psc   
+      ,utti01_d_zalozil_d_user
+      ,utti01_d_resitel_d_user
+      ,utti01_pocet_resitelu  
+      ,utti01_d_crm_uzs       
+      ,utti01_ddbpar_nazev    
+      ,utti01_bonita          
+      ,utti01_segmentace      
+      ,utti01_pocet_ms        
+      ,utti01_odhad_spotreby  
+      ,utti01_hodnota_zakaznika
+      ,utti01_pracoviste       
+      ,utti01_id_kpi           
+      ,utti01_vlastnik_dat     
+      ,utti01_rozhodne_datum          
+      ,utti01_d_ccatid3        
+      ,utti01_d_mob_fl         
+      ,utti01_d_osl_dop        
+      ,utti01_pohlavi
+      ,utti01_varianta
+      ,utti01_d_proctyp 
+      ,utti01_d_oth_fl
+      ,utti01_poradi
+      ,utti01_created_date
+      ,utti01_created_process
+      ,utti01_modified_date
+      ,utti01_modified_process
+ FROM ownbt_out.OUT_CX01_TI01_GDPR
+     ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_TI01_01_D5'  
+   AND xccpro_current_flag = 1
+   AND utti01_effective_date = to_char(xccpro_process_date,'yyyymmdd')
+   AND utti01_xccpro_key = xccpro_key
+  )
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_EXP_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_TI01_01_D5_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_TI01_01_D5_GDPR_V" ("UTTI01_XCCPRO_KEY", "UTTI01_EFFECTIVE_DATE", "UTTI01_ID", "UTTI01_D_PARTNER") AS 
+  (
+SELECT utti01_xccpro_key
+      ,utti01_effective_date
+      ,utti01_id
+      ,utti01_d_partner
+  FROM ownbt_out.OUT_CX01_TI01_GDPR
+      ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_TI01_01_D5'        
+   AND xccpro_current_flag = 1
+   AND utti01_xccpro_key = xccpro_key
+   AND utti01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD')) )
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_GDPR_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_GDPR_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_TI01_01_D5_GDPR_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_TI01_D1_MAIL_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_EXP_V" ("UTTI01_XCCPRO_KEY", "UTTI01_EXPORT_FILENAME", "UTTI01_ID", "UTTI01_EFFECTIVE_DATE", "UTTI01_D_ACTIVIT", "UTTI01_D_ID_OBJ", "UTTI01_D_ERDAT", "UTTI01_D_DATUZA", "UTTI01_TIMEZAL", "UTTI01_D_CCATID1", "UTTI01_D_CCATID2", "UTTI01_D_DIRECT", "UTTI01_D_KANAL", "UTTI01_D_ELE_FL", "UTTI01_D_PARTNER", "UTTI01_AD02_TEL", "UTTI01_D_PLY_FL", "UTTI01_D_TELNVO", "UTTI01_EMAIL", "UTTI01_ADRESA_ULICE", "UTTI01_ADRESA_CP", "UTTI01_ADRESA_CO", "UTTI01_ADRESA_MISTO", "UTTI01_ADRESA_MISTNI_CAST", "UTTI01_ADRESA_PSC", "UTTI01_D_ZALOZIL_D_USER", "UTTI01_D_RESITEL_D_USER", "UTTI01_POCET_RESITELU", "UTTI01_D_CRM_UZS", "UTTI01_DDBPAR_NAZEV", "UTTI01_BONITA", "UTTI01_SEGMENTACE", "UTTI01_POCET_MS", "UTTI01_ODHAD_SPOTREBY", "UTTI01_HODNOTA_ZAKAZNIKA", "UTTI01_PRACOVISTE", "UTTI01_ID_KPI", "UTTI01_VLASTNIK_DAT", "UTTI01_ROZHODNE_DATUM", "UTTI01_D_CCATID3", "UTTI01_D_MOB_FL", "UTTI01_D_OSL_DOP", "UTTI01_POHLAVI", "UTTI01_VARIANTA", "UTTI01_D_PROCTYP", "UTTI01_D_OTH_FL", "UTTI01_PORADI", "UTTI01_CREATED_DATE", "UTTI01_CREATED_PROCESS", "UTTI01_MODIFIED_DATE", "UTTI01_MODIFIED_PROCESS") AS 
+  SELECT utti01_xccpro_key  
+      ,utti01_export_filename
+      ,utti01_id             
+      ,utti01_effective_date 
+      ,utti01_d_activit   
+      ,utti01_d_id_obj    
+      ,utti01_d_erdat
+      ,utti01_d_datuza
+      ,utti01_timezal     
+      ,utti01_d_ccatid1   
+      ,utti01_d_ccatid2   
+      ,utti01_d_direct
+      ,utti01_d_kanal     
+      ,utti01_d_ele_fl    
+      ,utti01_d_partner   
+      ,utti01_ad02_tel
+      ,utti01_d_ply_fl    
+      ,utti01_d_telnvo
+      ,utti01_email
+      ,utti01_adresa_ulice
+      ,utti01_adresa_cp   
+      ,utti01_adresa_co   
+      ,utti01_adresa_misto
+      ,utti01_adresa_mistni_cast
+      ,utti01_adresa_psc   
+      ,utti01_d_zalozil_d_user
+      ,utti01_d_resitel_d_user
+      ,utti01_pocet_resitelu  
+      ,utti01_d_crm_uzs       
+      ,utti01_ddbpar_nazev    
+      ,utti01_bonita          
+      ,utti01_segmentace      
+      ,utti01_pocet_ms        
+      ,utti01_odhad_spotreby  
+      ,utti01_hodnota_zakaznika
+      ,utti01_pracoviste       
+      ,utti01_id_kpi           
+      ,utti01_vlastnik_dat     
+      ,utti01_rozhodne_datum          
+      ,utti01_d_ccatid3        
+      ,utti01_d_mob_fl         
+      ,utti01_d_osl_dop        
+      ,utti01_pohlavi
+      ,UTTI01_VARIANTA
+      ,utti01_d_proctyp 
+      ,utti01_d_oth_fl
+      ,utti01_poradi
+      ,utti01_created_date
+      ,utti01_created_process
+      ,utti01_modified_date
+      ,utti01_modified_process
+ FROM ownbt_out.OUT_CX01_TI01_GDPR
+     ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_TI01_D1_MAIL'  
+   AND xccpro_current_flag = 1
+   AND utti01_effective_date = to_char(xccpro_process_date,'yyyymmdd')
+   AND utti01_xccpro_key = xccpro_key
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+--------------------------------------------------------
+--  DDL for View OUT_CX01_TI01_D1_MAIL_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_GDPR_V" ("UTTI01_XCCPRO_KEY", "UTTI01_EFFECTIVE_DATE", "UTTI01_ID", "UTTI01_D_PARTNER") AS 
+  SELECT 
+       utti01_xccpro_key
+      ,utti01_effective_date
+      ,utti01_id
+      ,utti01_d_partner
+FROM OWNBT_OUT.out_cx01_ti01_GDPR
+      ,bisupport.xfc_cpro
+WHERE xccpro_key = 'CAWI_CX01_TI01_D1_MAIL'        
+   AND xccpro_current_flag = 1
+   AND utti01_xccpro_key = xccpro_key
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_GDPR_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_GDPR_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_TI01_D1_MAIL_GDPR_V" TO "OWNER_ETL";
+--------------------------------------------------------
+--  DDL for View OUT_CX01_TI01_D1_SOL_EXP_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_EXP_V" ("UTTI01_XCCPRO_KEY", "UTTI01_EXPORT_FILENAME", "UTTI01_ID", "UTTI01_EFFECTIVE_DATE", "UTTI01_D_ACTIVIT", "UTTI01_D_ID_OBJ", "UTTI01_D_ERDAT", "UTTI01_D_DATUZA", "UTTI01_TIMEZAL", "UTTI01_D_CCATID1", "UTTI01_D_CCATID2", "UTTI01_D_DIRECT", "UTTI01_D_KANAL", "UTTI01_D_ELE_FL", "UTTI01_D_PARTNER", "UTTI01_AD02_TEL", "UTTI01_D_PLY_FL", "UTTI01_D_TELNVO", "UTTI01_EMAIL", "UTTI01_ADRESA_ULICE", "UTTI01_ADRESA_CP", "UTTI01_ADRESA_CO", "UTTI01_ADRESA_MISTO", "UTTI01_ADRESA_MISTNI_CAST", "UTTI01_ADRESA_PSC", "UTTI01_D_ZALOZIL_D_USER", "UTTI01_D_RESITEL_D_USER", "UTTI01_POCET_RESITELU", "UTTI01_D_CRM_UZS", "UTTI01_DDBPAR_NAZEV", "UTTI01_BONITA", "UTTI01_SEGMENTACE", "UTTI01_POCET_MS", "UTTI01_ODHAD_SPOTREBY", "UTTI01_HODNOTA_ZAKAZNIKA", "UTTI01_PRACOVISTE", "UTTI01_ID_KPI", "UTTI01_VLASTNIK_DAT", "UTTI01_ROZHODNE_DATUM", "UTTI01_D_CCATID3", "UTTI01_D_MOB_FL", "UTTI01_D_OSL_DOP", "UTTI01_POHLAVI", "UTTI01_VARIANTA", "UTTI01_D_PROCTYP", "UTTI01_D_OTH_FL", "UTTI01_PORADI", "UTTI01_CREATED_DATE", "UTTI01_CREATED_PROCESS", "UTTI01_MODIFIED_DATE", "UTTI01_MODIFIED_PROCESS") AS 
+  (
+SELECT utti01_xccpro_key  
+      ,utti01_export_filename
+      ,utti01_id             
+      ,utti01_effective_date 
+      ,utti01_d_activit   
+      ,utti01_d_id_obj    
+      ,utti01_d_erdat
+      ,utti01_d_datuza
+      ,utti01_timezal     
+      ,utti01_d_ccatid1   
+      ,utti01_d_ccatid2   
+      ,utti01_d_direct
+      ,utti01_d_kanal     
+      ,utti01_d_ele_fl    
+      ,utti01_d_partner   
+      ,utti01_ad02_tel
+      ,utti01_d_ply_fl    
+      ,utti01_d_telnvo
+      ,utti01_email
+      ,utti01_adresa_ulice
+      ,utti01_adresa_cp   
+      ,utti01_adresa_co   
+      ,utti01_adresa_misto
+      ,utti01_adresa_mistni_cast
+      ,utti01_adresa_psc   
+      ,utti01_d_zalozil_d_user
+      ,utti01_d_resitel_d_user
+      ,utti01_pocet_resitelu  
+      ,utti01_d_crm_uzs       
+      ,utti01_ddbpar_nazev    
+      ,utti01_bonita          
+      ,utti01_segmentace      
+      ,utti01_pocet_ms        
+      ,utti01_odhad_spotreby  
+      ,utti01_hodnota_zakaznika
+      ,utti01_pracoviste       
+      ,utti01_id_kpi           
+      ,utti01_vlastnik_dat     
+      ,utti01_rozhodne_datum          
+      ,utti01_d_ccatid3        
+      ,utti01_d_mob_fl         
+      ,utti01_d_osl_dop        
+      ,utti01_pohlavi
+      ,utti01_varianta
+      ,utti01_d_proctyp 
+      ,utti01_d_oth_fl
+      ,utti01_poradi
+      ,utti01_created_date
+      ,utti01_created_process
+      ,utti01_modified_date
+      ,utti01_modified_process
+ FROM ownbt_out.OUT_CX01_TI01_GDPR
+     ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_TI01_D1_SOL'  
+   AND xccpro_current_flag = 1
+   AND utti01_effective_date = to_char(xccpro_process_date,'yyyymmdd')
+   AND utti01_xccpro_key = xccpro_key
+)
+;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_EXP_V" TO "BISUPPORT" WITH GRANT OPTION;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_EXP_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_EXP_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_EXP_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_EXP_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_EXP_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_EXP_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_EXP_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_EXP_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_EXP_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_EXP_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_EXP_V" TO "OWNBT_STG" WITH GRANT OPTION;
+--------------------------------------------------------
+--  DDL for View OUT_CX01_TI01_D1_SOL_GDPR_V
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE EDITIONABLE VIEW "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_GDPR_V" ("UTTI01_XCCPRO_KEY", "UTTI01_EFFECTIVE_DATE", "UTTI01_ID", "UTTI01_D_PARTNER") AS 
+  (
+SELECT utti01_xccpro_key
+      ,utti01_effective_date
+      ,utti01_id
+      ,utti01_d_partner
+  FROM ownbt_out.OUT_CX01_TI01_GDPR
+      ,bisupport.xfc_cpro
+ WHERE xccpro_key = 'CAWI_CX01_TI01_D1_SOL'        
+   AND xccpro_current_flag = 1
+   AND utti01_xccpro_key = xccpro_key
+   AND utti01_effective_date = TO_NUMBER(TO_CHAR(xccpro_process_date,'YYYYMMDD')) )
+;
+  GRANT DELETE ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_GDPR_V" TO "OWNER_ETL";
+  GRANT INSERT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_GDPR_V" TO "OWNBT_STG" WITH GRANT OPTION;
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_GDPR_V" TO "OWNER_ETL";
+  GRANT UPDATE ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_GDPR_V" TO "OWNER_ETL";
+  GRANT REFERENCES ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_GDPR_V" TO "OWNER_ETL";
+  GRANT READ ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_GDPR_V" TO "OWNER_ETL";
+  GRANT ON COMMIT REFRESH ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_GDPR_V" TO "OWNER_ETL";
+  GRANT QUERY REWRITE ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_GDPR_V" TO "OWNER_ETL";
+  GRANT DEBUG ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_GDPR_V" TO "OWNER_ETL";
+  GRANT FLASHBACK ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_GDPR_V" TO "OWNER_ETL";
+  GRANT MERGE VIEW ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_GDPR_V" TO "OWNER_ETL";
+  GRANT SELECT ON "OWNBT_OUT"."OUT_CX01_TI01_D1_SOL_GDPR_V" TO "BISUPPORT" WITH GRANT OPTION;

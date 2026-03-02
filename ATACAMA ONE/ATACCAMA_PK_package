@@ -1,0 +1,117 @@
+import oracle.odi.domain.project.OdiProject
+import oracle.odi.domain.project.OdiPackage
+import oracle.odi.domain.project.StepOdiCommand
+import oracle.odi.domain.project.StepMapping
+import oracle.odi.domain.xrefs.expression.Expression
+import oracle.odi.domain.xrefs.expression.Expression.SqlGroupType
+import oracle.odi.domain.xrefs.CrossRef
+import oracle.odi.core.persistence.transaction.support.DefaultTransactionDefinition
+
+// --- KONFIGURACE ---
+def targetProjectCode = "BICPR_BT_DWH"
+def targetFolderName = "ATACCAMA_ONE"
+def packageName = "ATACCAMA_ONE_02_EXT_to_INT"
+def variableName = "VAR_EFFECTIVE_DATE"
+// -------------------
+
+def findFolderRecursive(folders, targetName) {
+    for (f in folders) {
+        if (f.getName().trim() == targetName.trim()) return f
+        def found = findFolderRecursive(f.getSubFolders(), targetName)
+        if (found != null) return found
+    }
+    return null
+}
+
+def tm = odiInstance.getTransactionManager()
+def t_man = odiInstance.getTransactionalEntityManager()
+def txn = tm.getTransaction(new DefaultTransactionDefinition())
+
+try {
+    def project = t_man.getFinder(OdiProject.class).findByCode(targetProjectCode)
+    def folder = findFolderRecursive(project.getFolders(), targetFolderName)
+    def pack = folder.getPackages().find { it.getName() == packageName }
+
+    def mapSteps = pack.getSteps().findAll { it.getClass().getName().contains("Mapping") }.sort { it.getName() }
+
+    // Vytvoření proměnné VAR_EFFECTIVE_DATE na začátek package
+    def varStep = pack.getSteps().find { it.getName() == variableName }
+    if (varStep == null) {
+        // Najdeme proměnnou v projektu
+        def odiVar = project.getVariables().find { it.getName() == variableName }
+        if (odiVar == null) {
+            println "  [VAROVÁNÍ] Proměnná ${variableName} nenalezena v projektu!"
+        } else {
+            // Zkusíme najít správnou třídu pro krok proměnné
+            try {
+                def stepClass = Class.forName("oracle.odi.domain.project.StepDeclareVariable")
+                varStep = stepClass.getConstructor(OdiPackage.class, String.class, odiVar.getClass()).newInstance(pack, variableName, odiVar)
+                println "  Vytvořen krok proměnné: ${variableName} (přes StepDeclareVariable)"
+            } catch (e1) {
+                try {
+                    def stepClass = Class.forName("oracle.odi.domain.project.StepSetVariable")
+                    varStep = stepClass.getConstructor(OdiPackage.class, String.class, odiVar.getClass()).newInstance(pack, variableName, odiVar)
+                    println "  Vytvořen krok proměnné: ${variableName} (přes StepSetVariable)"
+                } catch (e2) {
+                    try {
+                        def stepClass = Class.forName("oracle.odi.domain.project.StepVariable")
+                        varStep = stepClass.getConstructor(OdiPackage.class, String.class, odiVar.getClass()).newInstance(pack, variableName, odiVar)
+                        println "  Vytvořen krok proměnné: ${variableName} (přes StepVariable)"
+                    } catch (e3) {
+                        println "  [VAROVÁNÍ] Nelze vytvořit krok proměnné - třída nenalezena"
+                        println "  [INFO] Proměnnou ${variableName} přidejte manuálně v ODI Studio"
+                    }
+                }
+            }
+        }
+    }
+
+    // Propojení proměnné s prvním mappingem (pokud existuje)
+    if (varStep != null && mapSteps.size() > 0) {
+        varStep.setNextStepAfterSuccess(mapSteps[0])
+        println "  Propojeno: ${variableName} → ${mapSteps[0].getName()}"
+    }
+
+    mapSteps.eachWithIndex { mapStep, index ->
+        def pkStepName = "PK_" + mapStep.getName()
+        def tableName = mapStep.getName().replace("EXT_", "INT_ATO_").replace("_DI", "")
+
+        def commandText = "OdiStartScen \"-SCEN_NAME=KONTROLA_PK\" \"-SCEN_VERSION=001\" \"-BICPR_BT_DWH.VAR_EFFECTIVE_DATE=#VAR_EFFECTIVE_DATE\" \"-BICPR_BT_DWH.VAR_TABLE_NAME=${tableName}\""
+
+        def pkStep = pack.getSteps().find { it.getName() == pkStepName }
+        if (pkStep == null) {
+            pkStep = new StepOdiCommand(pack, pkStepName)
+            println "  Vytvořen PK krok: ${pkStepName}"
+        }
+
+        // --- FINÁLNÍ OPRAVA KONSTRUKTORU ---
+        String finalTxt = commandText.toString()
+        CrossRef[] refs = new CrossRef[0]
+        SqlGroupType group = SqlGroupType.valueOf("NONE") 
+        def expr = new Expression(finalTxt, refs, group)
+        pkStep.setCommandExpression(expr)
+        // ----------------------------------
+
+        // Získáme další mapping krok v pořadí (pro chaining)
+        def nextMapStep = (index < mapSteps.size() - 1) ? mapSteps[index + 1] : null
+        
+        // Mapping → PK → další Mapping (nebo konec)
+        mapStep.setNextStepAfterSuccess(pkStep)
+        if (nextMapStep != null) {
+            pkStep.setNextStepAfterSuccess(nextMapStep)
+            println "  Propojeno: ${mapStep.getName()} → ${pkStepName} → ${nextMapStep.getName()}"
+        } else {
+            // Poslední mapping - PK je poslední krok
+            println "  Propojeno: ${mapStep.getName()} → ${pkStepName} (konec)"
+        }
+    }
+
+    t_man.persist(pack)
+    tm.commit(txn)
+    println "--- HOTOVO: Všechny PK kontroly byly úspěšně vloženy! ---"
+
+} catch (Exception e) {
+    if (txn != null) tm.rollback(txn)
+    println "CHYBA: " + e.toString()
+    e.printStackTrace()
+}

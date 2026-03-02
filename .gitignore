@@ -1,0 +1,13 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Local virtual environment
+.venv/
+
+# Backup files
+*.bak
+*.bak*
+
+# Local cleanup archive
+_archive/

@@ -1,0 +1,129 @@
+---------------------------------------------------
+ODT_A25_EMPL - přidaná nová tabulka
+---------------------------------------------------
+oblast: ADAPTACE_25
+tabulka: ODT_A25_EMPL
+
+přidaná nová tabulka ODT_A25_EMPL (Zdrojová tabulka EMPL) frekvence zpracování: pracovní dny
+
+EFF 20260125
+
+---------------------------------------------------
+ODT_A25_FMEV - přidaná nová tabulka
+---------------------------------------------------
+oblast: ADAPTACE_25
+tabulka: ODT_A25_FMEV
+
+přidaná nová tabulka ODT_A25_FMEV (Zdrojová tabulka FMEV) frekvence zpracování: pracovní dny
+
+EFF 20260125
+
+---------------------------------------------------
+ODT_A25_FORM - přidaná nová tabulka
+---------------------------------------------------
+oblast: ADAPTACE_25
+tabulka: ODT_A25_FORM
+
+přidaná nová tabulka ODT_A25_FORM (Zdrojová tabulka FORM) frekvence zpracování: pracovní dny
+
+EFF 20260125
+
+---------------------------------------------------
+ODT_A25_REEF - přidaná nová tabulka
+---------------------------------------------------
+oblast: ADAPTACE_25
+tabulka: ODT_A25_REEF
+
+přidaná nová tabulka ODT_A25_REEF (Zdrojová tabulka REEF) frekvence zpracování: pracovní dny
+
+EFF 20260125
+
+---------------------------------------------------
+ODT_VCK_LSSV - přidaná nová tabulka
+---------------------------------------------------
+oblast: VCELKA
+tabulka: ODT_VCK_LSSV
+
+přidaná nová tabulka ODT_VCK_LSSV (Zdrojová tabulka LOGSSV – specifické logy aktivit pro oddělení SSV (VCELKA)) frekvence zpracování: denně
+
+EFF 20260119
+
+---------------------------------------------------
+ODT_VCK_NORM - přidaná nová tabulka
+---------------------------------------------------
+oblast: VCELKA
+tabulka: ODT_VCK_NORM
+
+přidaná nová tabulka ODT_VCK_NORM (Zdrojová tabulka NORMY – definice výkonnostních limitů a vah pro produktivitu (VCELKA)) frekvence zpracování: denně
+
+EFF 20260119
+
+---------------------------------------------------
+ODT_VCK_ODDE - přidaná nová tabulka
+---------------------------------------------------
+oblast: VCELKA
+tabulka: ODT_VCK_ODDE
+
+přidaná nová tabulka ODT_VCK_ODDE (Zdrojová tabulka ODDELENI – organizační struktura a konfigurace logování pro týmy (VCELKA)) frekvence zpracování: denně
+
+EFF 20260119
+
+---------------------------------------------------
+ODT_VCK_PIAC - přidaná nová tabulka
+---------------------------------------------------
+oblast: VCELKA
+tabulka: ODT_VCK_PIAC
+
+přidaná nová tabulka ODT_VCK_PIAC (Zdrojová tabulka PRODUKTIVITAITEMAKCE – vazební tabulka mezi položkami produktivity a akcemi (VCELKA)) frekvence zpracování: denně
+
+EFF 20260120
+
+---------------------------------------------------
+ODT_VCK_PRAC - přidaná nová tabulka
+---------------------------------------------------
+oblast: VCELKA
+tabulka: ODT_VCK_PRAC
+
+přidaná nová tabulka ODT_VCK_PRAC (Zdrojová tabulka PRODUKTIVITAAKCI – vypočtené hodnoty produktivity za jednotlivé akce (VCELKA)) frekvence zpracování: denně
+
+EFF 20260119
+
+---------------------------------------------------
+ODT_VCK_PRIT - přidaná nová tabulka
+---------------------------------------------------
+oblast: VCELKA
+tabulka: ODT_VCK_PRIT
+
+přidaná nová tabulka ODT_VCK_PRIT (Zdrojová tabulka PRODUKTIVITAITEM – definice konkrétních prvků (položek) měření (VCELKA)) frekvence zpracování: denně
+
+EFF 20260120
+
+---------------------------------------------------
+ODT_VCK_SCAK - přidaná nová tabulka
+---------------------------------------------------
+oblast: VCELKA
+tabulka: ODT_VCK_SCAK
+
+přidaná nová tabulka ODT_VCK_SCAK (Zdrojová tabulka SUMYCASUAKCI – agregované údaje o čase stráveném na činnostech (VCELKA)) frekvence zpracování: denně
+
+EFF 20260119
+
+---------------------------------------------------
+ODT_VCK_SUMP - přidaná nová tabulka
+---------------------------------------------------
+oblast: VCELKA
+tabulka: ODT_VCK_SUMP
+
+přidaná nová tabulka ODT_VCK_SUMP (Zdrojová tabulka SUMYPOCTU – agregované počty provedených operací za období (VCELKA)) frekvence zpracování: denně
+
+EFF 20260119
+
+---------------------------------------------------
+ODT_VCK_USER - přidaná nová tabulka
+---------------------------------------------------
+oblast: VCELKA
+tabulka: ODT_VCK_USER
+
+přidaná nová tabulka ODT_VCK_USER (Zdrojová tabulka USER – evidence uživatelů, jejich oprávnění a nadřízených (VCELKA)) frekvence zpracování: denně
+
+EFF 20260119

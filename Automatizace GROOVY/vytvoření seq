@@ -1,0 +1,48 @@
+import oracle.odi.domain.project.OdiProject
+import oracle.odi.domain.project.OdiSequence
+import oracle.odi.core.persistence.transaction.support.DefaultTransactionDefinition
+
+// --- KONFIGURACE ---
+def projectCode = "BICPR_BT_DWH"
+def logicalSchemaName = "ORACLE_BT_ODS"
+
+def tables = ["ADAP", "APER", "ATYP", "DBCH", "DBCL", "EMPL", "FORM", "FASS", "FATT", "FGNO", "FLVI", "FMEV", "FMON", "FMIN", "FMPI", "FOTO", "FTME", "FTMA", "FTRP", "MTYP", "RAMT", "RATV", "REEF", "REFA", "SHED", "TIND", "TIAT", "TTYP", "TTVR", "TPTA", "TPCE"]
+
+println "--- START ZAKLÁDÁNÍ SEKVENCI (Simple Mode) ---"
+
+def tm = odiInstance.getTransactionManager()
+def iem = odiInstance.getTransactionalEntityManager()
+def txn = tm.getTransaction(new DefaultTransactionDefinition())
+
+try {
+    def project = iem.getFinder(OdiProject.class).findByCode(projectCode)
+    
+    tables.each { t ->
+        def seqName = "OTA25_${t}_ID_SEQ".toString()
+        def existingSeq = project.getSequences().find { it.getName() == seqName }
+        
+        if (!existingSeq) {
+            // Použijeme zjištěný konstruktor: Projekt, Jméno, Inkrement
+            def newSeq = new OdiSequence(project, seqName, new Integer(1))
+            
+            // Nastavíme logické schéma a nativní název (to by mělo stačit k aktivaci Native režimu)
+            newSeq.setLogicalSchemaName(logicalSchemaName)
+            newSeq.setNativeSequenceName(seqName)
+            
+            // Pokud by to i tak nebylo "Native", ODI si to domyslí při uložení
+            // nebo to zkusíme nastavit přes univerzální setProperty, pokud to bude nutné.
+            
+            iem.persist(newSeq)
+            println "  OK: ${seqName} vytvořena."
+        } else {
+            println "  SKIP: ${seqName} již existuje."
+        }
+    }
+
+    tm.commit(txn)
+    println "--- HOTOVO ---"
+
+} catch (e) {
+    if (txn != null) tm.rollback(txn)
+    println "CHYBA: " + e.toString()
+}

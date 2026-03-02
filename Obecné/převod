@@ -1,0 +1,121 @@
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - identifikátor řádku (autoinkrement)', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'skontk_id';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - datum archivace', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'skontk_effective_date';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'skontk_src_id';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'fsourc_src_sys_id';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'fproct_typ';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Obchodní partner', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'skontk_partner';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'SAP GUID partnera', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'skontk_partner_guid';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'id entity (př. mail, telefon....)', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'skontk_entity_id';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'ID klíče SAP kontaktu', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'skontk_entity_key';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní/ostatní kontakt SAP', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'skontk_entity_type';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Současná hodnota kontaktu', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'skontk_value';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Validovaná hodnota kontaktu', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'skontk_cio_value';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Hodnota skore', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'skontk_score';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník důvěrihodnosti', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'fauthl_level_id';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ změnové operace', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'skontk_operation_list';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'tkontk_created_date';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'tkontk_created_process';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'tkontk_modified_date';
+ 
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'tkontk_modified_process';
+ 
+-- Komentář k tabulce RAT_VAL_KONTK
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Vst. tabulka - kontakty', 
+@level0type = N'Schema', @level0name = 'ROBOTLOG', 
+@level1type = N'Table', @level1name = 'RAT_VAL_KONTK';
+GO

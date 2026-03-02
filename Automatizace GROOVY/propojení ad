@@ -1,0 +1,125 @@
+import oracle.odi.domain.mapping.Mapping
+import oracle.odi.domain.project.OdiProject
+import oracle.odi.domain.project.OdiFolder
+import oracle.odi.domain.project.finder.IOdiProjectFinder
+import oracle.odi.core.persistence.transaction.support.DefaultTransactionDefinition
+
+// --- KONFIGURACE ---
+def targetProjectCode = "BICPR_BT_DWH"
+def targetFolderName = "ADAPTACE_25"
+def ikmName = "IKM Oracle IncUpd Shortcut SEQ CEZ"
+// -------------------
+
+def tm = odiInstance.getTransactionManager()
+def t_man = odiInstance.getTransactionalEntityManager()
+def txn = tm.getTransaction(new DefaultTransactionDefinition())
+
+// Pomocná funkce pro vyhledání složky napříč strukturou
+def findFolderRecursive(parent, folderName) {
+    def subFolders = (parent instanceof OdiProject) ? parent.getFolders() : parent.getSubFolders()
+    def found = subFolders.find { it.getName().equalsIgnoreCase(folderName) }
+    if (found) return found
+    for (subFolder in subFolders) {
+        def result = findFolderRecursive(subFolder, folderName)
+        if (result) return result
+    }
+    return null
+}
+
+try {
+    def projFinder = (IOdiProjectFinder) t_man.getFinder(OdiProject.class)
+    def project = projFinder.findByCode(targetProjectCode)
+    if (project == null) {
+        println "CHYBA: Projekt ${targetProjectCode} nenalezen."
+        return
+    }
+    
+    def folder = findFolderRecursive(project, targetFolderName)
+    if (folder == null) {
+        println "CHYBA: Složka ${targetFolderName} nenalezena."
+        return
+    }
+
+    def targetIKM = project.getIKMs().find { it.getName() == ikmName }
+
+    folder.getMappings().each { map ->
+        if (!map.getName().startsWith("EXT_")) return
+        println "--- Zpracovávám: ${map.getName()} ---"
+
+        def targetComp = map.getComponents().find { it.getName().startsWith("INT_") }
+        def sourceComp = map.getComponents().find { it != targetComp && (it.getName().contains("A25") || it.getName().startsWith("XT")) }
+
+        if (targetComp != null && sourceComp != null) {
+            // 1. PROPOJENÍ KOMPONENT
+            try { 
+                sourceComp.getOutputConnectorPoints()[0].connectTo(targetComp.getInputConnectorPoints()[0]) 
+            } catch (e) { 
+                // Ignorujeme, pokud již propojeno
+            }
+
+            // 2. META SLOUPCE + MAPOVÁNÍ
+            def parts = targetComp.getName().split("_")
+            def code = parts.size() > 2 ? parts[2] : "" 
+            def targetPrefix = "IT" + code + "_"
+            def sourcePrefix = "XT" + code + "_"
+
+            targetComp.getAttributes().each { targetAttr ->
+                def tNameUpper = targetAttr.getName().toUpperCase()
+                
+                if (tNameUpper.contains("EFFECTIVE_DATE")) {
+                    targetAttr.setExpressionText("#BICPR_BT_DWH.VAR_EFFECTIVE_DATE")
+                    targetAttr.setPropertyValue("EXECUTE_ON_HINT", "TARGET")
+                    // UD1 odsud odebráno, nastavíš ručně
+                } 
+                else if (tNameUpper.contains("CREATED_DATE")) {
+                    targetAttr.setExpressionText("SYSDATE")
+                    targetAttr.setPropertyValue("EXECUTE_ON_HINT", "TARGET")
+                } 
+                else if (tNameUpper.contains("CREATED_PROCESS")) {
+                    targetAttr.setExpressionText("<%=odiRef.getSession(\"SESS_NO\")%>")
+                    targetAttr.setPropertyValue("EXECUTE_ON_HINT", "TARGET")
+                } 
+                else {
+                    def curExpr = targetAttr.getExpression()?.getText() ?: ""
+                    if (curExpr == "" && targetAttr.getName().startsWith(targetPrefix)) {
+                        def expectedSource = sourcePrefix + targetAttr.getName().substring(targetPrefix.length())
+                        def sAttr = sourceComp.getAttributes().find { it.getName() == expectedSource }
+                        if (sAttr != null) {
+                            targetAttr.setExpressionText(sourceComp.getName() + "." + expectedSource)
+                        }
+                    }
+                }
+            }
+
+            // 3. NASTAVENÍ IKM A JEHO PARAMETRŮ
+            if (targetIKM != null) {
+                map.getPhysicalDesigns().each { phys ->
+                    phys.getPhysicalNodes().each { node ->
+                        if (node.isTargetNode() && node.getName().contains(targetComp.getName())) {
+                            try { node.setIKM(targetIKM) } catch (e) { node.setIntegrationKnowledgeModule(targetIKM) }
+                            
+                            node.getIKMOptionValues().each { opt ->
+                                switch(opt.getName()) {
+                                    case "UPDATE": opt.setValue(false); break
+                                    case "STATIC_CONTROL": opt.setValue(false); break
+                                    case "DROP_PARTITION_BY_CONDITION_UD1": opt.setValue(true); break // Ponecháno dle požadavku
+                                    case "INSERT": opt.setValue(true); break
+                                    case "COMMIT": opt.setValue(true); break
+                                    case "TRUNCATE": opt.setValue(false); break
+                                }
+                            }
+                            println "    [IKM] Modul nastaven a parametry (včetně DROP UD1) upraveny."
+                        }
+                    }
+                }
+            }
+        }
+        t_man.persist(map)
+    }
+    tm.commit(txn)
+    println "--- HOTOVO ---"
+} catch (Exception e) {
+    if (txn != null) tm.rollback(txn)
+    println "CHYBA: " + e.getMessage()
+    e.printStackTrace()
+}

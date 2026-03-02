@@ -1,0 +1,42 @@
+import oracle.odi.domain.project.OdiProject
+import oracle.odi.domain.project.OdiSequence
+import oracle.odi.core.persistence.transaction.support.DefaultTransactionDefinition
+
+// --- KONFIGURACE ---
+def projectCode = "BICPR_BT_DWH"
+def logicalSchemaName = "ORACLE_BT_ODS"
+
+def tables = ["BTDQ", "BTER", "BTSA", "CIAT", "CIIA", "CITA", "CITE", "CLCS", "CLIS", "DQRA", "DQRI", "DQRL", "DQRR", "DQTI", "LOC0", "LOC1", "LOC2", "LOC3", "LOC4", "METR", "PROF", "PROL", "RCAT", "RTIN", "RULE", "SEMF", "SOUR", "STEW", "SUBT", "SVPM", "SVRF", "SVUF", "TASK", "TIAT", "TREL", "VACM", "VBDO", "VCAT", "VCON", "VDQC", "VLDM", "VMET", "VQOP", "VRCE", "WRKS"]
+
+println "--- START ZAKLÁDÁNÍ SEKVENCÍ PRO ATACCAMA ONE ---"
+
+def tm = odiInstance.getTransactionManager()
+def iem = odiInstance.getTransactionalEntityManager()
+def txn = tm.getTransaction(new DefaultTransactionDefinition())
+
+try {
+    def project = iem.getFinder(OdiProject.class).findByCode(projectCode)
+    
+    tables.each { t ->
+        def seqName = "OT${t}_ID_SEQ".toString()
+        def existingSeq = project.getSequences().find { it.getName() == seqName }
+        
+        if (!existingSeq) {
+            def newSeq = new OdiSequence(project, seqName, new Integer(1))
+            newSeq.setLogicalSchemaName(logicalSchemaName)
+            newSeq.setNativeSequenceName(seqName)
+            
+            iem.persist(newSeq)
+            println "  OK: ${seqName} vytvořena."
+        } else {
+            println "  SKIP: ${seqName} již existuje."
+        }
+    }
+
+    tm.commit(txn)
+    println "--- HOTOVO ---"
+
+} catch (e) {
+    if (txn != null) tm.rollback(txn)
+    println "CHYBA: " + e.toString()
+}

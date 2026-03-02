@@ -1,0 +1,313 @@
+import oracle.odi.domain.mapping.Mapping
+import oracle.odi.domain.mapping.component.DatastoreComponent
+import oracle.odi.domain.project.OdiProject
+import oracle.odi.domain.project.OdiFolder
+import oracle.odi.domain.model.OdiDataStore
+import oracle.odi.domain.model.finder.IOdiDataStoreFinder
+import oracle.odi.domain.project.finder.IOdiProjectFinder
+import oracle.odi.core.persistence.transaction.support.DefaultTransactionDefinition
+
+// --- KONFIGURACE ---
+def targetProjectCode = "BICPR_BT_DWH"
+def targetFolderName = "Ataccama_ONE"
+def ikmName = "IKM Oracle IncUpd Shortcut SEQ CEZ"
+def sourceModelName = "Ataccama ONE" 
+def targetModelName = "EXT_IMPORT"   
+def mapList = [
+    ["V_CPR_BUSINESS_TERM_DQ", "ATO_EXBTDQ_TI", "ATOT_BTDQ"],
+    ["V_CPR_BUSINESS_TERM", "ATO_EXBTER_TI", "ATOT_BTER"],
+    ["V_CPR_BUSINESS_TERM_SHARED_ACCESS", "ATO_EXBTSA_TI", "ATOT_BTSA"],
+    ["V_CPR_CATALOG_ITEM_AGGREGATED_TERM_REFERENCES", "ATO_EXCIAT_TI", "ATOT_CIAT"],
+    ["V_CPR_CATALOG_ITEMS_INSTANCE_ATTRIBUTES", "ATO_EXCIIA_TI", "ATOT_CIIA"],
+    ["V_CPR_CATALOG_ITEMS_ATTRIBUTES", "ATO_EXCITA_TI", "ATOT_CITA"],
+    ["V_CPR_CATALOG_ITEM", "ATO_EXCITE_TI", "ATOT_CITE"],
+    ["V_CPR_CODE_LIST_COOPERATING_STEWARDS", "ATO_EXCLCS_TI", "ATOT_CLCS"],
+    ["V_CPR_CODE_LIST", "ATO_EXCLIS_TI", "ATOT_CLIS"],
+    ["V_CPR_DQ_RULE_INSTANCE_ANCESTOR", "ATO_EXDQRA_TI", "ATOT_DQRA"],
+    ["V_CPR_DQ_RULE_INSTANCE", "ATO_EXDQRI_TI", "ATOT_DQRI"],
+    ["V_CPR_DQ_RULE", "ATO_EXDQRL_TI", "ATOT_DQRL"],
+    ["V_CPR_DQ_RULE_RELATIONSHIP", "ATO_EXDQRR_TI", "ATOT_DQRR"],
+    ["V_CPR_DQ_RULE_TERM_INSTANCE", "ATO_EXDQTI_TI", "ATOT_DQTI"],
+    ["V_CPR_LOCATION_0", "ATO_EXLOC0_TI", "ATOT_LOC0"],
+    ["V_CPR_LOCATION_1", "ATO_EXLOC1_TI", "ATOT_LOC1"],
+    ["V_CPR_LOCATION_2", "ATO_EXLOC2_TI", "ATOT_LOC2"],
+    ["V_CPR_LOCATION_3", "ATO_EXLOC3_TI", "ATOT_LOC3"],
+    ["V_CPR_LOCATION_4", "ATO_EXLOC4_TI", "ATOT_LOC4"],
+    ["V_CPR_METRICS", "ATO_EXMETR_TI", "ATOT_METR"],
+    ["V_CPR_PROFILING", "ATO_EXPROF_TI", "ATOT_PROF"],
+    ["V_CPR_PERSON_ROLES", "ATO_EXPROL_TI", "ATOT_PROL"],
+    ["V_CPR_REPORT_CATALOG", "ATO_EXRCAT_TI", "ATOT_RCAT"],
+    ["V_CPR_REPORT_TERM_INSTANCE", "ATO_EXRTIN_TI", "ATOT_RTIN"],
+    ["V_CPR_RULE", "ATO_EXRULE_TI", "ATOT_RULE"],
+    ["V_CPR_SEMAFOR_VYSTUPU_PRO_ODB", "ATO_EXSEMF_TI", "ATOT_SEMF"],
+    ["V_CPR_SOURCE", "ATO_EXSOUR_TI", "ATOT_SOUR"],
+    ["V_CPR_STEWARDSHIP", "ATO_EXSTEW_TI", "ATOT_STEW"],
+    ["V_CPR_SUBTASK", "ATO_EXSUBT_TI", "ATOT_SUBT"],
+    ["V_CPR_SKC_VL_PROCESSING_METHOD", "ATO_EXSVPM_TI", "ATOT_SVPM"],
+    ["V_CPR_SKC_VL_REPORT_FORMAT", "ATO_EXSVRF_TI", "ATOT_SVRF"],
+    ["V_CPR_SKC_VL_UPDATE_FREQUENCY", "ATO_EXSVUF_TI", "ATOT_SVUF"],
+    ["V_CPR_TASK", "ATO_EXTASK_TI", "ATOT_TASK"],
+    ["V_CPR_TERM_INSTANCES_ATTRIBUTES", "ATO_EXTIAT_TI", "ATOT_TIAT"],
+    ["V_CPR_TERM_RELATIONSHIP", "ATO_EXTREL_TI", "ATOT_TREL"],
+    ["V_CPR_VL_ACCESS_MANAGEMENT", "ATO_EXVACM_TI", "ATOT_VACM"],
+    ["V_CPR_VL_BUSINESS_DOMAIN", "ATO_EXVBDO_TI", "ATOT_VBDO"],
+    ["V_CPR_VL_CATEGORIES", "ATO_EXVCAT_TI", "ATOT_VCAT"],
+    ["V_CPR_VL_CONFIDENTIALITY", "ATO_EXVCON_TI", "ATOT_VCON"],
+    ["V_CPR_VL_DQ_CHECK_REQUEST", "ATO_EXVDQC_TI", "ATOT_VDQC"],
+    ["V_CPR_VL_LDM_DOMAINS", "ATO_EXVLDM_TI", "ATOT_VLDM"],
+    ["V_CPR_VL_VERSIONING_METHOD", "ATO_EXVMET_TI", "ATOT_VMET"],
+    ["V_CPR_VL_QUERYOPTIMALIZATION", "ATO_EXVQOP_TI", "ATOT_VQOP"],
+    ["V_CPR_VL_REPORT_CERTIFICATION", "ATO_EXVRCE_TI", "ATOT_VRCE"],
+    ["V_CPR_WORKSPACE", "ATO_EXWRKS_TI", "ATOT_WRKS"]
+]
+
+// Pomocné funkce
+def findFolderRecursive(parent, folderName) {
+    def subFolders = (parent instanceof OdiProject) ? parent.getFolders() : parent.getSubFolders()
+    def found = subFolders.find { it.getName().equalsIgnoreCase(folderName) }
+    if (found) return found
+    for (subFolder in subFolders) {
+        def result = findFolderRecursive(subFolder, folderName)
+        if (result) return result
+    }
+    return null
+}
+
+def tm = odiInstance.getTransactionManager()
+def t_man = odiInstance.getTransactionalEntityManager()
+def txn = tm.getTransaction(new DefaultTransactionDefinition())
+
+try {
+    def projFinder = (IOdiProjectFinder) t_man.getFinder(OdiProject.class)
+    def dsFinder = (IOdiDataStoreFinder) t_man.getFinder(OdiDataStore.class)
+    def project = projFinder.findByCode(targetProjectCode)
+    def folder = findFolderRecursive(project, targetFolderName)
+    def targetIKM = project.getIKMs().find { it.getName() == ikmName }
+    
+    // Load all datastores once
+    def allDS = dsFinder.findAll()
+    
+    // Initialize model lookup variables
+    def srcModelLookup = sourceModelName
+    def tgtModelLookup = targetModelName
+
+    // Debug: List all datastores to find correct names
+    println "=== DEBUG INFO ==="
+    println "Project: ${project?.getName()} (${targetProjectCode})"
+    println "Folder: ${folder?.getName()}"
+    println "IKM: ${targetIKM?.getName()}"
+    println ""
+    
+    try {
+        println "=== DEBUG: Dostupné DataStory (Ataccama ONE) ==="
+        def ataDS = allDS.findAll { it.getModel().getName() == sourceModelName }
+        if (ataDS.isEmpty()) {
+            println "  [!] Žádné DataStory v modelu '${sourceModelName}'"
+            println "  Dostupné modely:"
+            def models = allDS.collect { it.getModel().getName() }.unique()
+            models.each { m -> println "    - ${m}" }
+            
+            // Zkusme najít model obsahující "Ataccama"
+            def ataModel = models.find { it.toLowerCase().contains("ataccama") }
+            if (ataModel) {
+                println "  Nalezený model: '${ataModel}'"
+                ataDS = allDS.findAll { it.getModel().getName() == ataModel }
+                sourceModelName = ataModel
+                println "  Nový sourceModelName: ${sourceModelName}"
+            }
+        } else {
+            println "  Nalezeno ${ataDS.size()} DataStory:"
+            println "  Model name: '${ataDS[0].getModel().getName()}'"
+            ataDS.take(10).each { ds ->
+                println "    - ${ds.getName()}"
+            }
+            if (ataDS.size() > 10) println "    ... a dalších ${ataDS.size() - 10}"
+        }
+        println ""
+        
+        println "=== DEBUG: Dostupné DataStory (EXT_IMPORT) ==="
+        def extDS = allDS.findAll { it.getModel().getName() == targetModelName }
+        if (extDS.isEmpty()) {
+            println "  [!] Žádné DataStory v modelu '${targetModelName}'"
+        } else {
+            println "  Nalezeno ${extDS.size()} DataStory:"
+            println "  Model name: '${extDS[0].getModel().getName()}'"
+            println "  Model code: '${extDS[0].getModel().getCode()}'"
+            extDS.take(10).each { ds ->
+                println "    - ${ds.getName()}"
+            }
+            if (extDS.size() > 10) println "    ... a dalších ${extDS.size() - 10}"
+            
+            // Update model name if needed
+            targetModelName = extDS[0].getModel().getName()
+        }
+        println ""
+        
+        // Get source model code for later use
+        def srcModelCode = ataDS.isEmpty() ? null : ataDS[0].getModel().getCode()
+        def tgtModelCode = extDS.isEmpty() ? null : extDS[0].getModel().getCode()
+        println "Source model code: ${srcModelCode}"
+        println "Target model code: ${tgtModelCode}"
+        println ""
+        
+        // Use model codes for findByName()
+        srcModelLookup = srcModelCode
+        tgtModelLookup = tgtModelCode
+    } catch (Exception debugErr) {
+        println "  [DEBUG ERROR] ${debugErr.message}"
+        debugErr.printStackTrace()
+    }
+
+    mapList.each { row ->
+        def srcName = row[0]; def mapName = row[1]; def tgtName = row[2]
+        println "Zpracovávám: ${mapName}"
+
+        try {
+            def map = folder.getMappings().find { it.getName() == mapName }
+            if (map == null) {
+                map = new Mapping(mapName, folder)
+            } else {
+                // Vyčištění komponent pro "čistý překres"
+                map.getComponents().each { map.removeComponent(it) }
+            }
+
+            def srcDSList = dsFinder.findByName(srcName, srcModelLookup)
+            def tgtDSList = dsFinder.findByName(tgtName, tgtModelLookup)
+            
+            // If not found, try filtering from allDS instead
+            if (!srcDSList) {
+                srcDSList = allDS.find { it.getName() == srcName && it.getModel().getName() == sourceModelName }
+            }
+            if (!tgtDSList) {
+                tgtDSList = allDS.find { it.getName() == tgtName && it.getModel().getName() == targetModelName }
+            }
+            
+            if (!srcDSList) {
+                println "  [!] Nenalezen zdroj DS: ${srcName} v modelu ${sourceModelName}"
+                return
+            }
+            if (!tgtDSList) {
+                println "  [!] Nenalezen cíl DS: ${tgtName} v modelu ${targetModelName}"
+                return
+            }
+
+            def srcDS = srcDSList
+            def tgtDS = tgtDSList
+
+            if (!srcDS || !tgtDS) { 
+                println "  [!] Chybí DS pro ${mapName} (srcModel=${sourceModelName}, tgtModel=${targetModelName})"
+                return
+            }
+
+            def srcComp = new DatastoreComponent(map, srcDS)
+            def tgtComp = new DatastoreComponent(map, tgtDS)
+            map.addComponent(srcComp)
+            map.addComponent(tgtComp)
+            srcComp.getOutputConnectorPoints()[0].connectTo(tgtComp.getInputConnectorPoints()[0])
+
+            // Improved attribute mapping heuristics
+            tgtComp.getAttributes().each { attr ->
+                def tgtAttrName = attr.getName()
+                def tgtNorm = tgtAttrName.replaceAll('[^A-Z0-9]', '_').toUpperCase()
+
+                // Quick handling for meta columns like PREFIX_CREATED_DATE / PREFIX_CREATED_PROCESS
+                if (tgtNorm == 'CREATED_DATE' || tgtNorm.endsWith('_CREATED_DATE') || tgtNorm.contains('_CREATED_DATE')) {
+                    attr.setExpressionText('sysdate')
+                    attr.setPropertyValue('EXECUTE_ON_HINT', 'TARGET')
+                    println "    [META] ${tgtAttrName} -> sysdate"
+                    return
+                }
+                if (tgtNorm == 'CREATED_PROCESS' || tgtNorm.endsWith('_CREATED_PROCESS') || tgtNorm.contains('_CREATED_PROCESS') || tgtNorm.contains('CREATED_BY_PROCESS')) {
+                    attr.setExpressionText("'ODI: ' || <%=odiRef.getSession(\"SESS_NO\")%>")
+                    attr.setPropertyValue('EXECUTE_ON_HINT', 'TARGET')
+                    println "    [META] ${tgtAttrName} -> CREATED_PROCESS session"
+                    return
+                }
+
+                // Normalize source attributes into a map for fast lookup
+                def srcMap = [:]
+                srcComp.getAttributes().each { s ->
+                    def sNorm = s.getName().replaceAll('[^A-Z0-9]', '_').toUpperCase()
+                    srcMap[sNorm] = s
+                }
+
+                // Exact normalized match
+                if (srcMap.containsKey(tgtNorm)) {
+                    def sAttr = srcMap[tgtNorm]
+                    attr.setExpressionText(srcComp.name + '.' + sAttr.getName())
+                    return
+                }
+
+                // Suffix-based match (drop leading prefix like TABLE_ or TBL_)
+                def suffix = tgtNorm.contains('_') ? tgtNorm.substring(tgtNorm.indexOf('_') + 1) : tgtNorm
+                def sAttr = srcMap.find { k, v -> k.endsWith(suffix) }?.value
+
+                // If still not found, attempt longest common substring heuristic
+                if (!sAttr) {
+                    def longestCommonSubstring = { a, b ->
+                        if (!a || !b) return ''
+                        def la = a.length(); def lb = b.length()
+                        int[][] table = new int[la+1][lb+1]
+                        int longest = 0
+                        String substr = ''
+                        for (i in 1..la) {
+                            for (j in 1..lb) {
+                                if (a.charAt(i-1) == b.charAt(j-1)) {
+                                    table[i][j] = table[i-1][j-1] + 1
+                                    if (table[i][j] > longest) {
+                                        longest = table[i][j]
+                                        substr = a.substring(i-longest, i)
+                                    }
+                                } else {
+                                    table[i][j] = 0
+                                }
+                            }
+                        }
+                        return substr
+                    }
+
+                    def best = srcMap.keySet().collect { k ->
+                        [k: k, len: longestCommonSubstring(k, tgtNorm).length()]
+                    }.max { it.len }
+                    if (best?.len > 0) sAttr = srcMap[best.k]
+                }
+
+                if (sAttr) {
+                    attr.setExpressionText(srcComp.name + '.' + sAttr.getName())
+                } else {
+                    // No good match found — leave unmapped (or set explicit default if desired)
+                }
+            }
+
+            // Fyzika 
+            map.getPhysicalDesigns().each { phys ->
+                phys.getPhysicalNodes().each { node ->
+                    if (node.isTargetNode()) {
+                        if (targetIKM) node.setIKM(targetIKM)
+                        node.getIKMOptionValues().each { opt ->
+                            switch(opt.getName()) {
+                                case "TRUNCATE": opt.setValue(true); break
+                                case "INSERT": opt.setValue(true); break
+                                case "ANALYZE_TARGET_AFTER_INTEGRATION": opt.setValue(true); break
+                                case "DELETE_TEMPORARY_OBJECTS": opt.setValue(true); break
+                                case "UPDATE": opt.setValue(false); break
+                                case "STATIC_CONTROL": opt.setValue(false); break
+                                case "COMMIT": opt.setValue(false); break
+                            }
+                        }
+                    }
+                }
+            }
+            t_man.persist(map)
+            println "  [OK] Hotovo"
+        } catch (Exception ex) {
+            println "  [ERROR] ${ex.message}"
+            ex.printStackTrace()
+        }
+    }
+    tm.commit(txn)
+    println "--- VŠE ÚSPĚŠNĚ HOTOVO ---"
+} catch (e) {
+    if (txn) tm.rollback(txn)
+    e.printStackTrace()
+}

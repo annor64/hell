@@ -1,0 +1,75 @@
+import oracle.odi.domain.project.OdiProject
+import oracle.odi.domain.project.OdiPackage
+import oracle.odi.domain.project.StepOdiCommand
+import oracle.odi.domain.xrefs.expression.Expression
+import oracle.odi.domain.xrefs.expression.Expression.SqlGroupType
+import oracle.odi.domain.xrefs.CrossRef
+import oracle.odi.core.persistence.transaction.support.DefaultTransactionDefinition
+
+// --- KONFIGURACE ---
+def targetProjectCode = "BICPR_BT_DWH"
+def targetFolderName = "ADAPTACE_25"
+def packageName = "ADAPTACE_25_02_EXT_to_INT"
+// -------------------
+
+def findFolderRecursive(folders, targetName) {
+    for (f in folders) {
+        if (f.getName().trim() == targetName.trim()) return f
+        def found = findFolderRecursive(f.getSubFolders(), targetName)
+        if (found != null) return found
+    }
+    return null
+}
+
+def tm = odiInstance.getTransactionManager()
+def t_man = odiInstance.getTransactionalEntityManager()
+def txn = tm.getTransaction(new DefaultTransactionDefinition())
+
+try {
+    def project = t_man.getFinder(OdiProject.class).findByCode(targetProjectCode)
+    def folder = findFolderRecursive(project.getFolders(), targetFolderName)
+    def pack = folder.getPackages().find { it.getName() == packageName }
+
+    def mapSteps = pack.getSteps().findAll { it.getClass().getName().contains("Mapping") }.sort { it.getName() }
+
+    mapSteps.each { mapStep ->
+        def pkStepName = "PK_" + mapStep.getName()
+        def tableName = mapStep.getName().replace("EXT_", "INT_A25_").replace("_DI", "")
+        if (mapStep.getName().contains("ITEMPL")) tableName = "INT_A25_EMPL"
+
+        def commandText = "OdiStartScen \"-SCEN_NAME=KONTROLA_PK\" \"-SCEN_VERSION=001\" \"-BICPR_BT_DWH.VAR_EFFECTIVE_DATE=#VAR_EFFECTIVE_DATE\" \"-BICPR_BT_DWH.VAR_TABLE_NAME=${tableName}\""
+
+        def pkStep = pack.getSteps().find { it.getName() == pkStepName }
+        if (pkStep == null) {
+            pkStep = new StepOdiCommand(pack, pkStepName)
+            println "  Vytvořen PK krok: ${pkStepName}"
+        }
+
+        // --- FINÁLNÍ OPRAVA KONSTRUKTORU ---
+        // 1. Text příkazu jako String
+        String finalTxt = commandText.toString()
+        // 2. Prázdné pole CrossRef (nesmí být null)
+        CrossRef[] refs = new CrossRef[0]
+        // 3. Použití správného typu SqlGroupType (NONE je obvykle první v pořadí)
+        SqlGroupType group = SqlGroupType.valueOf("NONE") 
+
+        def expr = new Expression(finalTxt, refs, group)
+        pkStep.setCommandExpression(expr)
+        // ----------------------------------
+
+        def originalNextStep = mapStep.getNextStepAfterSuccess()
+        mapStep.setNextStepAfterSuccess(pkStep)
+        if (originalNextStep != null && originalNextStep != pkStep) {
+            pkStep.setNextStepAfterSuccess(originalNextStep)
+        }
+    }
+
+    t_man.persist(pack)
+    tm.commit(txn)
+    println "--- HOTOVO: Všechny PK kontroly byly úspěšně vloženy! ---"
+
+} catch (Exception e) {
+    if (txn != null) tm.rollback(txn)
+    println "CHYBA: " + e.toString()
+    e.printStackTrace()
+}

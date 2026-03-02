@@ -1,0 +1,225 @@
+import oracle.odi.domain.mapping.Mapping
+import oracle.odi.domain.mapping.component.DatastoreComponent
+import oracle.odi.domain.mapping.component.FilterComponent
+import oracle.odi.domain.project.OdiProject
+import oracle.odi.domain.project.OdiFolder
+import oracle.odi.domain.model.OdiDataStore
+import oracle.odi.domain.model.finder.IOdiDataStoreFinder
+import oracle.odi.domain.project.finder.IOdiProjectFinder
+import oracle.odi.core.persistence.transaction.support.DefaultTransactionDefinition
+
+// --- KONFIGURACE ---
+def targetProjectCode = "BICPR_BT_DWH"
+def targetFolderName = "ATACCAMA_ONE"
+def ikmName = "IKM Oracle Slowly Changing Dimension BICPR"
+def sourceModelName = "OWNBT_INT"  // Model pro INT_ATO_ tabulky
+def targetModelName = "OWNBT_ODS"  // Model pro INT_OT* tabulky
+
+// Definice [Název Mappingu, Zdrojová Tabulka (INT), Cílová Tabulka (ODS)]
+def mapList = [
+    ["INT_OTBTDQ_SD", "INT_ATO_BTDQ", "ODT_ATO_BTDQ"],
+    ["INT_OTBTER_SD", "INT_ATO_BTER", "ODT_ATO_BTER"],
+    ["INT_OTBTSA_SD", "INT_ATO_BTSA", "ODT_ATO_BTSA"],
+    ["INT_OTCIAT_SD", "INT_ATO_CIAT", "ODT_ATO_CIAT"],
+    ["INT_OTCIIA_SD", "INT_ATO_CIIA", "ODT_ATO_CIIA"],
+    ["INT_OTCITA_SD", "INT_ATO_CITA", "ODT_ATO_CITA"],
+    ["INT_OTCITE_SD", "INT_ATO_CITE", "ODT_ATO_CITE"],
+    ["INT_OTCLCS_SD", "INT_ATO_CLCS", "ODT_ATO_CLCS"],
+    ["INT_OTCLIS_SD", "INT_ATO_CLIS", "ODT_ATO_CLIS"],
+    ["INT_OTDQRA_SD", "INT_ATO_DQRA", "ODT_ATO_DQRA"],
+    ["INT_OTDQRI_SD", "INT_ATO_DQRI", "ODT_ATO_DQRI"],
+    ["INT_OTDQRL_SD", "INT_ATO_DQRL", "ODT_ATO_DQRL"],
+    ["INT_OTDQRR_SD", "INT_ATO_DQRR", "ODT_ATO_DQRR"],
+    ["INT_OTDQTI_SD", "INT_ATO_DQTI", "ODT_ATO_DQTI"],
+    ["INT_OTLOC0_SD", "INT_ATO_LOC0", "ODT_ATO_LOC0"],
+    ["INT_OTLOC1_SD", "INT_ATO_LOC1", "ODT_ATO_LOC1"],
+    ["INT_OTLOC2_SD", "INT_ATO_LOC2", "ODT_ATO_LOC2"],
+    ["INT_OTLOC3_SD", "INT_ATO_LOC3", "ODT_ATO_LOC3"],
+    ["INT_OTLOC4_SD", "INT_ATO_LOC4", "ODT_ATO_LOC4"],
+    ["INT_OTMETR_SD", "INT_ATO_METR", "ODT_ATO_METR"],
+    ["INT_OTPROF_SD", "INT_ATO_PROF", "ODT_ATO_PROF"],
+    ["INT_OTPROL_SD", "INT_ATO_PROL", "ODT_ATO_PROL"],
+    ["INT_OTRCAT_SD", "INT_ATO_RCAT", "ODT_ATO_RCAT"],
+    ["INT_OTRTIN_SD", "INT_ATO_RTIN", "ODT_ATO_RTIN"],
+    ["INT_OTRULE_SD", "INT_ATO_RULE", "ODT_ATO_RULE"],
+    ["INT_OTSEMF_SD", "INT_ATO_SEMF", "ODT_ATO_SEMF"],
+    ["INT_OTSOUR_SD", "INT_ATO_SOUR", "ODT_ATO_SOUR"],
+    ["INT_OTSTEW_SD", "INT_ATO_STEW", "ODT_ATO_STEW"],
+    ["INT_OTSUBT_SD", "INT_ATO_SUBT", "ODT_ATO_SUBT"],
+    ["INT_OTSVPM_SD", "INT_ATO_SVPM", "ODT_ATO_SVPM"],
+    ["INT_OTSVRF_SD", "INT_ATO_SVRF", "ODT_ATO_SVRF"],
+    ["INT_OTSVUF_SD", "INT_ATO_SVUF", "ODT_ATO_SVUF"],
+    ["INT_OTTASK_SD", "INT_ATO_TASK", "ODT_ATO_TASK"],
+    ["INT_OTTIAT_SD", "INT_ATO_TIAT", "ODT_ATO_TIAT"],
+    ["INT_OTTREL_SD", "INT_ATO_TREL", "ODT_ATO_TREL"],
+    ["INT_OTVACM_SD", "INT_ATO_VACM", "ODT_ATO_VACM"],
+    ["INT_OTVBDO_SD", "INT_ATO_VBDO", "ODT_ATO_VBDO"],
+    ["INT_OTVCAT_SD", "INT_ATO_VCAT", "ODT_ATO_VCAT"],
+    ["INT_OTVCON_SD", "INT_ATO_VCON", "ODT_ATO_VCON"],
+    ["INT_OTVDQC_SD", "INT_ATO_VDQC", "ODT_ATO_VDQC"],
+    ["INT_OTVLDM_SD", "INT_ATO_VLDM", "ODT_ATO_VLDM"],
+    ["INT_OTVMET_SD", "INT_ATO_VMET", "ODT_ATO_VMET"],
+    ["INT_OTVQOP_SD", "INT_ATO_VQOP", "ODT_ATO_VQOP"],
+    ["INT_OTVRCE_SD", "INT_ATO_VRCE", "ODT_ATO_VRCE"],
+    ["INT_OTWRKS_SD", "INT_ATO_WRKS", "ODT_ATO_WRKS"]
+]
+// -------------------
+
+def findFolderRecursive(parent, folderName) {
+    def subFolders = (parent instanceof OdiProject) ? parent.getFolders() : parent.getSubFolders()
+    def found = subFolders.find { it.getName().equalsIgnoreCase(folderName) }
+    if (found) return found
+    for (subFolder in subFolders) {
+        def result = findFolderRecursive(subFolder, folderName)
+        if (result) return result
+    }
+    return null
+}
+
+def tm = odiInstance.getTransactionManager()
+def t_man = odiInstance.getTransactionalEntityManager()
+def txn = tm.getTransaction(new DefaultTransactionDefinition())
+
+try {
+    def projFinder = (IOdiProjectFinder) t_man.getFinder(OdiProject.class)
+    def dsFinder = (IOdiDataStoreFinder) t_man.getFinder(OdiDataStore.class)
+    def project = projFinder.findByCode(targetProjectCode)
+    def folder = findFolderRecursive(project, targetFolderName)
+    def targetIKM = project.getIKMs().find { it.getName() == ikmName }
+    if (targetIKM == null) { println "VAROVÁNÍ: IKM ${ikmName} nenalezen" }
+
+    if (!folder) { println "CHYBA: Složka ${targetFolderName} nenalezena"; return }
+
+    mapList.each { row ->
+        def mapName = row[0]; def srcName = row[1]; def tgtName = row[2]
+        println "--- Zpracovávám: ${mapName} ---"
+
+        try {
+            def map = folder.getMappings().find { it.getName() == mapName }
+            if (map == null) {
+                println "    [INFO] Mapping ${mapName} neexistuje, vytvářím nový"
+                map = new Mapping(mapName, folder)
+                t_man.persist(map)  // Persistujeme ihned po vytvoření
+            } else {
+                println "    [INFO] Mapping ${mapName} nalezen, čistím komponenty"
+                if (map.getComponents().size() > 0) {
+                    map.getComponents().each { map.removeComponent(it) }
+                }
+            }
+
+            def srcDS = dsFinder.findByName(srcName, sourceModelName).iterator().next()
+            def tgtDS = dsFinder.findByName(tgtName, targetModelName).iterator().next()
+
+            def srcComp = new DatastoreComponent(map, srcDS)
+            def tgtComp = new DatastoreComponent(map, tgtDS)
+            map.addComponent(srcComp)
+            map.addComponent(tgtComp)
+            
+            // Vytvoření filtru pomocí reflection (jako v IT_OT a IKM)
+            def clFiltComp = Class.forName("oracle.odi.domain.mapping.component.FilterComponent")
+            def filter = clFiltComp.constructors.find { it.parameterTypes.size() == 2 && it.parameterTypes[1] == String.class }.newInstance(map, "FILTER")
+            
+            srcComp.getOutputConnectorPoints()[0].connectTo(filter.getInputConnectorPoints()[0])
+            filter.getOutputConnectorPoints()[0].connectTo(tgtComp.getInputConnectorPoints()[0])
+            
+            // Nastavení filtru
+            filter.setFilterCondition("${srcComp.getName()}.EFFECTIVE_DATE = #VAR_EFFECTIVE_DATE")
+
+            // LOGIKA MAPPINGU ATRIBUTŮ - SCD2 Slowly Changing Dimension
+            tgtComp.getAttributes().each { targetAttr ->
+                def name = targetAttr.getName()
+                def expr = ""
+                def tNameUpper = name.toUpperCase()
+                
+                // Získáme kód tabulky z názvu (např. BTDQ z INT_OTBTDQ_SD)
+                def tableCode = mapName.replace("INT_OT", "").replace("_SD", "")
+                
+                // SCD2 Klíč (ORIG_ID jako INDEX)
+                if (name == "OT${tableCode}_ORIG_ID") {
+                    try { 
+                        targetAttr.setIndicator("INDEX", true) 
+                    } catch(e) { 
+                        try { 
+                            targetAttr.setPropertyValue("INDICATOR_KEY", true) 
+                        } catch(e2) {} 
+                    }
+                }
+
+                // Nastavení výrazů podle typu sloupce
+                if (name == "OT${tableCode}_ID") {
+                    // Primární klíč ze sekvence
+                    expr = ":${targetProjectCode}.OT${tableCode}_ID_SEQ.NEXTVAL"
+                }
+                else if (name == "OT${tableCode}_ORIG_ID") {
+                    // ORIG_ID z ID zdrojové tabulky
+                    expr = "${srcComp.getName()}.${tableCode}_ID"
+                }
+                else if (tNameUpper.contains("CREATED_DATE") || tNameUpper.contains("MODIFIED_DATE")) {
+                    expr = "SYSDATE"
+                }
+                else if (tNameUpper.contains("VALID_FROM")) {
+                    expr = "#VAR_EFFECTIVE_DATE"
+                }
+                else if (tNameUpper.contains("VALID_TO")) {
+                    expr = "30001231"
+                }
+                else if (tNameUpper.contains("CURRENT_FLAG")) {
+                    expr = "0"
+                }
+                else if (tNameUpper.contains("PROCESS")) {
+                    expr = "<%=odiRef.getSession(\"SESS_NO\")%>"
+                }
+                else if (tNameUpper.contains("EFFECTIVE_DATE")) {
+                    expr = "#BICPR_BT_DWH.VAR_EFFECTIVE_DATE"
+                    targetAttr.setPropertyValue("EXECUTE_ON_HINT", "TARGET")
+                    targetAttr.setInsertIndicator(true)
+                    targetAttr.setUpdateIndicator(true)
+                    println "    [SCD] ${name} -> VAR_EFFECTIVE_DATE s Insert/Update"
+                }
+                else {
+                    // Přímé mapování ostatních atributů
+                    def base = name.replace("OT${tableCode}_", "")
+                    def srcAttr = srcComp.getAttributes().find { 
+                        it.getName().toUpperCase() == base || 
+                        it.getName().toUpperCase().endsWith("_" + base) ||
+                        it.getName().toUpperCase() == "${tableCode}_${base}".toUpperCase()
+                    }
+                    if (srcAttr) {
+                        expr = "${srcComp.getName()}.${srcAttr.getName()}"
+                    }
+                }
+                
+                if (expr) {
+                    targetAttr.setExpressionText(expr)
+                    targetAttr.setPropertyValue("EXECUTE_ON_HINT", "TARGET")
+                }
+            }
+
+            // FYZICKÁ ÚROVEŇ (IKM a Parametry)
+            map.getPhysicalDesigns().each { phys ->
+                phys.getPhysicalNodes().each { node ->
+                    if (node.isTargetNode()) {
+                        if (targetIKM) node.setIKM(targetIKM)
+
+                        // Nastavení parametrů IKM pro SCD
+                        node.getIKMOptionValues().each { opt ->
+                            def n = opt.getName()
+                            if (n == "FLOW_CONTROL") opt.setValue(false)
+                            if (n == "UPDATE" || n == "DELETE") opt.setValue(false)
+                            if (n == "INSERT" || n == "COMMIT") opt.setValue(true)
+                        }
+                    }
+                }
+            }
+            t_man.persist(map)
+            println "    [OK] Mapping uložen"
+        } catch (Exception ex) {
+            println "    [CHYBA] ${ex.message}"
+        }
+    }
+    tm.commit(txn)
+    println "--- HOTOVO ---"
+} catch (e) {
+    if (txn) tm.rollback(txn)
+    e.printStackTrace()
+}

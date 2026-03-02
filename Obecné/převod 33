@@ -1,0 +1,475 @@
+-- ============================================================================
+-- TABULKA A: P77_IN_KONTI_ZAL_KONTINUALNI
+-- ============================================================================
+
+-- ID
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Metasloupec - identifikátor řádku (autoinkrement)',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'id';
+GO
+
+-- PARTNER
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Obchodní partner',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'partner';
+GO
+
+-- TYP_KOMUNIKACE
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Typ komunikace, pokud je vyplněn EMAIL - E, pokud není tak S',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'typ_komunikace';
+GO
+
+-- PROCESNI TYP
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'V tomto usecase vždy ODECTY',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'procesni typ';
+GO
+
+-- VARIANTA
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Varianta zpracování - v tomto usecase pokud je vyplněno TRVALA_ZALOHA X, tak TRVALA, pokud není, tak NORMAL',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'varianta';
+GO
+
+-- NAPOCTENO_DNE
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Metasloupec - vytvořeno dne',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'napocteno_dne';
+GO
+
+-- KOMODITA
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Komodita',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'komodita';
+GO
+
+-- PARTNER_NAZEV
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Jméno, příjmení / obch. název',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'partner_nazev';
+GO
+
+-- OSLOVENI
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Oslovení obch. partnera v komunikaci',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'osloveni';
+GO
+
+-- TELEFON
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Číslo mobilního telefonu',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'telefon';
+GO
+
+-- EMAIL
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'E-mailová adresa',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'email';
+GO
+
+-- ZASML_EMAIL
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Příznak zasmluvněného emailu',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'zasml_email';
+GO
+
+-- ZASML_TEL
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Příznak zasmluvněného emailu',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'zasml_tel';
+GO
+
+-- EAN_EIC
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'eAN/EIC',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'ean_eic';
+GO
+
+-- ADR_ODB_MISTO
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Adresa odběrného místa.',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'adr_odb_misto';
+GO
+
+-- ISU_SML
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'iD smlouvy v ISU',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'isu_sml';
+GO
+
+-- OJ
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Odečtová jednotka',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'oj';
+GO
+
+-- DATUM_ZMENY_CENY
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Datum, poslední změny cenového operandu',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'datum_zmeny_ceny';
+GO
+
+-- PRUBEH
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Hodnota průběh neprůběh - Pruběh - 1, Neprůběh - 0',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_KONTINUALNI',
+@level2type = N'column', @level2name = 'prubeh';
+GO
+
+-- ============================================================================
+-- TABULKA B: P77_IN_KONTI_ZAL_PRILEZITOSTNA
+-- ============================================================================
+
+-- ID
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Metasloupec - identifikátor řádku (autoinkrement)',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'id';
+GO
+
+-- PARTNER
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Obchodní partner',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'partner';
+GO
+
+-- TYP_KOMUNIKACE
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Typ komunikace, pokud je vyplněn EMAIL - E, pokud není tak S',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'typ_komunikace';
+GO
+
+-- PROCESNI TYP
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'V tomto usecase vždy ODECTY',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'procesni typ';
+GO
+
+-- VARIANTA
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Varianta zpracování - v tomto usecase pokud je vyplněno TRVALA_ZALOHA X, tak TRVALA, pokud není, tak NORMAL',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'varianta';
+GO
+
+-- NAPOCTENO_DNE
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Metasloupec - vytvořeno dne',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'napocteno_dne';
+GO
+
+-- KOMODITA
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Komodita',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'komodita';
+GO
+
+-- PARTNER_NAZEV
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Jméno, příjmení / obch. název',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'partner_nazev';
+GO
+
+-- OSLOVENI
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Oslovení obch. partnera v komunikaci',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'osloveni';
+GO
+
+-- TELEFON
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Číslo mobilního telefonu',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'telefon';
+GO
+
+-- EMAIL
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'E-mailová adresa',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'email';
+GO
+
+-- ZASML_EMAIL
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Příznak zasmluvněného emailu',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'zasml_email';
+GO
+
+-- ZASML_TEL
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Příznak zasmluvněného emailu',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'zasml_tel';
+GO
+
+-- EAN_EIC
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'eAN/EIC',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'ean_eic';
+GO
+
+-- ADR_ODB_MISTO
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Adresa odběrného místa.',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'adr_odb_misto';
+GO
+
+-- DIS_SAZBA
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Distribuční sazba',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'dis_sazba';
+GO
+
+-- ISU_SML
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'iD smlouvy v ISU',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'isu_sml';
+GO
+
+-- DATUM_PL_KONCE_SML
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'datum plánovaného konce smlouvy',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'datum_pl_konce_sml';
+GO
+
+-- DATUM_ZMENA_DIS_CENY
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Datum, ke kterému bude změněna dis. Cena (k 1.1.XXXX)',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'datum_zmena_dis_ceny';
+GO
+
+-- DATUM_TER_ZADANI_ODECTU
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'datum do kdy musí zadat odečet',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'datum_ter_zadani_odectu';
+GO
+
+-- DATUM_ODECTU
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Datum, ke kterému musí zadat odečet (D-1 od DATUM_ZMENA_DIS_CENY)',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'datum_odectu';
+GO
+
+-- DATUM_ZMENY_CENY
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Datum, poslední změny cenového operandu',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_PRILEZITOSTNA',
+@level2type = N'column', @level2name = 'datum_zmeny_ceny';
+GO
+
+-- ============================================================================
+-- TABULKA C: P77_IN_KONTI_ZAL_AD_HOC
+-- ============================================================================
+
+-- ID
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Metasloupec - identifikátor řádku (autoinkrement)',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'id';
+GO
+
+-- PARTNER
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Obchodní partner',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'partner';
+GO
+
+-- TYP_KOMUNIKACE
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Typ komunikace, pokud je vyplněn EMAIL - E, pokud není tak S',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'typ_komunikace';
+GO
+
+-- PROCESNI TYP
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'V tomto usecase vždy ODECTY',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'procesni typ';
+GO
+
+-- VARIANTA
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Varianta zpracování - v tomto usecase pokud je vyplněno TRVALA_ZALOHA X, tak TRVALA, pokud není, tak NORMAL',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'varianta';
+GO
+
+-- NAPOCTENO_DNE
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Metasloupec - vytvořeno dne',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'napocteno_dne';
+GO
+
+-- KOMODITA
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Komodita',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'komodita';
+GO
+
+-- PARTNER_NAZEV
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Jméno, příjmení / obch. název',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'partner_nazev';
+GO
+
+-- OSLOVENI
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Oslovení obch. partnera v komunikaci',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'osloveni';
+GO
+
+-- TELEFON
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Číslo mobilního telefonu',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'telefon';
+GO
+
+-- EMAIL
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'E-mailová adresa',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'email';
+GO
+
+-- ZASML_EMAIL
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Příznak zasmluvněného emailu',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'zasml_email';
+GO
+
+-- ZASML_TEL
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Příznak zasmluvněného emailu',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'zasml_tel';
+GO
+
+-- EAN_EIC
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'eAN/EIC',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'ean_eic';
+GO
+
+-- ADR_ODB_MISTO
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Adresa odběrného místa.',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'adr_odb_misto';
+GO
+
+-- ISU_SML
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'iD smlouvy v ISU',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'isu_sml';
+GO
+
+-- DATUM_ZMENY_CENY
+EXEC sp_addextendedproperty
+@name = N'MS_Description', @value = N'Datum, poslední změny cenového operandu',
+@level0type = N'schema', @level0name = 'DIGIDBT_RPA_DB',
+@level1type = N'table', @level1name = 'P77_IN_KONTI_ZAL_AD_HOC',
+@level2type = N'column', @level2name = 'datum_zmeny_ceny';
+GO

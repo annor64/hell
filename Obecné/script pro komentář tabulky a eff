@@ -1,0 +1,55 @@
+DROP TABLE TMP_TABLE_VALIDITY PURGE;
+
+CREATE GLOBAL TEMPORARY TABLE TMP_TABLE_VALIDITY (
+    OWNER              VARCHAR2(128),
+    TABLE_NAME         VARCHAR2(128),
+    TABLE_COMMENT      VARCHAR2(4000),
+    VALID_FROM_COLUMN  VARCHAR2(128),
+    FIRST_VALID_FROM   VARCHAR2(100)
+) ON COMMIT PRESERVE ROWS;
+
+BEGIN
+    DELETE FROM TMP_TABLE_VALIDITY;
+
+    FOR r IN (
+        SELECT
+            t.owner,
+            t.table_name,
+            tc.comments AS table_comment,
+            c.column_name,
+            c.data_type
+        FROM all_tables t
+        LEFT JOIN all_tab_comments tc
+               ON tc.owner = t.owner
+              AND tc.table_name = t.table_name
+        JOIN all_tab_columns c
+             ON c.owner = t.owner
+            AND c.table_name = t.table_name
+        WHERE (
+               t.table_name LIKE '%A25%'
+            OR t.table_name LIKE '%VCK%'
+            OR t.table_name LIKE '%FA06%'
+        )
+          AND UPPER(c.column_name) LIKE '%VALID_FROM%'
+    ) LOOP
+        EXECUTE IMMEDIATE
+            'INSERT INTO TMP_TABLE_VALIDITY
+             SELECT ''' || r.owner || ''',
+                    ''' || r.table_name || ''',
+                    :tbl_comment,
+                    ''' || r.column_name || ''',
+                    TO_CHAR(MIN(' || r.column_name || '))
+             FROM ' || r.owner || '.' || r.table_name
+        USING r.table_comment;
+    END LOOP;
+
+    COMMIT;
+END;
+/
+
+
+
+
+SELECT *
+FROM TMP_TABLE_VALIDITY
+ORDER BY OWNER, TABLE_NAME;

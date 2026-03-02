@@ -1,0 +1,461 @@
+Konverzace byla otevřena. 1 přečtená zpráva.
+
+Přeskočit na obsah
+Jak používat DATACONS s.r.o. Mail se čtečkou obrazovky
+
+1 z 51
+Komentáře do MS-SQL
+Externí
+Doručená pošta
+
+
+Linhart Pavel <pavel.linhart@cez.cz>
+Přílohy
+11:28 (před 1 hodinou)
+komu: mně
+
+Interní / Internal
+
+
+Ahoj Jirko,
+
+tak už je to tady. 😊 Mohl bych tě požádat o převod komentářů z Oracle do MS-SQL? Princip je tak jak jsme si už říkali.
+
+V příloze ti posílám texťák, kde jsou uvedeny všechny komentáře všech převáděných tabulek. Jsou tam jak komentáře tabulky, tak komentáře sloupců. Na prvních řádcích je uveden i předpis pro komentář do MS-SQL a instrukce a na dalších řádcích pak už jsou konkrétní oraclí komentáře. Každá tabulka je oddělena popiskou.
+
+ 
+
+Pro tento účel jsem vytvořil úkol (č. 249343) v našem Azuritu (CPR_Rozvoj_DWH Team Features Backlog - Boards)
+
+ 
+
+ 
+
+ 
+
+Děkuji
+
+   *Pavel
+
+ 
+
+ Jedna příloha
+  •  Zkontrolováno Gmailem
+------------------------------
+-- šablona pro transformaci --
+------------------------------
+
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = 'Metasloupec - identifikátor řádku (autoinkrement)',
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table',  @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ID';
+
+Instrukce:
+Pro komentáře sloupcové bude použito 2 levlů, pro komentář tabulkový bude použit jen level=1
+Atributy se sufixem "type" jsou neměnné konstanty; hodnota N'MS_Description' je taktéž konstanta; ostatní atributy se dle kontextu dynamicky mění.
+
+--------------------^
+
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RWT_STATC --
+-----------------------------------
+
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_STATC.SSTATC_ID IS 'ID statusu';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_STATC.SSTATC_POPIS IS 'Popis statusu zpracování';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_STATC.TSTATC_CREATED_DATE IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_STATC.TSTATC_CREATED_PROCESS IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_STATC.TSTATC_MODIFIED_DATE IS 'Metasloupec - změněno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_STATC.TSTATC_MODIFIED_PROCESS IS 'Metasloupec - změnil proces/uživatel';
+   COMMENT ON TABLE DIGIDBP_RPA.RWT_STATC  IS 'Číselník statusů zpracování';
+
+--------------------^
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RWT_SOURC --
+-----------------------------------
+
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SOURC.SSOURC_SRC_SYS_ID IS 'Označení zdroj. systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SOURC.SSOURC_SRC_SYS_POPIS IS 'Název/popis zdrojového systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SOURC.TSOURC_CREATED_DATE IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SOURC.TSOURC_CREATED_PROCESS IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SOURC.TSOURC_MODIFIED_DATE IS 'Metasloupec - změněno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SOURC.TSOURC_MODIFIED_PROCESS IS 'Metasloupec - změnil proces/uživatel';
+   COMMENT ON TABLE DIGIDBP_RPA.RWT_SOURC  IS 'Číselník zdrojových systémů';
+
+--------------------^
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RWT_SEMFR --
+-----------------------------------
+
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SEMFR.SSEMFR_EFFECTIVE_DATE IS 'Datum platnosti poslední dávky vst. dat.';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SEMFR.SSEMFR_STATUS_INPUT_INSERT IS 'Status semaforu: 0 - volno; 1 - stop, pracuje se';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SEMFR.SSEMFR_STATUS_INPUT_READ IS 'Status semaforu: 0 - volno; 1 - stop, pracuje se';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SEMFR.SSEMFR_STATUS_QUEUE_INSERT IS 'Status semaforu: 0 - volno; 1 - stop, pracuje se';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SEMFR.SSEMFR_STATUS_QUEUE_READ IS 'Status semaforu: 0 - volno; 1 - stop, pracuje se';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SEMFR.FPROCT_TYP IS 'Označení procesní skupiny';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SEMFR.TSEMFR_CREATED_DATE IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SEMFR.TSEMFR_CREATED_PROCESS IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SEMFR.TSEMFR_MODIFIED_DATE IS 'Metasloupec - změněno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_SEMFR.TSEMFR_MODIFIED_PROCESS IS 'Metasloupec - změnil proces/uživatel';
+   COMMENT ON TABLE DIGIDBP_RPA.RWT_SEMFR  IS 'Semafor pro řízení procesů všech vst. tabulek.';
+
+--------------------^
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RWT_RIZSM --
+-----------------------------------
+
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_RIZSM.FPROCT_TYP IS 'Označení procesní skupiny';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_RIZSM.SRIZSM_PROCES IS 'Název spouštěnného výkonného podprogramu';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_RIZSM.SRIZSM_LOG_SKUPINA IS 'Logické označení skupiny objektů.';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_RIZSM.SRIZSM_KATEGORIE IS 'Kategorie pro lokální rozčlenění';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_RIZSM.TRIZSM_CREATED_DATE IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_RIZSM.TRIZSM_CREATED_PROCESS IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_RIZSM.TRIZSM_MODIFIED_DATE IS 'Metasloupec - změněno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_RIZSM.TRIZSM_MODIFIED_PROCESS IS 'Metasloupec - změnil proces/uživatel';
+   COMMENT ON TABLE DIGIDBP_RPA.RWT_RIZSM  IS 'Metadata pro řízení automatického spouštění činností (přes semafor).';
+
+--------------------^
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RWT_PROCT --
+-----------------------------------
+
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_PROCT.SPROCT_TYP IS 'Označení procesní skupiny';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_PROCT.SPROCT_POPIS IS 'Popis dané procesní skupiny';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_PROCT.TPROCT_CREATED_DATE IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_PROCT.TPROCT_CREATED_PROCESS IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_PROCT.TPROCT_MODIFIED_DATE IS 'Metasloupec - změněno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_PROCT.TPROCT_MODIFIED_PROCESS IS 'Metasloupec - změnil proces/uživatel';
+   COMMENT ON TABLE DIGIDBP_RPA.RWT_PROCT  IS 'Číselník procesních skupin';
+
+--------------------^
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RWT_LOGPZ --
+-----------------------------------
+
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_LOGPZ.SLOGPZ_ID IS 'ID záznamu';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_LOGPZ.SLOGPZ_KATEGORIE IS 'Kategorie záznamu.';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_LOGPZ.SLOGPZ_POPIS IS 'Popis záznamu';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_LOGPZ.SLOGPZ_TABULKA IS 'Název tabulky';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_LOGPZ.SLOGPZ_PROGRAM IS 'Název programu (procedury/funkce), který provedl zápis.';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_LOGPZ.TLOGPZ_CREATED_DATE IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_LOGPZ.TLOGPZ_CREATED_PROCESS IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_LOGPZ.TLOGPZ_MODIFIED_DATE IS 'Metasloupec - změněno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_LOGPZ.TLOGPZ_MODIFIED_PROCESS IS 'Metasloupec - změnil proces/uživatel';
+   COMMENT ON TABLE DIGIDBP_RPA.RWT_LOGPZ  IS 'Log činnosti (provozní log)';
+
+--------------------^
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RWT_ENTIT --
+-----------------------------------
+
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_ENTIT.SENTIT_KOD IS 'Kod entity';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_ENTIT.SENTIT_POPIS IS 'Popis entity zpracování';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_ENTIT.SENTIT_NASOBNY_VYSKYT IS 'Zda je umožněn násobný výskyt této entity pro dané ID zdrojvé tabulky (RQT_LOGRD.flogro_id)';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_ENTIT.SENTIT_VYNAM_ENTITY_ID IS 'Význam hodnoty v poli RQT_LOGRD.slogrd_entity_id';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_ENTIT.SENTIT_VYNAM_VALUE1 IS 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_1';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_ENTIT.SENTIT_VYNAM_VALUE2 IS 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_2';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_ENTIT.SENTIT_VYNAM_VALUE3 IS 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_3';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_ENTIT.SENTIT_VYNAM_VALUE4 IS 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_4';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_ENTIT.SENTIT_VYNAM_VALUE5 IS 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_5';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_ENTIT.TENTIT_CREATED_DATE IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_ENTIT.TENTIT_CREATED_PROCESS IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_ENTIT.TENTIT_MODIFIED_DATE IS 'Metasloupec - změněno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RWT_ENTIT.TENTIT_MODIFIED_PROCESS IS 'Metasloupec - změnil proces/uživatel';
+   COMMENT ON TABLE DIGIDBP_RPA.RWT_ENTIT  IS 'Číselník entit v detailu zpracování';
+
+--------------------^
+
+
+---------------------------------------
+-- tabulka DIGIDBP_RPA.RQT_VAL_KONTK --
+---------------------------------------
+
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.SKONTK_ID IS 'Metasloupec - identifikátor řádku (autoinkrement)';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.SKONTK_EFFECTIVE_DATE IS 'Metasloupec - datum archivace';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.SKONTK_SRC_ID IS 'Označení řádku ve zdroj. systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.FSOURC_SRC_SYS_ID IS 'Označení zdroj. systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.FPROCT_TYP IS 'Procesní skupina';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.SKONTK_PARTNER IS 'Obchodní partner';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.SKONTK_PARTNER_GUID IS 'SAP GUID partnera';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.SKONTK_ENTITY_ID IS 'id entity (př. mail, telefon....)';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.SKONTK_ENTITY_KEY IS 'ID klíče SAP kontaktu';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.SKONTK_ENTITY_TYPE IS 'Standardní/ostatní kontakt SAP';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.SKONTK_VALUE IS 'Současná hodnota kontaktu';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.SKONTK_CIO_VALUE IS 'Validovaná hodnota kontaktu';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.SKONTK_SCORE IS 'Hodnota skore';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.FAUTHL_LEVEL_ID IS 'Číselník důvěrihodnosti';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.SKONTK_OPERATION_LIST IS 'Typ změnové operace';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.TKONTK_CREATED_DATE IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.TKONTK_CREATED_PROCESS IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.TKONTK_MODIFIED_DATE IS 'Metasloupec - změněno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_VAL_KONTK.TKONTK_MODIFIED_PROCESS IS 'Metasloupec - změnil proces/uživatel';
+   COMMENT ON TABLE DIGIDBP_RPA.RQT_VAL_KONTK  IS 'Vst. tabulka - kontakty';
+
+--------------------^
+
+
+---------------------------------------
+-- tabulka DIGIDBP_RPA.RQT_ONL_ELFA1 --
+---------------------------------------
+
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_ID IS 'Metasloupec - identifikátor řádku (autoinkrement)';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_EFFECTIVE_DATE IS 'Datum aktuálnosti dat';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_SRC_ID IS 'Označení řádku ve zdroj. systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.FSOURC_SRC_SYS_ID IS 'Označení zdroj. systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.FPROCT_TYP IS 'Procesní skupina';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_OP IS 'Obchodní partner';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_OP_TYP IS 'OP: Druh zákazníka';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_OP_JMENO IS 'OP: Křestní jméno';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_OP_PRIJMENI IS 'OP: Příjmení';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_OP_OSLOVENI IS 'Oslovení v 5. pádě';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_OP_NAZEV_SPOL IS 'Název organizace';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_OP_DAT_NAROZ IS 'OP: Datum narození';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_OP_DAT_UMRTI IS 'OP: Datum úmrtí';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_EMAIL_ADR IS 'Standardní email adresa pro OP';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_EMAIL_ZASML IS 'Je email zasmluvněný?';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_MOBIL_ADR IS 'Standardní mobil pro OP';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_MOBIL_ZASML IS 'Je mobil zasmluvněný?';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_GDPR IS 'GDPR souhlas';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_ELFA_TER_OSLOVENI IS 'Termín oslovení pro ELFA';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_ELFA_TER_PREVOD IS 'Termín převodu na ELFA';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_ZMCN_OSLOVENI IS 'Datum posledního oslovení OP se změnou ceny';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_COL_STATUS IS 'Status registrace do ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_COL_POTVRZ_KU IS 'Potvrzení kontaktních údajů v ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_COL_POTVRZ_KU_DAT IS 'Datum potvrzení kontaktních údajů v ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_COL_PRIHL_PRVNI IS 'První přihlášení do ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_COL_PRIHL_POSL IS 'Poslední přihlášení do ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_ADRTRV_ULICE IS 'Trv. adresa OP - ulice';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_ADRTRV_CP IS 'Trv. adresa OP - č. popisné';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_ADRTRV_CO IS 'Trv. adresa OP - č. orientační';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_ADRTRV_PSC IS 'Trv. adresa OP - PSČ';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_ADRTRV_OBEC IS 'Trv. adresa OP - obec';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_BONITA IS 'Počet bonitních bodů';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_BONITA_MVNO IS 'Počet bonitních bodů MVNO';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_OD_POCET_AKT IS 'Počet aktivních obchodních dohod';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_OD_ELFA_MAIL IS 'Mail na obch. dohodě';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_FA_TERMIN IS 'Termín fakturace dle OJ.';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.SELFA1_USE_CASE IS 'Typ zpracování pro RPA';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.TELFA1_CREATED_DATE IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.TELFA1_CREATED_PROCESS IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.TELFA1_MODIFIED_DATE IS 'Metasloupec - změněno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_ONL_ELFA1.TELFA1_MODIFIED_PROCESS IS 'Metasloupec - změnil proces/uživatel';
+   COMMENT ON TABLE DIGIDBP_RPA.RQT_ONL_ELFA1  IS 'Frontovací tabulka ELFA - oslovení, fakturace';
+
+--------------------^
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RQT_LOGRO --
+-----------------------------------
+
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRO.SLOGRO_ID IS 'Id záznamu';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRO.SLOGRO_SRC_ID IS 'Označení řádku ve zdroj. systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRO.FSOURC_SRC_SYS_ID IS 'Označení zdroj. systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRO.FPROCT_TYP IS 'Procesní skupina';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRO.FSTATC_ID IS 'Výsledek zpracování (status case).';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRO.FSTATB_ID IS 'Byznys stav (status business)';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRO.SLOGRO_STATD IS 'Důvod vytřízení (case class)';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRO.TLOGRO_CREATED_DATE IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRO.TLOGRO_CREATED_PROCESS IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRO.TLOGRO_MODIFIED_DATE IS 'Metasloupec - změněno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRO.TLOGRO_MODIFIED_PROCESS IS 'Metasloupec - změnil proces/uživatel';
+   COMMENT ON TABLE DIGIDBP_RPA.RQT_LOGRO  IS 'Logovací tabulka výsledků činnosti robotů';
+
+--------------------^
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RQT_LOGRD --
+-----------------------------------
+
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.SLOGRD_ID IS 'Id záznamu';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.FLOGRO_ID IS 'Id řádku z tab. RQT_LOGRO';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.SLOGRD_STATUS IS 'Úspěšně dokončeno/spadlo na chybu/???';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.SLOGRD_ACTION_DATE IS 'Datum provedení akce v systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.FENTIT_KOD IS 'Zpracovávaná entita';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.SLOGRD_ENTITY_ID IS 'Identifikace entity';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.SLOGRD_ACTION_TYPE IS 'Provedená akce - typ';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.SLOGRD_ACTION_VALUE_1 IS 'Provedená akce - hodnota 1';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.SLOGRD_ACTION_VALUE_2 IS 'Provedená akce - hodnota 2';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.SLOGRD_ACTION_VALUE_3 IS 'Provedená akce - hodnota 3';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.SLOGRD_ACTION_VALUE_4 IS 'Provedená akce - hodnota 4';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.SLOGRD_ACTION_VALUE_5 IS 'Provedená akce - hodnota 5';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.TLOGRD_CREATED_DATE IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.TLOGRD_CREATED_PROCESS IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.TLOGRD_MODIFIED_DATE IS 'Metasloupec - změněno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RQT_LOGRD.TLOGRD_MODIFIED_PROCESS IS 'Metasloupec - změnil proces/uživatel';
+   COMMENT ON TABLE DIGIDBP_RPA.RQT_LOGRD  IS 'Logovací tabulka výsledků činnosti robotů';
+
+--------------------^
+
+
+---------------------------------------
+-- tabulka DIGIDBP_RPA.RIT_ONL_KONTK --
+---------------------------------------
+
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.SKONTK_ID IS 'Metasloupec - identifikátor řádku (autoinkrement)';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.SKONTK_EFFECTIVE_DATE IS 'Datum aktuálnosti dat';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.SKONTK_SRC_ID IS 'Označení řádku ve zdroj. systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.FSOURC_SRC_SYS_ID IS 'Označení zdroj. systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.FPROCT_TYP IS 'Procesní skupina';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.SKONTK_PARTNER IS 'Obchodní partner';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.SKONTK_PARTNER_GUID IS 'SAP GUID partnera';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.SKONTK_ENTITY_ID IS 'id entity (př. mail, telefon....)';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.SKONTK_ENTITY_KEY IS 'ID klíče SAP kontaktu';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.SKONTK_ENTITY_TYPE IS 'Standardní/ostatní kontakt SAP';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.SKONTK_VALUE IS 'Současná hodnota kontaktu';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.SKONTK_CIO_VALUE IS 'Validovaná hodnota kontaktu';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.SKONTK_SCORE IS 'Hodnota skore';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.FAUTHL_LEVEL_ID IS 'Číselník důvěrihodnosti';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.SKONTK_OPERATION_LIST IS 'Typ změnové operace';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.TKONTK_CREATED_DATE IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_VAL_KONTK.TKONTK_CREATED_PROCESS IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON TABLE DIGIDBP_RPA.RIT_VAL_KONTK  IS 'Vst. tabulka - kontakty';
+
+--------------------^
+
+
+---------------------------------------
+-- tabulka DIGIDBP_RPA.RIT_ONL_ELFA1 --
+---------------------------------------
+
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_ID IS 'Metasloupec - identifikátor řádku (autoinkrement)';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_EFFECTIVE_DATE IS 'Datum aktuálnosti dat';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_SRC_ID IS 'Označení řádku ve zdroj. systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.FSOURC_SRC_SYS_ID IS 'Označení zdroj. systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.FPROCT_TYP IS 'Procesní skupina';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_OP IS 'Obchodní partner';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_OP_TYP IS 'OP: Druh zákazníka';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_OP_JMENO IS 'OP: Křestní jméno';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_OP_PRIJMENI IS 'OP: Příjmení';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_OP_OSLOVENI IS 'Oslovení v 5. pádě';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_OP_NAZEV_SPOL IS 'Název organizace';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_OP_DAT_NAROZ IS 'OP: Datum narození';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_OP_DAT_UMRTI IS 'OP: Datum úmrtí';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_EMAIL_ADR IS 'Standardní email adresa pro OP';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_EMAIL_ZASML IS 'Je email zasmluvněný?';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_MOBIL_ADR IS 'Standardní mobil pro OP';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_MOBIL_ZASML IS 'Je mobil zasmluvněný?';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_GDPR IS 'GDPR souhlas';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_ELFA_TER_OSLOVENI IS 'Termín oslovení pro ELFA';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_ELFA_TER_PREVOD IS 'Termín převodu na ELFA';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_ZMCN_OSLOVENI IS 'Datum posledního oslovení OP se změnou ceny';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_COL_STATUS IS 'Status registrace do ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_COL_POTVRZ_KU IS 'Potvrzení kontaktních údajů v ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_COL_POTVRZ_KU_DAT IS 'Datum potvrzení kontaktních údajů v ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_COL_PRIHL_PRVNI IS 'První přihlášení do ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_COL_PRIHL_POSL IS 'Poslední přihlášení do ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_ADRTRV_ULICE IS 'Trv. adresa OP - ulice';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_ADRTRV_CP IS 'Trv. adresa OP - č. popisné';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_ADRTRV_CO IS 'Trv. adresa OP - č. orientační';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_ADRTRV_PSC IS 'Trv. adresa OP - PSČ';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_ADRTRV_OBEC IS 'Trv. adresa OP - obec';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_BONITA IS 'Počet bonitních bodů';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_BONITA_MVNO IS 'Počet bonitních bodů MVNO';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_OD_POCET_AKT IS 'Počet aktivních obchodních dohod';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_OD_ELFA_MAIL IS 'Mail na obch. dohodě';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_FA_TERMIN IS 'Termín fakturace dle OJ';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.SELFA1_USE_CASE IS 'Typ zpracování pro RPA';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.TELFA1_CREATED_DATE IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RIT_ONL_ELFA1.TELFA1_CREATED_PROCESS IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON TABLE DIGIDBP_RPA.RIT_ONL_ELFA1  IS 'Vst. tabulka ELFA - oslovení, fakturace';
+
+--------------------^
+
+
+---------------------------------------
+-- tabulka DIGIDBT_RPA.RAT_VAL_KONTK --
+---------------------------------------
+
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."SKONTK_ID" IS 'Metasloupec - identifikátor řádku (autoinkrement)';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."SKONTK_EFFECTIVE_DATE" IS 'Metasloupec - datum archivace';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."SKONTK_SRC_ID" IS 'Označení řádku ve zdroj. systému';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."FSOURC_SRC_SYS_ID" IS 'Označení zdroj. systému';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."FPROCT_TYP" IS 'Procesní skupina';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."SKONTK_PARTNER" IS 'Obchodní partner';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."SKONTK_PARTNER_GUID" IS 'SAP GUID partnera';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."SKONTK_ENTITY_ID" IS 'id entity (př. mail, telefon....)';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."SKONTK_ENTITY_KEY" IS 'ID klíče SAP kontaktu';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."SKONTK_ENTITY_TYPE" IS 'Standardní/ostatní kontakt SAP';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."SKONTK_VALUE" IS 'Současná hodnota kontaktu';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."SKONTK_CIO_VALUE" IS 'Validovaná hodnota kontaktu';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."SKONTK_SCORE" IS 'Hodnota skore';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."FAUTHL_LEVEL_ID" IS 'Číselník důvěrihodnosti';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."SKONTK_OPERATION_LIST" IS 'Typ změnové operace';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."TKONTK_CREATED_DATE" IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."TKONTK_CREATED_PROCESS" IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."TKONTK_MODIFIED_DATE" IS 'Metasloupec - změněno dne';
+   COMMENT ON COLUMN "DIGIDBP_RPA"."RQT_VAL_KONTK"."TKONTK_MODIFIED_PROCESS" IS 'Metasloupec - změnil proces/uživatel';
+   COMMENT ON TABLE "DIGIDBP_RPA"."RQT_VAL_KONTK"  IS 'Vst. tabulka - kontakty';
+
+--------------------^
+
+
+---------------------------------------
+-- tabulka DIGIDBP_RPA.RAT_ONL_ELFA1 --
+---------------------------------------
+
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_EFFECTIVE_DATE IS 'Datum aktuálnosti dat';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_SRC_ID IS 'Označení řádku ve zdroj. systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.FSOURC_SRC_SYS_ID IS 'Označení zdroj. systému';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.FPROCT_TYP IS 'Procesní skupina';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_OP IS 'Obchodní partner';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_OP_TYP IS 'OP: Druh zákazníka';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_OP_JMENO IS 'OP: Křestní jméno';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_OP_PRIJMENI IS 'OP: Příjmení';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_OP_OSLOVENI IS 'Oslovení v 5. pádě';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_OP_NAZEV_SPOL IS 'Název organizace';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_OP_DAT_NAROZ IS 'OP: Datum narození';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_OP_DAT_UMRTI IS 'OP: Datum úmrtí';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_EMAIL_ADR IS 'Standardní email adresa pro OP';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_EMAIL_ZASML IS 'Je email zasmluvněný?';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_MOBIL_ADR IS 'Standardní mobil pro OP';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_MOBIL_ZASML IS 'Je mobil zasmluvněný?';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_GDPR IS 'GDPR souhlas';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_ELFA_TER_OSLOVENI IS 'Termín oslovení pro ELFA';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_ELFA_TER_PREVOD IS 'Termín převodu na ELFA';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_ZMCN_OSLOVENI IS 'Datum posledního oslovení OP se změnou ceny';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_COL_STATUS IS 'Status registrace do ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_COL_POTVRZ_KU IS 'Potvrzení kontaktních údajů v ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_COL_POTVRZ_KU_DAT IS 'Datum potvrzení kontaktních údajů v ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_COL_PRIHL_PRVNI IS 'První přihlášení do ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_COL_PRIHL_POSL IS 'Poslední přihlášení do ČOL';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_ADRTRV_ULICE IS 'Trv. adresa OP - ulice';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_ADRTRV_CP IS 'Trv. adresa OP - č. popisné';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_ADRTRV_CO IS 'Trv. adresa OP - č. orientační';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_ADRTRV_PSC IS 'Trv. adresa OP - PSČ';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_ADRTRV_OBEC IS 'Trv. adresa OP - obec';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_BONITA IS 'Počet bonitních bodů';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_BONITA_MVNO IS 'Počet bonitních bodů MVNO';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_OD_POCET_AKT IS 'Počet aktivních obchodních dohod';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_OD_ELFA_MAIL IS 'Mail na obch. dohodě';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_FA_TERMIN IS 'Termín fakturace dle OJ.';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_USE_CASE IS 'Typ zpracování pro RPA';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.SELFA1_STATUSC IS 'Výsledek zpracování (status case). Z tabulky RQT_LOGRO.';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.TELFA1_ARCHIVE_TYPE IS 'Typ archivovaných dat. Buď RIT = ze vstupu, nebo RQT = z výstupu/výsledku';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.TELFA1_ARCHIVED_DATE IS 'Metasloupec - datum archivace';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.TELFA1_IMPORT_DATE IS 'Metasloupec - vytvořeno na zdroji dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.TELFA1_CREATED_DATE IS 'Metasloupec - vytvořeno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.TELFA1_CREATED_PROCESS IS 'Metasloupec - vytvořil proces/uživatel';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.TELFA1_MODIFIED_DATE IS 'Metasloupec - změněno dne';
+   COMMENT ON COLUMN DIGIDBP_RPA.RAT_ONL_ELFA1.TELFA1_MODIFIED_PROCESS IS 'Metasloupec - změnil proces/uživatel';
+   COMMENT ON TABLE DIGIDBP_RPA.RAT_ONL_ELFA1  IS 'Archiv vst. tabulky ELFA - oslovení, fakturace';
+
+--------------------^
+
+--^^^^^^^^^^^^^^^^^--
+create comment.txt
+Zobrazování položky create comment.txt. 

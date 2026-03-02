@@ -1,0 +1,1770 @@
+vzor
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = 'Metasloupec - identifikátor řádku (autoinkrement)',
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table',  @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ID';
+
+Instrukce:
+Pro komentáře sloupcové bude použito 2 levlů, pro komentář tabulkový bude použit jen level=1
+Atributy se sufixem "type" jsou neměnné konstanty; hodnota N'MS_Description' je taktéž konstanta; ostatní atributy se dle kontextu dynamicky mění.
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RWT_STATC --
+-----------------------------------
+
+-- Komentáře ke sloupcům RWT_STATC
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'ID statusu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_STATC', 
+@level2type = N'Column', @level2name = 'SSTATC_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Popis statusu zpracování', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_STATC', 
+@level2type = N'Column', @level2name = 'SSTATC_POPIS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_STATC', 
+@level2type = N'Column', @level2name = 'TSTATC_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_STATC', 
+@level2type = N'Column', @level2name = 'TSTATC_CREATED_PROCESS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_STATC', 
+@level2type = N'Column', @level2name = 'TSTATC_MODIFIED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_STATC', 
+@level2type = N'Column', @level2name = 'TSTATC_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RWT_STATC
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník statusů zpracování', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_STATC';
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RWT_SOURC --
+-----------------------------------
+
+-- Komentáře ke sloupcům RWT_SOURC
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SOURC', 
+@level2type = N'Column', @level2name = 'SSOURC_SRC_SYS_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Název/popis zdrojového systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SOURC', 
+@level2type = N'Column', @level2name = 'SSOURC_SRC_SYS_POPIS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SOURC', 
+@level2type = N'Column', @level2name = 'TSOURC_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SOURC', 
+@level2type = N'Column', @level2name = 'TSOURC_CREATED_PROCESS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SOURC', 
+@level2type = N'Column', @level2name = 'TSOURC_MODIFIED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SOURC', 
+@level2type = N'Column', @level2name = 'TSOURC_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RWT_SOURC
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník zdrojových systémů', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SOURC';
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RWT_SEMFR --
+-----------------------------------
+
+-- Komentáře ke sloupcům RWT_SEMFR
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum platnosti poslední dávky vst. dat.', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SEMFR', 
+@level2type = N'Column', @level2name = 'SSEMFR_EFFECTIVE_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Status semaforu: 0 - volno; 1 - stop, pracuje se', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SEMFR', 
+@level2type = N'Column', @level2name = 'SSEMFR_STATUS_INPUT_INSERT';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Status semaforu: 0 - volno; 1 - stop, pracuje se', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SEMFR', 
+@level2type = N'Column', @level2name = 'SSEMFR_STATUS_INPUT_READ';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Status semaforu: 0 - volno; 1 - stop, pracuje se', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SEMFR', 
+@level2type = N'Column', @level2name = 'SSEMFR_STATUS_QUEUE_INSERT';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Status semaforu: 0 - volno; 1 - stop, pracuje se', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SEMFR', 
+@level2type = N'Column', @level2name = 'SSEMFR_STATUS_QUEUE_READ';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení procesní skupiny', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SEMFR', 
+@level2type = N'Column', @level2name = 'FPROCT_TYP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SEMFR', 
+@level2type = N'Column', @level2name = 'TSEMFR_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SEMFR', 
+@level2type = N'Column', @level2name = 'TSEMFR_CREATED_PROCESS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SEMFR', 
+@level2type = N'Column', @level2name = 'TSEMFR_MODIFIED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SEMFR', 
+@level2type = N'Column', @level2name = 'TSEMFR_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RWT_SEMFR
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Semafor pro řízení procesů všech vst. tabulek.', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_SEMFR';
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RWT_RIZSM --
+-----------------------------------
+
+-- Komentáře ke sloupcům RWT_RIZSM
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení procesní skupiny', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_RIZSM', 
+@level2type = N'Column', @level2name = 'FPROCT_TYP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Název spouštěnného výkonného podprogramu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_RIZSM', 
+@level2type = N'Column', @level2name = 'SRIZSM_PROCES';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Logické označení skupiny objektů.', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_RIZSM', 
+@level2type = N'Column', @level2name = 'SRIZSM_LOG_SKUPINA';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Kategorie pro lokální rozčlenění', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_RIZSM', 
+@level2type = N'Column', @level2name = 'SRIZSM_KATEGORIE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_RIZSM', 
+@level2type = N'Column', @level2name = 'TRIZSM_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_RIZSM', 
+@level2type = N'Column', @level2name = 'TRIZSM_CREATED_PROCESS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_RIZSM', 
+@level2type = N'Column', @level2name = 'TRIZSM_MODIFIED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_RIZSM', 
+@level2type = N'Column', @level2name = 'TRIZSM_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RWT_RIZSM
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metadata pro řízení automatického spouštění činností (přes semafor).', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_RIZSM';
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RWT_PROCT --
+-----------------------------------
+
+-- Komentáře ke sloupcům RWT_PROCT
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení procesní skupiny', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_PROCT', 
+@level2type = N'Column', @level2name = 'SPROCT_TYP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Popis dané procesní skupiny', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_PROCT', 
+@level2type = N'Column', @level2name = 'SPROCT_POPIS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_PROCT', 
+@level2type = N'Column', @level2name = 'TPROCT_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_PROCT', 
+@level2type = N'Column', @level2name = 'TPROCT_CREATED_PROCESS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_PROCT', 
+@level2type = N'Column', @level2name = 'TPROCT_MODIFIED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_PROCT', 
+@level2type = N'Column', @level2name = 'TPROCT_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RWT_PROCT
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník procesních skupin', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_PROCT';
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RWT_LOGPZ --
+-----------------------------------
+
+-- Komentáře ke sloupcům RWT_LOGPZ
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'ID záznamu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'Column', @level2name = 'SLOGPZ_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Kategorie záznamu.', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'Column', @level2name = 'SLOGPZ_KATEGORIE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Popis záznamu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'Column', @level2name = 'SLOGPZ_POPIS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Název tabulky', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'Column', @level2name = 'SLOGPZ_TABULKA';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Název programu (procedury/funkce), který provedl zápis.', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'Column', @level2name = 'SLOGPZ_PROGRAM';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'Column', @level2name = 'TLOGPZ_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'Column', @level2name = 'TLOGPZ_CREATED_PROCESS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'Column', @level2name = 'TLOGPZ_MODIFIED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'Column', @level2name = 'TLOGPZ_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RWT_LOGPZ
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Log činnosti (provozní log)', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_LOGPZ';
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RWT_ENTIT --
+-----------------------------------
+
+-- Komentáře ke sloupcům RWT_ENTIT
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Kod entity', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_ENTIT', 
+@level2type = N'Column', @level2name = 'SENTIT_KOD';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Popis entity zpracování', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_ENTIT', 
+@level2type = N'Column', @level2name = 'SENTIT_POPIS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Zda je umožněn násobný výskyt této entity pro dané ID zdrojvé tabulky (RQT_LOGRD.flogro_id)', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_ENTIT', 
+@level2type = N'Column', @level2name = 'SENTIT_NASOBNY_VYSKYT';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Význam hodnoty v poli RQT_LOGRD.slogrd_entity_id', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_ENTIT', 
+@level2type = N'Column', @level2name = 'SENTIT_VYNAM_ENTITY_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_1', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_ENTIT', 
+@level2type = N'Column', @level2name = 'SENTIT_VYNAM_VALUE1';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_2', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_ENTIT', 
+@level2type = N'Column', @level2name = 'SENTIT_VYNAM_VALUE2';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_3', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_ENTIT', 
+@level2type = N'Column', @level2name = 'SENTIT_VYNAM_VALUE3';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_4', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_ENTIT', 
+@level2type = N'Column', @level2name = 'SENTIT_VYNAM_VALUE4';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_5', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_ENTIT', 
+@level2type = N'Column', @level2name = 'SENTIT_VYNAM_VALUE5';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_ENTIT', 
+@level2type = N'Column', @level2name = 'TENTIT_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_ENTIT', 
+@level2type = N'Column', @level2name = 'TENTIT_CREATED_PROCESS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_ENTIT', 
+@level2type = N'Column', @level2name = 'TENTIT_MODIFIED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_ENTIT', 
+@level2type = N'Column', @level2name = 'TENTIT_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RWT_ENTIT
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník entit v detailu zpracování', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RWT_ENTIT';
+
+
+---------------------------------------
+-- tabulka DIGIDBP_RPA.RQT_VAL_KONTK --
+---------------------------------------
+
+-- Komentáře ke sloupcům RQT_VAL_KONTK
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - identifikátor řádku (autoinkrement)', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - datum archivace', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_EFFECTIVE_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_SRC_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'FSOURC_SRC_SYS_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'FPROCT_TYP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Obchodní partner', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_PARTNER';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'SAP GUID partnera', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_PARTNER_GUID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'id entity (př. mail, telefon....)', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_ENTITY_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'ID klíče SAP kontaktu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_ENTITY_KEY';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní/ostatní kontakt SAP', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_ENTITY_TYPE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Současná hodnota kontaktu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_VALUE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Validovaná hodnota kontaktu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_CIO_VALUE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Hodnota skore', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_SCORE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník důvěrihodnosti', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'FAUTHL_LEVEL_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ změnové operace', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_OPERATION_LIST';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'TKONTK_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'TKONTK_CREATED_PROCESS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'TKONTK_MODIFIED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'TKONTK_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RQT_VAL_KONTK
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Vst. tabulka - kontakty', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK';
+
+
+---------------------------------------
+-- tabulka DIGIDBP_RPA.RQT_ONL_ELFA1 --
+---------------------------------------
+
+-- Komentáře ke sloupcům RQT_ONL_ELFA1
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - identifikátor řádku (autoinkrement)', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum aktuálnosti dat', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_EFFECTIVE_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_SRC_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'FSOURC_SRC_SYS_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'FPROCT_TYP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Obchodní partner', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Druh zákazníka', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_TYP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Křestní jméno', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_JMENO';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Příjmení', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_PRIJMENI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Oslovení v 5. pádě', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_OSLOVENI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Název organizace', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_NAZEV_SPOL';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Datum narození', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_DAT_NAROZ';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Datum úmrtí', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_DAT_UMRTI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní email adresa pro OP', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_EMAIL_ADR';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Je email zasmluvněný?', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_EMAIL_ZASML';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní mobil pro OP', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_MOBIL_ADR';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Je mobil zasmluvněný?', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_MOBIL_ZASML';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'GDPR souhlas', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_GDPR';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín oslovení pro ELFA', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ELFA_TER_OSLOVENI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín převodu na ELFA', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ELFA_TER_PREVOD';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum posledního oslovení OP se změnou ceny', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ZMCN_OSLOVENI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Status registrace do ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_STATUS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Potvrzení kontaktních údajů v ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_POTVRZ_KU';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum potvrzení kontaktních údajů v ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_POTVRZ_KU_DAT';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'První přihlášení do ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_PRIHL_PRVNI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Poslední přihlášení do ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_PRIHL_POSL';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - ulice', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_ULICE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - č. popisné', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_CP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - č. orientační', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_CO';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - PSČ', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_PSC';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - obec', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_OBEC';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet bonitních bodů', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_BONITA';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet bonitních bodů MVNO', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_BONITA_MVNO';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet aktivních obchodních dohod', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OD_POCET_AKT';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Mail na obch. dohodě', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OD_ELFA_MAIL';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín fakturace dle OJ.', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_FA_TERMIN';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ zpracování pro RPA', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_USE_CASE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'TELFA1_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'TELFA1_CREATED_PROCESS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'TELFA1_MODIFIED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'TELFA1_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RQT_ONL_ELFA1
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Frontovací tabulka ELFA - oslovení, fakturace', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_ONL_ELFA1';
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RQT_LOGRO --
+-----------------------------------
+
+-- Komentáře ke sloupcům RQT_LOGRO
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Id záznamu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRO', 
+@level2type = N'Column', @level2name = 'SLOGRO_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRO', 
+@level2type = N'Column', @level2name = 'SLOGRO_SRC_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRO', 
+@level2type = N'Column', @level2name = 'FSOURC_SRC_SYS_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRO', 
+@level2type = N'Column', @level2name = 'FPROCT_TYP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Výsledek zpracování (status case).', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRO', 
+@level2type = N'Column', @level2name = 'FSTATC_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Byznys stav (status business)', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRO', 
+@level2type = N'Column', @level2name = 'FSTATB_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Důvod vytřízení (case class)', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRO', 
+@level2type = N'Column', @level2name = 'SLOGRO_STATD';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRO', 
+@level2type = N'Column', @level2name = 'TLOGRO_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRO', 
+@level2type = N'Column', @level2name = 'TLOGRO_CREATED_PROCESS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRO', 
+@level2type = N'Column', @level2name = 'TLOGRO_MODIFIED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRO', 
+@level2type = N'Column', @level2name = 'TLOGRO_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RQT_LOGRO
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Logovací tabulka výsledků činnosti robotů', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRO';
+
+
+-----------------------------------
+-- tabulka DIGIDBP_RPA.RQT_LOGRD --
+-----------------------------------
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Id záznamu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'SLOGRD_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Id řádku z tab. RQT_LOGRO', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'FLOGRO_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Úspěšně dokončeno/spadlo na chybu/???', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'SLOGRD_STATUS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum provedení akce v systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'SLOGRD_ACTION_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Zpracovávaná entita', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'FENTIT_KOD';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Identifikace entity', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'SLOGRD_ENTITY_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Provedená akce - typ', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'SLOGRD_ACTION_TYPE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Provedená akce - hodnota 1', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'SLOGRD_ACTION_VALUE_1';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Provedená akce - hodnota 2', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'SLOGRD_ACTION_VALUE_2';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Provedená akce - hodnota 3', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'SLOGRD_ACTION_VALUE_3';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Provedená akce - hodnota 4', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'SLOGRD_ACTION_VALUE_4';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Provedená akce - hodnota 5', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'SLOGRD_ACTION_VALUE_5';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'TLOGRD_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'TLOGRD_CREATED_PROCESS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'TLOGRD_MODIFIED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD', 
+@level2type = N'Column', @level2name = 'TLOGRD_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RQT_LOGRD
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Logovací tabulka výsledků činnosti robotů', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_LOGRD';
+
+
+---------------------------------------
+-- tabulka DIGIDBP_RPA.RIT_VAL_KONTK --
+---------------------------------------
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - identifikátor řádku (autoinkrement)', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum aktuálnosti dat', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_EFFECTIVE_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_SRC_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'FSOURC_SRC_SYS_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'FPROCT_TYP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Obchodní partner', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_PARTNER';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'SAP GUID partnera', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_PARTNER_GUID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'id entity (př. mail, telefon....)', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_ENTITY_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'ID klíče SAP kontaktu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_ENTITY_KEY';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní/ostatní kontakt SAP', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_ENTITY_TYPE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Současná hodnota kontaktu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_VALUE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Validovaná hodnota kontaktu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_CIO_VALUE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Hodnota skore', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_SCORE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník důvěrihodnosti', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'FAUTHL_LEVEL_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ změnové operace', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_OPERATION_LIST';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'TKONTK_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'TKONTK_CREATED_PROCESS';
+
+-- Komentář k tabulce RIT_VAL_KONTK
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Vst. tabulka - kontakty', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_VAL_KONTK';
+
+
+---------------------------------------
+-- tabulka DIGIDBP_RPA.RIT_ONL_ELFA1 --
+---------------------------------------
+
+-- Komentáře ke sloupcům RIT_ONL_ELFA1
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - identifikátor řádku (autoinkrement)', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum aktuálnosti dat', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_EFFECTIVE_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_SRC_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'FSOURC_SRC_SYS_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'FPROCT_TYP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Obchodní partner', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Druh zákazníka', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_TYP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Křestní jméno', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_JMENO';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Příjmení', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_PRIJMENI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Oslovení v 5. pádě', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_OSLOVENI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Název organizace', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_NAZEV_SPOL';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Datum narození', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_DAT_NAROZ';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Datum úmrtí', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_DAT_UMRTI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní email adresa pro OP', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_EMAIL_ADR';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Je email zasmluvněný?', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_EMAIL_ZASML';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní mobil pro OP', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_MOBIL_ADR';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Je mobil zasmluvněný?', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_MOBIL_ZASML';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'GDPR souhlas', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_GDPR';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín oslovení pro ELFA', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ELFA_TER_OSLOVENI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín převodu na ELFA', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ELFA_TER_PREVOD';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum posledního oslovení OP se změnou ceny', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ZMCN_OSLOVENI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Status registrace do ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_STATUS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Potvrzení kontaktních údajů v ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_POTVRZ_KU';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum potvrzení kontaktních údajů v ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_POTVRZ_KU_DAT';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'První přihlášení do ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_PRIHL_PRVNI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Poslední přihlášení do ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_PRIHL_POSL';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - ulice', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_ULICE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - č. popisné', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_CP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - č. orientační', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_CO';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - PSČ', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_PSC';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - obec', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_OBEC';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet bonitních bodů', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_BONITA';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet bonitních bodů MVNO', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_BONITA_MVNO';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet aktivních obchodních dohod', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OD_POCET_AKT';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Mail na obch. dohodě', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OD_ELFA_MAIL';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín fakturace dle OJ', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_FA_TERMIN';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ zpracování pro RPA', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_USE_CASE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'TELFA1_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'TELFA1_CREATED_PROCESS';
+
+-- Komentář k tabulce RIT_ONL_ELFA1
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Vst. tabulka ELFA - oslovení, fakturace', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RIT_ONL_ELFA1';
+
+
+---------------------------------------
+-- tabulka DIGIDBP_RPA.RQT_VAL_KONTK --
+---------------------------------------
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - identifikátor řádku (autoinkrement)', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - datum archivace', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_EFFECTIVE_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_SRC_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'FSOURC_SRC_SYS_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'FPROCT_TYP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Obchodní partner', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_PARTNER';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'SAP GUID partnera', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_PARTNER_GUID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'id entity (př. mail, telefon....)', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_ENTITY_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'ID klíče SAP kontaktu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_ENTITY_KEY';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní/ostatní kontakt SAP', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_ENTITY_TYPE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Současná hodnota kontaktu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_VALUE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Validovaná hodnota kontaktu', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_CIO_VALUE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Hodnota skore', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_SCORE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník důvěrihodnosti', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'FAUTHL_LEVEL_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ změnové operace', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'SKONTK_OPERATION_LIST';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'TKONTK_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'TKONTK_CREATED_PROCESS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'TKONTK_MODIFIED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'Column', @level2name = 'TKONTK_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RQT_VAL_KONTK
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Vst. tabulka - kontakty', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RQT_VAL_KONTK';
+
+
+---------------------------------------
+-- tabulka DIGIDBP_RPA.RAT_ONL_ELFA1 --
+---------------------------------------
+
+-- Komentáře ke sloupcům RAT_ONL_ELFA1
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum aktuálnosti dat', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_EFFECTIVE_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_SRC_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'FSOURC_SRC_SYS_ID';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'FPROCT_TYP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Obchodní partner', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Druh zákazníka', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_TYP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Křestní jméno', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_JMENO';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Příjmení', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_PRIJMENI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Oslovení v 5. pádě', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_OSLOVENI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Název organizace', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_NAZEV_SPOL';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Datum narození', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_DAT_NAROZ';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Datum úmrtí', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OP_DAT_UMRTI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní email adresa pro OP', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_EMAIL_ADR';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Je email zasmluvněný?', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_EMAIL_ZASML';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní mobil pro OP', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_MOBIL_ADR';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Je mobil zasmluvněný?', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_MOBIL_ZASML';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'GDPR souhlas', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_GDPR';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín oslovení pro ELFA', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ELFA_TER_OSLOVENI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín převodu na ELFA', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ELFA_TER_PREVOD';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum posledního oslovení OP se změnou ceny', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ZMCN_OSLOVENI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Status registrace do ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_STATUS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Potvrzení kontaktních údajů v ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_POTVRZ_KU';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum potvrzení kontaktních údajů v ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_POTVRZ_KU_DAT';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'První přihlášení do ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_PRIHL_PRVNI';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Poslední přihlášení do ČOL', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_COL_PRIHL_POSL';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - ulice', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_ULICE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - č. popisné', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_CP';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - č. orientační', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_CO';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - PSČ', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_PSC';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - obec', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_ADRTRV_OBEC';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet bonitních bodů', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_BONITA';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet bonitních bodů MVNO', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_BONITA_MVNO';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet aktivních obchodních dohod', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OD_POCET_AKT';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Mail na obch. dohodě', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_OD_ELFA_MAIL';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín fakturace dle OJ.', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_FA_TERMIN';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ zpracování pro RPA', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_USE_CASE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Výsledek zpracování (status case). Z tabulky RQT_LOGRO.', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'SELFA1_STATUSC';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ archivovaných dat. Buď RIT = ze vstupu, nebo RQT = z výstupu/výsledku', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'TELFA1_ARCHIVE_TYPE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - datum archivace', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'TELFA1_ARCHIVED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno na zdroji dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'TELFA1_IMPORT_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'TELFA1_CREATED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'TELFA1_CREATED_PROCESS';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'TELFA1_MODIFIED_DATE';
+
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'Column', @level2name = 'TELFA1_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RAT_ONL_ELFA1
+EXEC sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Archiv vst. tabulky ELFA - oslovení, fakturace', 
+@level0type = N'Schema', @level0name = 'DIGIDBP_RPA', 
+@level1type = N'Table', @level1name = 'RAT_ONL_ELFA1';

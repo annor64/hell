@@ -1,0 +1,120 @@
+import oracle.odi.domain.mapping.Mapping
+import oracle.odi.domain.project.OdiProject
+import oracle.odi.core.persistence.transaction.support.DefaultTransactionDefinition
+
+// --- 1. KONFIGURACE ---
+def projectCode      = "BICPR_BT_DWH"
+def parentFolderName = "ZAKAZKY"
+def targetFolderName = "ADAPTACE_25"
+def srcModelCode     = "OWNBT_INT"
+def tgtModelCode     = "OWNBT_ODS"
+def ikmName          = "IKM Oracle Slowly Changing Dimension BICPR"
+
+def tables = ["ADAP", "APER", "ATYP", "DBCH", "DBCL", "EMPL", "FORM", "FASS", "FATT", "FGNO", "FLVI", "FMEV", "FMON", "FMIN", "FMPI", "FOTO", "FTME", "FTMA", "FTRP", "MTYP", "RAMT", "RATV", "REEF", "REFA", "SHED", "TIND", "TIAT", "TTYP", "TTVR", "TPTA", "TPCE"]
+
+println "--- START KOMPLETNÍHO PROCESU ---"
+
+def tm = odiInstance.getTransactionManager()
+def iem = odiInstance.getTransactionalEntityManager()
+def txn = tm.getTransaction(new DefaultTransactionDefinition())
+
+try {
+    def clMap   = Class.forName("oracle.odi.domain.mapping.Mapping")
+    def clModel = Class.forName("oracle.odi.domain.model.OdiModel")
+    def clDSComp = Class.forName("oracle.odi.domain.mapping.component.DatastoreComponent")
+    def clFiltComp = Class.forName("oracle.odi.domain.mapping.component.FilterComponent")
+
+    def project = iem.getFinder(OdiProject.class).findByCode(projectCode)
+    def folder = project.getFolders().find { it.getName() == parentFolderName }?.getSubFolders()?.find { it.getName() == targetFolderName }
+    def targetIKM = project.getIKMs().find { it.getName() == ikmName }
+    
+    def srcModel = iem.getFinder(clModel).findByCode(srcModelCode)
+    def tgtModel = iem.getFinder(clModel).findByCode(tgtModelCode)
+
+    tables.each { t ->
+        def mapName = "INT_OT${t}_SD".toString()
+        println "Zpracovávám: ${mapName}"
+
+        // --- 2. VYTVOŘENÍ / VYČIŠTĚNÍ MAPPINGU ---
+        def map = iem.getFinder(clMap).findByName(folder, mapName)
+        if (map) {
+            new ArrayList(map.getComponents()).each { map.removeComponent(it) }
+        } else {
+            map = clMap.newInstance(mapName, folder)
+            iem.persist(map)
+        }
+
+        // --- 3. PŘÍPRAVA DATASTORŮ ---
+        def srcDS = srcModel.getDataStores().find { it.getName().equalsIgnoreCase("INT_A25_${t}") }
+        def tgtDS = tgtModel.getDataStores().find { it.getName().equalsIgnoreCase("ODT_A25_${t}") }
+
+        if (!srcDS || !tgtDS) {
+            println "  [!] CHYBA: Chybí tabulky pro ${t}"
+            return
+        }
+
+        // --- 4. TVORBA KOMPONENT A PROPOJENÍ ---
+        def srcComp = clDSComp.constructors.find { it.parameterTypes.size() == 2 }.newInstance(map, srcDS)
+        def tgtComp = clDSComp.constructors.find { it.parameterTypes.size() == 2 }.newInstance(map, tgtDS)
+        def filter  = clFiltComp.constructors.find { it.parameterTypes.size() == 2 && it.parameterTypes[1] == String.class }.newInstance(map, "FILTER")
+
+        srcComp.getOutputConnectorPoints()[0].connectTo(filter.getInputConnectorPoints()[0])
+        filter.getOutputConnectorPoints()[0].connectTo(tgtComp.getInputConnectorPoints()[0])
+
+        // --- 5. LOGIKA FILTRU A MAPOVÁNÍ ---
+        filter.setFilterCondition("INT_A25_${t}.IT${t}_EFFECTIVE_DATE = #VAR_EFFECTIVE_DATE".toString())
+
+        tgtComp.getAttributes().each { attr ->
+            def name = attr.getName()
+            def expr = ""
+            
+            // SCD2 Klíč (Indicator)
+            if (name == "OT${t}_ORIG_ID") {
+                try { attr.setIndicator("INDEX", true) } catch(e) { try { attr.setPropertyValue("INDICATOR_KEY", true) } catch(e2) {} }
+            }
+
+            // OPRAVENÁ SYNTAXE SEKENCE: :PROJEKT.SEKVENCE.NEXTVAL
+            if (name == "OT${t}_ID") {
+                expr = ":${projectCode}.OTA25_${t}_ID_SEQ.NEXTVAL".toString()
+            }
+            else if (name == "OT${t}_ORIG_ID") {
+                expr = "${srcComp.getName()}.IT${t}_ID".toString()
+            }
+            else {
+                def base = name.replace("OT${t}_", "IT${t}_")
+                if (name.contains("CREATED_DATE") || name.contains("MODIFIED_DATE")) expr = "SYSDATE"
+                else if (name.contains("VALID_FROM")) expr = "#VAR_EFFECTIVE_DATE"
+                else if (name.contains("VALID_TO")) expr = "30001231"
+                else if (name.contains("CURRENT_FLAG")) expr = "0"
+                else if (name.contains("PROCESS")) expr = "<%=odiRef.getSession(\"SESS_NO\")%>"
+                else expr = "${srcComp.getName()}.${base}".toString()
+            }
+            attr.setExpressionText(expr)
+            attr.setPropertyValue("EXECUTE_ON_HINT", "TARGET")
+        }
+
+        // --- 6. FYZICKÉ NASTAVENÍ (IKM & FLOW CONTROL) ---
+        map.getPhysicalDesigns().each { phys ->
+            phys.getPhysicalNodes().each { node ->
+                if (node.isTargetNode()) {
+                    if (targetIKM) {
+                        try { node.setIKM(targetIKM) } catch (e) { node.setIntegrationKnowledgeModule(targetIKM) }
+                    }
+                    node.getIKMOptionValues().each { opt ->
+                        if (opt.getName() == "FLOW_CONTROL") opt.setValue(false)
+                    }
+                }
+            }
+        }
+        iem.persist(map)
+        println "  [OK] Mapping hotov"
+    }
+
+    tm.commit(txn)
+    println "--- VŠECHNO HOTOVO ---"
+
+} catch (e) {
+    if (txn != null) tm.rollback(txn)
+    println "KRITICKÁ CHYBA: " + e.toString()
+    e.printStackTrace()
+}

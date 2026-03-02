@@ -1,0 +1,187 @@
+import oracle.odi.domain.mapping.Mapping
+import oracle.odi.domain.mapping.component.DatastoreComponent
+import oracle.odi.domain.project.OdiProject
+import oracle.odi.domain.project.OdiFolder
+import oracle.odi.domain.model.OdiDataStore
+import oracle.odi.domain.model.finder.IOdiDataStoreFinder
+import oracle.odi.domain.project.finder.IOdiProjectFinder
+import oracle.odi.core.persistence.transaction.support.DefaultTransactionDefinition
+
+// --- KONFIGURACE ---
+def targetProjectCode = "BICPR_BT_DWH"
+def targetFolderName = "ATACCAMA_ONE"
+def ikmName = "IKM Oracle IncUpd Shortcut SEQ CEZ"
+def sourceModelName = "EXT_IMPORT" // Model pro ATOT_ tabulky
+def targetModelName = "OWNBT_INT"  // Model pro INT_ATO_ tabulky
+
+// Definice [Název Mappingu, Zdrojová Tabulka (EXT), Cílová Tabulka (INT)]
+def mapList = [
+    ["EXT_ITBTDQ_DI", "ATOT_BTDQ", "INT_ATO_BTDQ"],
+    ["EXT_ITBTER_DI", "ATOT_BTER", "INT_ATO_BTER"],
+    ["EXT_ITBTSA_DI", "ATOT_BTSA", "INT_ATO_BTSA"],
+    ["EXT_ITCIAT_DI", "ATOT_CIAT", "INT_ATO_CIAT"],
+    ["EXT_ITCIIA_DI", "ATOT_CIIA", "INT_ATO_CIIA"],
+    ["EXT_ITCITA_DI", "ATOT_CITA", "INT_ATO_CITA"],
+    ["EXT_ITCITE_DI", "ATOT_CITE", "INT_ATO_CITE"],
+    ["EXT_ITCLCS_DI", "ATOT_CLCS", "INT_ATO_CLCS"],
+    ["EXT_ITCLIS_DI", "ATOT_CLIS", "INT_ATO_CLIS"],
+    ["EXT_ITDQRA_DI", "ATOT_DQRA", "INT_ATO_DQRA"],
+    ["EXT_ITDQRI_DI", "ATOT_DQRI", "INT_ATO_DQRI"],
+    ["EXT_ITDQRL_DI", "ATOT_DQRL", "INT_ATO_DQRL"],
+    ["EXT_ITDQRR_DI", "ATOT_DQRR", "INT_ATO_DQRR"],
+    ["EXT_ITDQTI_DI", "ATOT_DQTI", "INT_ATO_DQTI"],
+    ["EXT_ITLOC0_DI", "ATOT_LOC0", "INT_ATO_LOC0"],
+    ["EXT_ITLOC1_DI", "ATOT_LOC1", "INT_ATO_LOC1"],
+    ["EXT_ITLOC2_DI", "ATOT_LOC2", "INT_ATO_LOC2"],
+    ["EXT_ITLOC3_DI", "ATOT_LOC3", "INT_ATO_LOC3"],
+    ["EXT_ITLOC4_DI", "ATOT_LOC4", "INT_ATO_LOC4"],
+    ["EXT_ITMETR_DI", "ATOT_METR", "INT_ATO_METR"],
+    ["EXT_ITPROF_DI", "ATOT_PROF", "INT_ATO_PROF"],
+    ["EXT_ITPROL_DI", "ATOT_PROL", "INT_ATO_PROL"],
+    ["EXT_ITRCAT_DI", "ATOT_RCAT", "INT_ATO_RCAT"],
+    ["EXT_ITRTIN_DI", "ATOT_RTIN", "INT_ATO_RTIN"],
+    ["EXT_ITRULE_DI", "ATOT_RULE", "INT_ATO_RULE"],
+    ["EXT_ITSEMF_DI", "ATOT_SEMF", "INT_ATO_SEMF"],
+    ["EXT_ITSOUR_DI", "ATOT_SOUR", "INT_ATO_SOUR"],
+    ["EXT_ITSTEW_DI", "ATOT_STEW", "INT_ATO_STEW"],
+    ["EXT_ITSUBT_DI", "ATOT_SUBT", "INT_ATO_SUBT"],
+    ["EXT_ITSVPM_DI", "ATOT_SVPM", "INT_ATO_SVPM"],
+    ["EXT_ITSVRF_DI", "ATOT_SVRF", "INT_ATO_SVRF"],
+    ["EXT_ITSVUF_DI", "ATOT_SVUF", "INT_ATO_SVUF"],
+    ["EXT_ITTASK_DI", "ATOT_TASK", "INT_ATO_TASK"],
+    ["EXT_ITTIAT_DI", "ATOT_TIAT", "INT_ATO_TIAT"],
+    ["EXT_ITTREL_DI", "ATOT_TREL", "INT_ATO_TREL"],
+    ["EXT_ITVACM_DI", "ATOT_VACM", "INT_ATO_VACM"],
+    ["EXT_ITVBDO_DI", "ATOT_VBDO", "INT_ATO_VBDO"],
+    ["EXT_ITVCAT_DI", "ATOT_VCAT", "INT_ATO_VCAT"],
+    ["EXT_ITVCON_DI", "ATOT_VCON", "INT_ATO_VCON"],
+    ["EXT_ITVDQC_DI", "ATOT_VDQC", "INT_ATO_VDQC"],
+    ["EXT_ITVLDM_DI", "ATOT_VLDM", "INT_ATO_VLDM"],
+    ["EXT_ITVMET_DI", "ATOT_VMET", "INT_ATO_VMET"],
+    ["EXT_ITVQOP_DI", "ATOT_VQOP", "INT_ATO_VQOP"],
+    ["EXT_ITVRCE_DI", "ATOT_VRCE", "INT_ATO_VRCE"],
+    ["EXT_ITWRKS_DI", "ATOT_WRKS", "INT_ATO_WRKS"]
+]
+// -------------------
+
+def findFolderRecursive(parent, folderName) {
+    def subFolders = (parent instanceof OdiProject) ? parent.getFolders() : parent.getSubFolders()
+    def found = subFolders.find { it.getName().equalsIgnoreCase(folderName) }
+    if (found) return found
+    for (subFolder in subFolders) {
+        def result = findFolderRecursive(subFolder, folderName)
+        if (result) return result
+    }
+    return null
+}
+
+def tm = odiInstance.getTransactionManager()
+def t_man = odiInstance.getTransactionalEntityManager()
+def txn = tm.getTransaction(new DefaultTransactionDefinition())
+
+try {
+    def projFinder = (IOdiProjectFinder) t_man.getFinder(OdiProject.class)
+    def dsFinder = (IOdiDataStoreFinder) t_man.getFinder(OdiDataStore.class)
+    def project = projFinder.findByCode(targetProjectCode)
+    def folder = findFolderRecursive(project, targetFolderName)
+    def targetIKM = project.getIKMs().find { it.getName() == ikmName }
+    if (targetIKM == null) { println "VAROVÁNÍ: IKM ${ikmName} nenalezen" }
+
+    if (!folder) { println "CHYBA: Složka ${targetFolderName} nenalezena"; return }
+
+    mapList.each { row ->
+        def mapName = row[0]; def srcName = row[1]; def tgtName = row[2]
+        println "--- Zpracovávám: ${mapName} ---"
+
+        try {
+            def map = folder.getMappings().find { it.getName() == mapName }
+            if (map == null) {
+                println "    [INFO] Mapping ${mapName} neexistuje, vytvářím nový"
+                map = new Mapping(mapName, folder)
+            } else {
+                println "    [INFO] Mapping ${mapName} nalezen, čistím komponenty"
+                if (map.getComponents().size() > 0) {
+                    map.getComponents().each { map.removeComponent(it) }
+                }
+            }
+
+            def srcDS = dsFinder.findByName(srcName, sourceModelName).iterator().next()
+            def tgtDS = dsFinder.findByName(tgtName, targetModelName).iterator().next()
+
+            def srcComp = new DatastoreComponent(map, srcDS)
+            def tgtComp = new DatastoreComponent(map, tgtDS)
+            map.addComponent(srcComp)
+            map.addComponent(tgtComp)
+            srcComp.getOutputConnectorPoints()[0].connectTo(tgtComp.getInputConnectorPoints()[0])
+
+            // LOGIKA MAPPINGU ATRIBUTŮ (Prefixy IT_ vs ATOT_)
+            tgtComp.getAttributes().each { targetAttr ->
+                def tNameUpper = targetAttr.getName().toUpperCase()
+                
+                if (tNameUpper.contains("EFFECTIVE_DATE")) {
+                    targetAttr.setExpressionText("#BICPR_BT_DWH.VAR_EFFECTIVE_DATE")
+                    targetAttr.setPropertyValue("EXECUTE_ON_HINT", "TARGET")
+                    
+                    // Nastavení Insert/Update - toto funguje
+                    targetAttr.setInsertIndicator(true)
+                    targetAttr.setUpdateIndicator(true)
+                    println "    [UD1] Nastaveno Insert/Update pro ${targetAttr.getName()}"
+                    
+                    // POZNÁMKA: UD1 (User Defined Flag 1) nelze nastavit přes Groovy API
+                    // ve vaší verzi ODI. Je nutné nastavit manuálně:
+                    // 1. Otevřete mapping v ODI Studio
+                    // 2. Přejděte na záložku "Logical"
+                    // 3. Najděte atribut EFFECTIVE_DATE
+                    // 4. Zaškrtněte "UD 1" checkbox
+                    // 5. Uložte mapping
+                } 
+                else if (tNameUpper.contains("CREATED_DATE")) {
+                    targetAttr.setExpressionText("SYSDATE")
+                    targetAttr.setPropertyValue("EXECUTE_ON_HINT", "TARGET")
+                } 
+                else if (true) {
+                    // Odstranění prefixů pro párování (např. ITBTDQ_ID vs ATOT_BTDQ_ID)
+                    // Zde se pokusí najít shodu podle zbytku názvu za prvním podtržítkem
+                    def targetSuffix = tNameUpper.contains("_") ? tNameUpper.substring(tNameUpper.indexOf("_")) : tNameUpper
+                    def sAttr = srcComp.getAttributes().find { 
+                        def sName = it.getName().toUpperCase()
+                        def sourceSuffix = sName.contains("_") ? sName.substring(sName.indexOf("_")) : sName
+                        return targetSuffix == sourceSuffix
+                    }
+                    
+                    if (sAttr) {
+                        targetAttr.setExpressionText(srcComp.getName() + "." + sAttr.getName())
+                    }
+                }
+            }
+
+            // FYZICKÁ ÚROVEŇ (IKM a Parametry)
+            map.getPhysicalDesigns().each { phys ->
+                phys.getPhysicalNodes().each { node ->
+                    if (node.isTargetNode()) {
+                        if (targetIKM) node.setIKM(targetIKM)
+
+                        // POZNÁMKA: UD1 na fyzické úrovni nelze nastavit přes Groovy API
+                        // IKM option "DROP_PARTITION_BY_CONDITION_UD1" je nastaven výše
+
+                        // Nastavení parametrů IKM dle projektu ADAPTACE
+                        node.getIKMOptionValues().each { opt ->
+                            def n = opt.getName()
+                            if (n == "UPDATE" || n == "STATIC_CONTROL" || n == "TRUNCATE") opt.setValue(false)
+                            if (n == "DROP_PARTITION_BY_CONDITION_UD1" || n == "INSERT" || n == "COMMIT") opt.setValue(true)
+                        }
+                    }
+                }
+            }
+            t_man.persist(map)
+            println "    [OK] Mapping uložen"
+        } catch (Exception ex) {
+            println "    [CHYBA] ${ex.message}"
+        }
+    }
+    tm.commit(txn)
+    println "--- HOTOVO ---"
+} catch (e) {
+    if (txn) tm.rollback(txn)
+    e.printStackTrace()
+}

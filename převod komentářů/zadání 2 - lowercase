@@ -1,0 +1,1775 @@
+﻿--|vzor
+--|exec sp_addextendedproperty @name = N'MS_Description', @value = 'Metasloupec - identifikátor řádku (autoinkrement)',
+--|@level0type = N'schema', @level0name = 'robotlog', 
+--|@level1type = N'table',  @level1name = 'rat_onl_elfa1', 
+--|@level2type = N'column', @level2name = 'selfa1_id';
+--|
+--|Instrukce:
+--|Pro komentáře sloupcové bude použito 2 levlů, pro komentář tabulkový bude použit jen level=1
+--|Atributy se sufixem "type" jsou neměnné konstanty; hodnota N'MS_Description' je taktéž konstanta; ostatní atributy se dle kontextu dynamicky mění.
+--|----------------------------------------------------------------------------
+--|----------------------------------------------------------------------------
+
+
+
+use CPRTRPALOG
+go
+
+-----------------------------------
+-- tabulka ROBOTLOG.RWT_STATC --
+-----------------------------------
+
+-- Komentáře ke sloupcům RWT_STATC
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'ID statusu', 
+@level0type = N'schema', @level0name = 'robotlog', 
+@level1type = N'table', @level1name = 'rwt_statc', 
+@level2type = N'column', @level2name = 'sstatc_id';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Popis statusu zpracování', 
+@level0type = N'schema', @level0name = 'robotlog', 
+@level1type = N'table', @level1name = 'rwt_statc', 
+@level2type = N'column', @level2name = 'sstatc_popis';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'robotlog', 
+@level1type = N'table', @level1name = 'rwt_statc', 
+@level2type = N'column', @level2name = 'tstatc_created_date';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'robotlog', 
+@level1type = N'table', @level1name = 'rwt_statc', 
+@level2type = N'column', @level2name = 'tstatc_created_process';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'schema', @level0name = 'robotlog', 
+@level1type = N'table', @level1name = 'rwt_statc', 
+@level2type = N'column', @level2name = 'tstatc_modified_date';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'schema', @level0name = 'robotlog', 
+@level1type = N'table', @level1name = 'rwt_statc', 
+@level2type = N'column', @level2name = 'tstatc_modified_process';
+
+-- Komentář k tabulce RWT_STATC
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník statusů zpracování', 
+@level0type = N'schema', @level0name = 'robotlog', 
+@level1type = N'table', @level1name = 'rwt_statc';
+
+
+-----------------------------------
+-- tabulka ROBOTLOG.RWT_SOURC --
+-----------------------------------
+
+-- Komentáře ke sloupcům RWT_SOURC
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'schema', @level0name = 'robotlog', 
+@level1type = N'table', @level1name = 'rwt_sourc', 
+@level2type = N'column', @level2name = 'ssourc_src_sys_id';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Název/popis zdrojového systému', 
+@level0type = N'schema', @level0name = 'robotlog', 
+@level1type = N'table', @level1name = 'rwt_sourc', 
+@level2type = N'column', @level2name = 'ssourc_src_sys_popis';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'robotlog', 
+@level1type = N'table', @level1name = 'rwt_sourc', 
+@level2type = N'column', @level2name = 'tsourc_created_date';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'robotlog', 
+@level1type = N'table', @level1name = 'rwt_sourc', 
+@level2type = N'column', @level2name = 'tsourc_created_process';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'schema', @level0name = 'robotlog', 
+@level1type = N'table', @level1name = 'rwt_sourc', 
+@level2type = N'column', @level2name = 'tsourc_modified_date';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'schema', @level0name = 'robotlog', 
+@level1type = N'table', @level1name = 'rwt_sourc', 
+@level2type = N'column', @level2name = 'tsourc_modified_process';
+
+-- Komentář k tabulce RWT_SOURC
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník zdrojových systémů', 
+@level0type = N'schema', @level0name = 'robotlog', 
+@level1type = N'table', @level1name = 'rwt_sourc';
+
+
+-----------------------------------
+-- tabulka ROBOTLOG.RWT_SEMFR --
+-----------------------------------
+
+-- Komentáře ke sloupcům RWT_SEMFR
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum platnosti poslední dávky vst. dat.', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_SEMFR', 
+@level2type = N'column', @level2name = 'SSEMFR_EFFECTIVE_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Status semaforu: 0 - volno; 1 - stop, pracuje se', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_SEMFR', 
+@level2type = N'column', @level2name = 'SSEMFR_STATUS_INPUT_INSERT';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Status semaforu: 0 - volno; 1 - stop, pracuje se', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_SEMFR', 
+@level2type = N'column', @level2name = 'SSEMFR_STATUS_INPUT_READ';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Status semaforu: 0 - volno; 1 - stop, pracuje se', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_SEMFR', 
+@level2type = N'column', @level2name = 'SSEMFR_STATUS_QUEUE_INSERT';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Status semaforu: 0 - volno; 1 - stop, pracuje se', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_SEMFR', 
+@level2type = N'column', @level2name = 'SSEMFR_STATUS_QUEUE_READ';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení procesní skupiny', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_SEMFR', 
+@level2type = N'column', @level2name = 'FPROCT_TYP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_SEMFR', 
+@level2type = N'column', @level2name = 'TSEMFR_CREATED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_SEMFR', 
+@level2type = N'column', @level2name = 'TSEMFR_CREATED_PROCESS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_SEMFR', 
+@level2type = N'column', @level2name = 'TSEMFR_MODIFIED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_SEMFR', 
+@level2type = N'column', @level2name = 'TSEMFR_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RWT_SEMFR
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Semafor pro řízení procesů všech vst. tabulek.', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_SEMFR';
+
+
+-----------------------------------
+-- tabulka ROBOTLOG.RWT_RIZSM --
+-----------------------------------
+
+-- Komentáře ke sloupcům RWT_RIZSM
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení procesní skupiny', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_RIZSM', 
+@level2type = N'column', @level2name = 'FPROCT_TYP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Název spouštěnného výkonného podprogramu', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_RIZSM', 
+@level2type = N'column', @level2name = 'SRIZSM_PROCES';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Logické označení skupiny objektů.', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_RIZSM', 
+@level2type = N'column', @level2name = 'SRIZSM_LOG_SKUPINA';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Kategorie pro lokální rozčlenění', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_RIZSM', 
+@level2type = N'column', @level2name = 'SRIZSM_KATEGORIE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_RIZSM', 
+@level2type = N'column', @level2name = 'TRIZSM_CREATED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_RIZSM', 
+@level2type = N'column', @level2name = 'TRIZSM_CREATED_PROCESS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_RIZSM', 
+@level2type = N'column', @level2name = 'TRIZSM_MODIFIED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_RIZSM', 
+@level2type = N'column', @level2name = 'TRIZSM_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RWT_RIZSM
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metadata pro řízení automatického spouštění činností (přes semafor).', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_RIZSM';
+
+
+-----------------------------------
+-- tabulka ROBOTLOG.RWT_PROCT --
+-----------------------------------
+
+-- Komentáře ke sloupcům RWT_PROCT
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení procesní skupiny', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_PROCT', 
+@level2type = N'column', @level2name = 'SPROCT_TYP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Popis dané procesní skupiny', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_PROCT', 
+@level2type = N'column', @level2name = 'SPROCT_POPIS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_PROCT', 
+@level2type = N'column', @level2name = 'TPROCT_CREATED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_PROCT', 
+@level2type = N'column', @level2name = 'TPROCT_CREATED_PROCESS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_PROCT', 
+@level2type = N'column', @level2name = 'TPROCT_MODIFIED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_PROCT', 
+@level2type = N'column', @level2name = 'TPROCT_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RWT_PROCT
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník procesních skupin', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_PROCT';
+
+
+-----------------------------------
+-- tabulka ROBOTLOG.RWT_LOGPZ --
+-----------------------------------
+
+-- Komentáře ke sloupcům RWT_LOGPZ
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'ID záznamu', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'column', @level2name = 'SLOGPZ_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Kategorie záznamu.', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'column', @level2name = 'SLOGPZ_KATEGORIE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Popis záznamu', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'column', @level2name = 'SLOGPZ_POPIS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Název tabulky', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'column', @level2name = 'SLOGPZ_TABULKA';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Název programu (procedury/funkce), který provedl zápis.', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'column', @level2name = 'SLOGPZ_PROGRAM';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'column', @level2name = 'TLOGPZ_CREATED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'column', @level2name = 'TLOGPZ_CREATED_PROCESS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'column', @level2name = 'TLOGPZ_MODIFIED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_LOGPZ', 
+@level2type = N'column', @level2name = 'TLOGPZ_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RWT_LOGPZ
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Log činnosti (provozní log)', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_LOGPZ';
+
+
+-----------------------------------
+-- tabulka ROBOTLOG.RWT_ENTIT --
+-----------------------------------
+
+-- Komentáře ke sloupcům RWT_ENTIT
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Kod entity', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_ENTIT', 
+@level2type = N'column', @level2name = 'SENTIT_KOD';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Popis entity zpracování', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_ENTIT', 
+@level2type = N'column', @level2name = 'SENTIT_POPIS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Zda je umožněn násobný výskyt této entity pro dané ID zdrojvé tabulky (RQT_LOGRD.flogro_id)', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_ENTIT', 
+@level2type = N'column', @level2name = 'SENTIT_NASOBNY_VYSKYT';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Význam hodnoty v poli RQT_LOGRD.slogrd_entity_id', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_ENTIT', 
+@level2type = N'column', @level2name = 'SENTIT_VYNAM_ENTITY_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_1', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_ENTIT', 
+@level2type = N'column', @level2name = 'SENTIT_VYNAM_VALUE1';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_2', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_ENTIT', 
+@level2type = N'column', @level2name = 'SENTIT_VYNAM_VALUE2';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_3', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_ENTIT', 
+@level2type = N'column', @level2name = 'SENTIT_VYNAM_VALUE3';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_4', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_ENTIT', 
+@level2type = N'column', @level2name = 'SENTIT_VYNAM_VALUE4';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Význam hodnoty v poli RQT_LOGRD.slogrd_action_value_5', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_ENTIT', 
+@level2type = N'column', @level2name = 'SENTIT_VYNAM_VALUE5';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_ENTIT', 
+@level2type = N'column', @level2name = 'TENTIT_CREATED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_ENTIT', 
+@level2type = N'column', @level2name = 'TENTIT_CREATED_PROCESS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_ENTIT', 
+@level2type = N'column', @level2name = 'TENTIT_MODIFIED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_ENTIT', 
+@level2type = N'column', @level2name = 'TENTIT_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RWT_ENTIT
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník entit v detailu zpracování', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RWT_ENTIT';
+
+
+---------------------------------------
+-- tabulka ROBOTLOG.RQT_VAL_KONTK --
+---------------------------------------
+
+-- Komentáře ke sloupcům RQT_VAL_KONTK
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - identifikátor řádku (autoinkrement)', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - datum archivace', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_EFFECTIVE_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_SRC_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'FSOURC_SRC_SYS_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'FPROCT_TYP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Obchodní partner', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_PARTNER';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'SAP GUID partnera', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_PARTNER_GUID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'id entity (př. mail, telefon....)', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_ENTITY_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'ID klíče SAP kontaktu', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_ENTITY_KEY';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní/ostatní kontakt SAP', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_ENTITY_TYPE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Současná hodnota kontaktu', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_VALUE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Validovaná hodnota kontaktu', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_CIO_VALUE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Hodnota skore', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_SCORE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník důvěrihodnosti', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'FAUTHL_LEVEL_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ změnové operace', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_OPERATION_LIST';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'TKONTK_CREATED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'TKONTK_CREATED_PROCESS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'TKONTK_MODIFIED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'TKONTK_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RQT_VAL_KONTK
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Vst. tabulka - kontakty', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK';
+
+
+---------------------------------------
+-- tabulka ROBOTLOG.RQT_ONL_ELFA1 --
+---------------------------------------
+
+-- Komentáře ke sloupcům RQT_ONL_ELFA1
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - identifikátor řádku (autoinkrement)', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum aktuálnosti dat', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_EFFECTIVE_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_SRC_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'FSOURC_SRC_SYS_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'FPROCT_TYP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Obchodní partner', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Druh zákazníka', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_TYP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Křestní jméno', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_JMENO';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Příjmení', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_PRIJMENI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Oslovení v 5. pádě', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_OSLOVENI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Název organizace', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_NAZEV_SPOL';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Datum narození', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_DAT_NAROZ';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Datum úmrtí', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_DAT_UMRTI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní email adresa pro OP', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_EMAIL_ADR';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Je email zasmluvněný?', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_EMAIL_ZASML';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní mobil pro OP', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_MOBIL_ADR';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Je mobil zasmluvněný?', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_MOBIL_ZASML';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'GDPR souhlas', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_GDPR';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín oslovení pro ELFA', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ELFA_TER_OSLOVENI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín převodu na ELFA', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ELFA_TER_PREVOD';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum posledního oslovení OP se změnou ceny', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ZMCN_OSLOVENI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Status registrace do ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_STATUS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Potvrzení kontaktních údajů v ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_POTVRZ_KU';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum potvrzení kontaktních údajů v ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_POTVRZ_KU_DAT';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'První přihlášení do ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_PRIHL_PRVNI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Poslední přihlášení do ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_PRIHL_POSL';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - ulice', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_ULICE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - č. popisné', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_CP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - č. orientační', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_CO';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - PSČ', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_PSC';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - obec', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_OBEC';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet bonitních bodů', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_BONITA';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet bonitních bodů MVNO', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_BONITA_MVNO';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet aktivních obchodních dohod', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OD_POCET_AKT';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Mail na obch. dohodě', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OD_ELFA_MAIL';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín fakturace dle OJ.', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_FA_TERMIN';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ zpracování pro RPA', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_USE_CASE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'TELFA1_CREATED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'TELFA1_CREATED_PROCESS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'TELFA1_MODIFIED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'TELFA1_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RQT_ONL_ELFA1
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Frontovací tabulka ELFA - oslovení, fakturace', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_ONL_ELFA1';
+
+
+-----------------------------------
+-- tabulka ROBOTLOG.RQT_LOGRO --
+-----------------------------------
+
+-- Komentáře ke sloupcům RQT_LOGRO
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Id záznamu', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRO', 
+@level2type = N'column', @level2name = 'SLOGRO_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRO', 
+@level2type = N'column', @level2name = 'SLOGRO_SRC_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRO', 
+@level2type = N'column', @level2name = 'FSOURC_SRC_SYS_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRO', 
+@level2type = N'column', @level2name = 'FPROCT_TYP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Výsledek zpracování (status case).', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRO', 
+@level2type = N'column', @level2name = 'FSTATC_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Byznys stav (status business)', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRO', 
+@level2type = N'column', @level2name = 'FSTATB_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Důvod vytřízení (case class)', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRO', 
+@level2type = N'column', @level2name = 'SLOGRO_STATD';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRO', 
+@level2type = N'column', @level2name = 'TLOGRO_CREATED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRO', 
+@level2type = N'column', @level2name = 'TLOGRO_CREATED_PROCESS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRO', 
+@level2type = N'column', @level2name = 'TLOGRO_MODIFIED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRO', 
+@level2type = N'column', @level2name = 'TLOGRO_MODIFIED_PROCESS';
+
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Logovací tabulka výsledků činnosti robotů', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRO';
+
+
+-----------------------------------
+-- tabulka ROBOTLOG.RQT_LOGRD --
+-----------------------------------
+-- Komentář k tabulce RQT_LOGRD
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Id záznamu', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'SLOGRD_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Id řádku z tab. RQT_LOGRO', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'FLOGRO_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Úspěšně dokončeno/spadlo na chybu/???', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'SLOGRD_STATUS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum provedení akce v systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'SLOGRD_ACTION_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Zpracovávaná entita', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'FENTIT_KOD';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Identifikace entity', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'SLOGRD_ENTITY_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Provedená akce - typ', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'SLOGRD_ACTION_TYPE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Provedená akce - hodnota 1', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'SLOGRD_ACTION_VALUE_1';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Provedená akce - hodnota 2', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'SLOGRD_ACTION_VALUE_2';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Provedená akce - hodnota 3', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'SLOGRD_ACTION_VALUE_3';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Provedená akce - hodnota 4', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'SLOGRD_ACTION_VALUE_4';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Provedená akce - hodnota 5', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'SLOGRD_ACTION_VALUE_5';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'TLOGRD_CREATED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'TLOGRD_CREATED_PROCESS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'TLOGRD_MODIFIED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD', 
+@level2type = N'column', @level2name = 'TLOGRD_MODIFIED_PROCESS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Logovací tabulka výsledků činnosti robotů', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_LOGRD';
+
+
+---------------------------------------
+-- tabulka ROBOTLOG.RIT_VAL_KONTK --
+---------------------------------------
+-- Komentář k tabulce RIT_VAL_KONTK
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - identifikátor řádku (autoinkrement)', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum aktuálnosti dat', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_EFFECTIVE_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_SRC_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'FSOURC_SRC_SYS_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'FPROCT_TYP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Obchodní partner', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_PARTNER';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'SAP GUID partnera', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_PARTNER_GUID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'id entity (př. mail, telefon....)', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_ENTITY_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'ID klíče SAP kontaktu', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_ENTITY_KEY';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní/ostatní kontakt SAP', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_ENTITY_TYPE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Současná hodnota kontaktu', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_VALUE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Validovaná hodnota kontaktu', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_CIO_VALUE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Hodnota skore', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_SCORE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník důvěrihodnosti', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'FAUTHL_LEVEL_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ změnové operace', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_OPERATION_LIST';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'TKONTK_CREATED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'TKONTK_CREATED_PROCESS';
+
+-- Komentář k tabulce RIT_VAL_KONTK
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Vst. tabulka - kontakty', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_VAL_KONTK';
+
+
+---------------------------------------
+-- tabulka ROBOTLOG.RIT_ONL_ELFA1 --
+---------------------------------------
+
+-- Komentáře ke sloupcům RIT_ONL_ELFA1
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - identifikátor řádku (autoinkrement)', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum aktuálnosti dat', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_EFFECTIVE_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_SRC_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'FSOURC_SRC_SYS_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'FPROCT_TYP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Obchodní partner', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Druh zákazníka', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_TYP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Křestní jméno', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_JMENO';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Příjmení', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_PRIJMENI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Oslovení v 5. pádě', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_OSLOVENI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Název organizace', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_NAZEV_SPOL';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Datum narození', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_DAT_NAROZ';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Datum úmrtí', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_DAT_UMRTI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní email adresa pro OP', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_EMAIL_ADR';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Je email zasmluvněný?', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_EMAIL_ZASML';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní mobil pro OP', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_MOBIL_ADR';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Je mobil zasmluvněný?', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_MOBIL_ZASML';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'GDPR souhlas', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_GDPR';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín oslovení pro ELFA', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ELFA_TER_OSLOVENI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín převodu na ELFA', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ELFA_TER_PREVOD';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum posledního oslovení OP se změnou ceny', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ZMCN_OSLOVENI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Status registrace do ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_STATUS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Potvrzení kontaktních údajů v ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_POTVRZ_KU';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum potvrzení kontaktních údajů v ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_POTVRZ_KU_DAT';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'První přihlášení do ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_PRIHL_PRVNI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Poslední přihlášení do ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_PRIHL_POSL';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - ulice', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_ULICE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - č. popisné', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_CP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - č. orientační', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_CO';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - PSČ', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_PSC';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - obec', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_OBEC';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet bonitních bodů', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_BONITA';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet bonitních bodů MVNO', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_BONITA_MVNO';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet aktivních obchodních dohod', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OD_POCET_AKT';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Mail na obch. dohodě', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OD_ELFA_MAIL';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín fakturace dle OJ', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_FA_TERMIN';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ zpracování pro RPA', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_USE_CASE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'TELFA1_CREATED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'TELFA1_CREATED_PROCESS';
+
+-- Komentář k tabulce RIT_ONL_ELFA1
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Vst. tabulka ELFA - oslovení, fakturace', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RIT_ONL_ELFA1';
+
+
+---------------------------------------
+-- tabulka ROBOTLOG.RQT_VAL_KONTK --
+---------------------------------------
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - identifikátor řádku (autoinkrement)', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - datum archivace', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_EFFECTIVE_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_SRC_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'FSOURC_SRC_SYS_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'FPROCT_TYP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Obchodní partner', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_PARTNER';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'SAP GUID partnera', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_PARTNER_GUID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'id entity (př. mail, telefon....)', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_ENTITY_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'ID klíče SAP kontaktu', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_ENTITY_KEY';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní/ostatní kontakt SAP', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_ENTITY_TYPE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Současná hodnota kontaktu', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_VALUE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Validovaná hodnota kontaktu', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_CIO_VALUE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Hodnota skore', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_SCORE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Číselník důvěrihodnosti', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'FAUTHL_LEVEL_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ změnové operace', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'SKONTK_OPERATION_LIST';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'TKONTK_CREATED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'TKONTK_CREATED_PROCESS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'TKONTK_MODIFIED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK', 
+@level2type = N'column', @level2name = 'TKONTK_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RQT_VAL_KONTK
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Vst. tabulka - kontakty', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RQT_VAL_KONTK';
+
+
+---------------------------------------
+-- tabulka ROBOTLOG.RAT_ONL_ELFA1 --
+---------------------------------------
+
+-- Komentáře ke sloupcům RAT_ONL_ELFA1
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum aktuálnosti dat', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_EFFECTIVE_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení řádku ve zdroj. systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_SRC_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Označení zdroj. systému', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'FSOURC_SRC_SYS_ID';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Procesní skupina', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'FPROCT_TYP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Obchodní partner', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Druh zákazníka', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_TYP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Křestní jméno', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_JMENO';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Příjmení', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_PRIJMENI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Oslovení v 5. pádě', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_OSLOVENI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Název organizace', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_NAZEV_SPOL';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Datum narození', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_DAT_NAROZ';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'OP: Datum úmrtí', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OP_DAT_UMRTI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní email adresa pro OP', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_EMAIL_ADR';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Je email zasmluvněný?', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_EMAIL_ZASML';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Standardní mobil pro OP', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_MOBIL_ADR';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Je mobil zasmluvněný?', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_MOBIL_ZASML';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'GDPR souhlas', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_GDPR';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín oslovení pro ELFA', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ELFA_TER_OSLOVENI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín převodu na ELFA', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ELFA_TER_PREVOD';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum posledního oslovení OP se změnou ceny', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ZMCN_OSLOVENI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Status registrace do ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_STATUS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Potvrzení kontaktních údajů v ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_POTVRZ_KU';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Datum potvrzení kontaktních údajů v ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_POTVRZ_KU_DAT';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'První přihlášení do ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_PRIHL_PRVNI';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Poslední přihlášení do ČOL', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_COL_PRIHL_POSL';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - ulice', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_ULICE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - č. popisné', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_CP';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - č. orientační', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_CO';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - PSČ', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_PSC';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Trv. adresa OP - obec', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_ADRTRV_OBEC';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet bonitních bodů', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_BONITA';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet bonitních bodů MVNO', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_BONITA_MVNO';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Počet aktivních obchodních dohod', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OD_POCET_AKT';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Mail na obch. dohodě', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_OD_ELFA_MAIL';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Termín fakturace dle OJ.', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_FA_TERMIN';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ zpracování pro RPA', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_USE_CASE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Výsledek zpracování (status case). Z tabulky RQT_LOGRO.', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'SELFA1_STATUSC';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Typ archivovaných dat. Buď RIT = ze vstupu, nebo RQT = z výstupu/výsledku', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'TELFA1_ARCHIVE_TYPE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - datum archivace', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'TELFA1_ARCHIVED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno na zdroji dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'TELFA1_IMPORT_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořeno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'TELFA1_CREATED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - vytvořil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'TELFA1_CREATED_PROCESS';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změněno dne', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'TELFA1_MODIFIED_DATE';
+
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Metasloupec - změnil proces/uživatel', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1', 
+@level2type = N'column', @level2name = 'TELFA1_MODIFIED_PROCESS';
+
+-- Komentář k tabulce RAT_ONL_ELFA1
+exec sp_addextendedproperty 
+@name = N'MS_Description', @value = 'Archiv vst. tabulky ELFA - oslovení, fakturace', 
+@level0type = N'schema', @level0name = 'ROBOTLOG', 
+@level1type = N'table', @level1name = 'RAT_ONL_ELFA1';

@@ -1,0 +1,102 @@
+import oracle.odi.domain.mapping.Mapping
+import oracle.odi.domain.mapping.finder.IMappingFinder
+import oracle.odi.domain.project.OdiProject
+import oracle.odi.domain.project.OdiFolder
+import oracle.odi.domain.project.finder.IOdiProjectFinder
+import oracle.odi.core.persistence.transaction.support.DefaultTransactionDefinition
+import oracle.odi.domain.mapping.component.ConnectorPoint
+
+// --- KONFIGURACE ---
+def targetProjectCode = "BICPR_BT_DWH"
+def targetFolderName = "ADAPTACE_25"
+// -------------------
+
+def tm = odiInstance.getTransactionManager()
+def t_man = odiInstance.getTransactionalEntityManager()
+def txn = tm.getTransaction(new DefaultTransactionDefinition())
+
+def findFolderRecursive(parent, folderName) {
+    def subFolders = (parent instanceof OdiProject) ? parent.getFolders() : parent.getSubFolders()
+    def found = subFolders.find { it.getName().equalsIgnoreCase(folderName) }
+    if (found) return found
+    for (subFolder in subFolders) {
+        def result = findFolderRecursive(subFolder, folderName)
+        if (result) return result
+    }
+    return null
+}
+
+try {
+    def projFinder = (IOdiProjectFinder) t_man.getFinder(OdiProject.class)
+    def project = projFinder.findByCode(targetProjectCode)
+    def folder = findFolderRecursive(project, targetFolderName)
+
+    if (folder == null) {
+        println "CHYBA: Složka nenalezena."
+        return
+    }
+
+    folder.getMappings().each { map ->
+        if (!map.getName().startsWith("EXT_")) return
+        println "--- Opravuji a propojuji: ${map.getName()} ---"
+
+        def targetComp = map.getComponents().find { it.getName().startsWith("INT_") }
+        def sourceComp = map.getComponents().find { it.getName().startsWith("A25_") || it.getName().startsWith("XT") || (it.getTypeName().contains("Datastore") && it != targetComp) }
+
+        if (targetComp != null && sourceComp != null) {
+            // 1. Zajištění fyzického propojení komponent (vytvoření "čáry")
+            def connection = targetComp.getInConnectorPoints()[0].getComponent().getMapping().getConnections().find { 
+                it.getSourceComponent() == sourceComp && it.getTargetComponent() == targetComp 
+            }
+            
+            if (connection == null) {
+                sourceComp.connectTo(targetComp)
+                println "    [CON] Vytvořeno chybějící propojení mezi ${sourceComp.getName()} a ${targetComp.getName()}"
+            }
+
+            // 2. Detekce prefixů pro mapování
+            def parts = targetComp.getName().split("_")
+            def code = parts.size() > 2 ? parts[2] : "" 
+            def currentTargetPrefix = "IT" + code + "_"
+            def currentSourcePrefix = "XT" + code + "_"
+
+            targetComp.getAttributes().each { targetAttr ->
+                def tName = targetAttr.getName()
+                def tNameUpper = tName.toUpperCase()
+                
+                // 3. Update EFFECTIVE_DATE s parametrem UD1
+                if (tNameUpper.contains("EFFECTIVE_DATE")) {
+                    targetAttr.setExpressionText("#BICPR_BT_DWH.VAR_EFFECTIVE_DATE, 'UD1'")
+                    targetAttr.setPropertyValue("EXECUTE_ON_HINT", "TARGET")
+                    println "    [META] ${tName} -> s parametrem UD1"
+                } 
+                else if (tNameUpper.contains("CREATED_DATE")) {
+                    targetAttr.setExpressionText("SYSDATE")
+                    targetAttr.setPropertyValue("EXECUTE_ON_HINT", "TARGET")
+                } 
+                else if (tNameUpper.contains("CREATED_PROCESS")) {
+                    targetAttr.setExpressionText("<%=odiRef.getSession(\"SESS_NO\")%>")
+                    targetAttr.setPropertyValue("EXECUTE_ON_HINT", "TARGET")
+                }
+                // 4. Mapování zbytku (pokud je prázdno)
+                else if ((targetAttr.getExpression() == null || targetAttr.getExpression().getText() == "") && tName.startsWith(currentTargetPrefix)) {
+                    def expectedSource = currentSourcePrefix + tName.substring(currentTargetPrefix.length())
+                    def sAttr = sourceComp.getAttributes().find { it.getName() == expectedSource }
+                    if (sAttr != null) {
+                        targetAttr.setExpressionText(sourceComp.getName() + "." + expectedSource)
+                        println "    [MAP]  ${tName} <- ${expectedSource}"
+                    }
+                }
+            }
+        }
+        t_man.persist(map)
+    }
+
+    tm.commit(txn)
+    println "--- HOTOVO ---"
+
+} catch (Exception e) {
+    if (txn != null) tm.rollback(txn)
+    println "CHYBA: " + e.getMessage()
+    e.printStackTrace()
+}
