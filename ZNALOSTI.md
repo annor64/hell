@@ -120,3 +120,18 @@ Tento soubor slouží jako centrální místo pro průběžné poznatky, rozhodn
 	- Struktura je konzistentnější a vhodnější pro skriptování.
 - Další kroky:
 	- V případě externích návazností ověřit, že odkazy/cesty používají nové názvy.
+
+### 2026-03-02 — Oddělení práce pro ČEZ
+- Oblast: Repo organizace / struktura projektu
+- Kontext: Požadavek oddělit práci pro ČEZ do samostatné kořenové oblasti.
+- Zjištění:
+	- Před změnou byly části SQL, Groovy, converty, generátor a převody komentářů rozprostřené v kořeni repozitáře.
+	- Upřesněné domény ČEZ: `ATACAMA`, `ADAPTACE`, `CX01`, `FA06`, `FLEXI`.
+- Rozhodnutí:
+	- Založena kořenová složka `CEZ/` s podstrukturou `SQL`, `GROOVY`, `CONVERTY`, `GENERATOR_DLL`, `PREVOD_KOMENTARU`.
+	- SQL domény přesunuty pod `CEZ/SQL` (včetně `ADAPTACE_01`, `ATACAMA_ONE`, `CX01`, `FA06`, `FLEXI`).
+- Dopad:
+	- Práce pro ČEZ je oddělená od ostatního obsahu repozitáře.
+	- Srozumitelnější orientace podle typu práce i domény.
+- Další kroky:
+	- Případně rozhodnout, zda `Obecne` a `SCALER` zůstávají v `CEZ/SQL`, nebo se přesunou mimo ČEZ část.
