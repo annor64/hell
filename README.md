@@ -15,6 +15,10 @@ Centrální rozcestník pro aktuální strukturu repozitáře po reorganizaci.
 - [ZNALOSTI.md](ZNALOSTI.md) — centrální knowledge base a rozhodnutí
 - [SETUP-LOG.md](SETUP-LOG.md) — dnešní setup/chat log (Docker/Portainer)
 - [RENAMES_2026-03-02.md](RENAMES_2026-03-02.md) — mapa přejmenování (old → new)
+- [CT105_RUNBOOK.md](CT105_RUNBOOK.md) — finální provozní runbook (Citrix/RDP/noVNC)
+
+## CT105 nástroje
+- [ct105_tools](ct105_tools) — kurátorovaný set skriptů pro správu a diagnostiku CT105
 
 ## Poznámka
 - Nové materiály pro ČEZ ukládat primárně pod [CEZ](CEZ).

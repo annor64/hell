@@ -11,3 +11,5 @@ __pycache__/
 
 # Local cleanup archive
 _archive/
+
+_ct105_nm_force_eth0_dns.out.txt
