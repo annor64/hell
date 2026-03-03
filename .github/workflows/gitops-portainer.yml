@@ -110,11 +110,13 @@ jobs:
           
           $summaryPath = $env:GITHUB_STEP_SUMMARY
           if (-not [string]::IsNullOrWhiteSpace($summaryPath)) {
+            $artifactUrl = "$($env:GITHUB_SERVER_URL)/$($env:GITHUB_REPOSITORY)/actions/runs/$($env:GITHUB_RUN_ID)#artifacts"
             "## Preflight Checks" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
             "" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
             "- stack_name: $($preflight.context.stackName)" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
             "- endpointId: $($preflight.context.endpointId)" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
             "- repoRevision: $($preflight.context.repoRevision)" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
+            "- artifacts: [gitops-deploy-result]($artifactUrl)" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
             "" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
             "| Check | Result |" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
             "|---|---|" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
