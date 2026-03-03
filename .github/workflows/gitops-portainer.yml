@@ -1,0 +1,86 @@
+name: GitOps Portainer Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      stack_name:
+        description: Stack name in Portainer
+        required: true
+        default: homeassistant
+      stack_file:
+        description: Path to compose file
+        required: true
+        default: gitops/stacks/homeassistant/compose.yml
+      prune:
+        description: Remove orphaned services
+        required: false
+        default: "false"
+      pull_image:
+        description: Pull image during update
+        required: false
+        default: "true"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install PyYAML
+        run: python -m pip install --upgrade pip pyyaml
+
+      - name: Validate compose yaml
+        run: |
+          python - << 'PY'
+          import pathlib, sys, yaml
+          stack_file = pathlib.Path("${{ github.event.inputs.stack_file }}")
+          if not stack_file.exists():
+              raise SystemExit(f"Missing stack file: {stack_file}")
+          with stack_file.open("r", encoding="utf-8") as f:
+              data = yaml.safe_load(f)
+          if not isinstance(data, dict) or "services" not in data:
+              raise SystemExit("Invalid compose file: missing services root")
+          print("Compose YAML validation passed")
+          PY
+
+  deploy:
+    runs-on: windows-latest
+    needs: validate
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy stack via Portainer API
+        shell: pwsh
+        env:
+          PORTAINER_BASE_URL: ${{ secrets.PORTAINER_BASE_URL }}
+          PORTAINER_ENDPOINT_ID: ${{ secrets.PORTAINER_ENDPOINT_ID }}
+          PORTAINER_API_KEY: ${{ secrets.PORTAINER_API_KEY }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:PORTAINER_BASE_URL)) { throw 'Missing secret PORTAINER_BASE_URL' }
+          if ([string]::IsNullOrWhiteSpace($env:PORTAINER_ENDPOINT_ID)) { throw 'Missing secret PORTAINER_ENDPOINT_ID' }
+          if ([string]::IsNullOrWhiteSpace($env:PORTAINER_API_KEY)) { throw 'Missing secret PORTAINER_API_KEY' }
+
+          $pruneFlag = "${{ github.event.inputs.prune }}" -eq "true"
+          $pullFlag = "${{ github.event.inputs.pull_image }}" -eq "true"
+
+          $args = @(
+            '-ExecutionPolicy', 'Bypass',
+            '-File', '.\\scripts\\deploy_portainer_stack.ps1',
+            '-StackName', "${{ github.event.inputs.stack_name }}",
+            '-StackFile', "${{ github.event.inputs.stack_file }}"
+          )
+
+          if ($pruneFlag) { $args += '-Prune' }
+          if ($pullFlag) { $args += '-PullImage' }
+
+          powershell @args
+
+      - name: Upload deploy result
+        uses: actions/upload-artifact@v4
+        with:
+          name: gitops-deploy-result
+          path: |
+            gitops/deploy-result.json
+            gitops/preflight-report.md
