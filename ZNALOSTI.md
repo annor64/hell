@@ -19,6 +19,39 @@ Tento soubor slouží jako centrální místo pro průběžné poznatky, rozhodn
 ---
 
 ## Záznamy
+### 2026-03-03 — Synchronizace KB s architekturou a strukturou repozitáře
+- Oblast: Repo údržba / znalostní báze / architektura
+- Kontext: Potřeba doplnit, co chybělo ve znalostech, a sjednotit architekturu s reálnými cestami v repozitáři.
+- Zjištění:
+	- V `CEZ_ZNALOSTI_A_SKRIPTOVANI.md` chyběly detailní runtime poznatky k launcheru `TEST_REDAT_A` (resolve verze, multi-attempt launch, post-check v `SNP_SESSION`).
+	- Architektonický dokument používal obecné cesty `stacks/...`, ale reálná implementace je v `gitops/...` a `scripts/...`.
+	- Repo už obsahuje oddělené vrstvy: `CEZ/` (data+ODI), `gitops/`+`scripts/` (deploy), `ct105_tools/` (workstation tooling).
+- Rozhodnutí:
+	- Doplnit CEZ KB o explicitní sekci „co chybělo ve znalostech“.
+	- Upravit `ARCHITEKTURA_DEPLOYMENT_FACTORY.md` na aktuální paths + přidat mapování architektura -> repozitář.
+- Dopad:
+	- Menší riziko nesouladu mezi dokumentací a implementací.
+	- Rychlejší orientace v tom, kde je datová automatizace vs deploy automatizace.
+- Další kroky:
+	- Dopsat runbook pro rollback přes SSH fallback na node HELL.
+	- Přidat pravidelný „KB sync“ checkpoint po každé významnější změně skriptů.
+
+### 2026-03-03 — ODI mapping: UD1/UD2 nelze spolehlivě nastavit přes Groovy
+- Oblast: ČEZ / ODI Groovy / ATACAMA_ONE
+- Kontext: Automatická tvorba `INT_OT*_SD` mappingů v souboru `CEZ/SQL/ATACAMA_ONE/INT_ODS_mapp`.
+- Zjištění:
+	- `Insert/Update` flagy jdou nastavovat skriptem (`setInsertIndicator`, `setUpdateIndicator`).
+	- `UD1/UD2` checkboxy na atributu (`MapAttribute`) v ODI 12.2.1 nejsou přes dostupné Groovy API spolehlivě nastavitelné.
+	- Diagnostika vrací varování typu `UD1/UD2-WARN` a nelze načíst použitelné property pro zápis.
+- Rozhodnutí:
+	- `UD1/UD2` nastavovat ručně v ODI Studio (Attributes).
+	- Ve skriptu mít `applyUdFlags = false` jako default a UD pokusy pouštět jen při experimentu.
+- Dopad:
+	- Odpadnou falešné očekávání i chybové WARNy při běžném generování mappingů.
+	- Stabilní provoz: skript řeší strukturu + Insert/Update, UD zůstává manuální krok.
+- Další kroky:
+	- Pokud bude potřeba plná automatizace UD, řešit export/import XML nebo jiný mimo-API postup.
+
 ### 2026-03-02 — Inicializace znalostní báze
 - Oblast: Repo údržba
 - Kontext: Založen centrální soubor pro znalosti.
@@ -203,3 +236,142 @@ Tento soubor slouží jako centrální místo pro průběžné poznatky, rozhodn
 	- Menší riziko pádu tasku při dlouhém automatizovaném běhu.
 - Další kroky:
 	- Pokud budou přibývat další IWR skripty, používat stejný helper jako standard.
+
+### 2026-03-03 — Cílová architektura „Deployment Factory“ (Proxmox + Portainer)
+- Oblast: Infrastruktura / Docker orchestrace / automatizace nasazení
+- Kontext: Požadavek automatizovat tvorbu a správu Docker stacků ve větším měřítku („na běžícím pásu“) s využitím existujícího Proxmox + Portainer prostředí.
+- Zjištění:
+	- Portainer se standardně neřídí přes SSH; SSH je na Docker host/VM, Portainer primárně přes REST API.
+	- V aktuálním prostředí je API login funkční, ale volání `create stack` může v některých případech viset/padat bez stabilní odpovědi.
+	- Dřívější stack (`code-server + db + wiki`) byl nasazen úspěšně, ale chybí sjednocený release workflow a service-account přístup.
+- Rozhodnutí:
+	- Zavést GitOps model: každý stack jako verzovaný manifest (`compose` + env šablona) v repozitáři.
+	- Pro API automatizaci nepoužívat osobní účet, ale service účet/API key s minimálními oprávněními.
+	- Nasazení realizovat přes „Deployment Runner“ (PowerShell/Python) běžící na stroji s jistou dostupností na Portainer i Docker host.
+	- Přidat fallback cestu: pokud Portainer create API selže, provést deploy přes SSH přímo na Docker host (`docker compose up -d`) a stav zpětně auditovat.
+	- Každé nasazení ukládat do audit logu (čas, stack, verze, endpoint, výsledek, rollback info).
+- Dopad:
+	- Reprodukovatelné, opakovatelné a auditovatelné nasazování stacků.
+	- Menší závislost na ručním klikání v Portainer UI.
+	- Rychlejší škálování na více stacků/služeb při nižším provozním riziku.
+- Další kroky:
+	- Vytvořit service API key v Portaineru a přesunout credentials mimo skripty (secret store / env).
+	- Připravit katalog stack šablon (MVP: Home Assistant + stávající workspace stack).
+	- Dopsat jednotný deploy skript (`create/update/verify/rollback`) s timeouty a pollingem stavu.
+	- Zavést minimální health-check standard po deployi (container running, endpoint dostupnost, poslední log error).
+	- Doplnit provozní runbook: „Portainer API down“, „endpoint offline“, „rollback poslední verze“.
+
+### 2026-03-03 — Upřesnění rolí CT100 vs CT105 (Proxmox)
+- Oblast: Infrastruktura / role kontejnerů
+- Kontext: Upřesnění, že orchestrace stacků se týká „druhého CT“, tj. CT `100` (nikoli CT `105`).
+- Zjištění:
+	- CT `105` je dokumentovaný jako workstation/Citrix/noVNC runtime.
+	- Pro Docker/Portainer automatizaci je cílový provozní kontejner CT `100`.
+- Rozhodnutí:
+	- V architektuře a automatizačních skriptech oddělit role:
+		- CT `100` = container platform (Docker/Portainer, deploy target).
+		- CT `105` = uživatelský pracovní runtime (Citrix/RDP/noVNC).
+	- Nové deployment runbooky a skripty směrovat primárně na CT `100`.
+- Dopad:
+	- Menší riziko nasazování stacků na nesprávný CT.
+	- Jasnější provozní odpovědnosti mezi „platform“ a „workspace“ vrstvou.
+- Další kroky:
+	- Doplnit samostatný runbook pro CT `100` (IP, síť, služby, onboot, backup).
+	- Ověřit mapování Portainer endpointId -> CT `100` v API výstupu a zapsat do KB.
+
+### 2026-03-03 — Operativní stav automatizace deploye (Home Assistant)
+- Oblast: Portainer API / SSH provoz / troubleshooting
+- Kontext: Pokus o plně automatický deploy stacku `homeassistant` bez ručního klikání v Portainer UI.
+- Zjištění:
+	- API login do Portaineru je funkční (`/api/auth`), problém vzniká při `create stack` volání (nestabilní/bez použitelné odpovědi v části běhů).
+	- Přímý SSH test na Proxmox host selhal na autentizaci: `Permission denied (publickey,password)`.
+	- Nástroj `plink` není na pracovní stanici dostupný, takže není k dispozici jednoduchý password-based non-interactive fallback.
+	- Execution policy byla nastavena správně (`CurrentUser = RemoteSigned`), blokér není v PowerShell policy.
+- Rozhodnutí:
+	- Primární cesta zůstává Portainer API, ale s robustním timeout/polling patternem.
+	- Pro emergency fallback použít deploy přes SSH na host (Docker Compose), až po potvrzení funkční SSH identity.
+	- Credentials neukládat dlouhodobě v plaintext skriptech; přejít na service API key + secret store.
+- Dopad:
+	- Je jasně identifikovaný technický blokér: chybějící funkční SSH přihlašovací cesta a nespolehlivá create API odpověď.
+	- Další automatizace je realizovatelná po doplnění identity managementu pro host/Portainer.
+- Další kroky:
+	- Ověřit a zprovoznit SSH přístup (preferovaně klíč) pro cílový provozní host/CT `100`.
+	- Vytvořit Portainer service API key a přejít z user/password flow.
+	- Zavést jednotný deploy job: `create-or-update` + `verify containers` + `rollback`.
+
+### 2026-03-03 — Implementace: jednotné místo pro secrets + GitOps CI pipeline
+- Oblast: Deployment Factory / CI/CD / bezpečnost tajných údajů
+- Kontext: Požadavek vytvořit jedno místo pro secrets a připravit GitOps pipeline pro Portainer deploye.
+- Zjištění:
+	- V repozitáři dříve chyběla standardizovaná struktura pro stack katalog, secrets a CI workflow.
+	- Potřebný je model, kde produkční secrets nejsou commitované do Gitu.
+- Rozhodnutí:
+	- Zavedena složka `gitops/` jako centrální vstup pro deployment:
+		- `gitops/stacks/homeassistant/compose.yml`
+		- `gitops/secrets/portainer.env.template`
+		- `gitops/secrets/README.md`
+		- `gitops/README.md`
+	- Přidán univerzální deploy skript `scripts/deploy_portainer_stack.ps1` (create/update + verify kontejnerů).
+	- Přidán GitHub Actions workflow `.github/workflows/gitops-portainer.yml` (validate + manual deploy přes `workflow_dispatch`).
+	- `.gitignore` doplněn o ignorování lokálních secrets (`gitops/secrets/*.env`, `*.key`, `*.secret`).
+- Dopad:
+	- Secrets mají jedno vyhrazené místo a šablony jsou oddělené od reálných hodnot.
+	- Pipeline je připravená pro řízený deploy bez ručního přepisování skriptů.
+	- Architektura je sjednocená s cílem CT100 jako deploy target platformy.
+- Další kroky:
+	- Nastavit repository secrets: `PORTAINER_API_KEY`, `PORTAINER_BASE_URL`, `PORTAINER_ENDPOINT_ID`.
+	- Otestovat `workflow_dispatch` deploy pro `homeassistant`.
+	- Přidat druhý stack do katalogu jako validační test škálovatelnosti.
+
+### 2026-03-03 — Ověření cílového deploy node (Portainer endpoint)
+- Oblast: Infrastruktura / Portainer mapování
+- Kontext: Potřeba potvrdit, zda je deploy target CT100, CT105, nebo node HELL.
+- Zjištění:
+	- Portainer API `/api/endpoints` vrací endpoint `Id=3`, `Name=local`, `URL=unix:///var/run/docker.sock`.
+	- Portainer API `/api/endpoints/3/docker/info` vrací `DockerName=hell`.
+	- CT100 je provozně určený pro Cloudflare tunnel; CT105 je workstation runtime.
+- Rozhodnutí:
+	- Oficiální deploy target pro stacky je node `HELL` (endpoint `3`), nikoli CT100/CT105.
+	- CT100 držet jako tunnel vrstvu, CT105 jako user workspace vrstvu.
+	- Deployment Factory dokumentaci a runbooky orientovat na HELL endpoint.
+- Dopad:
+	- Uzavřené mapování cílové platformy pro GitOps deploye.
+	- Menší riziko nasazování stacků do nesprávného kontejneru/role.
+- Další kroky:
+	- Dopsat do deploy skriptů explicitní check `EndpointId=3` + `DockerName=hell` před deployem.
+	- Připravit SSH fallback pouze vůči hostu/node HELL.
+
+### 2026-03-03 — Bitwarden integrace pro secrets (čtení i zápis)
+- Oblast: Secrets management / automatizace
+- Kontext: Požadavek používat Bitwarden nejen pro čtení, ale i pro zapisování hodnot používaných deploy pipeline.
+- Zjištění:
+	- Lokální `.env` workflow je funkční, ale bez centrálního source-of-truth hrozí drift mezi stroji.
+	- `bw` CLI + `BW_SESSION` umožňuje bezpečný pull/push bez commitování reálných secrets.
+- Rozhodnutí:
+	- Deploy skript `scripts/deploy_portainer_stack.ps1` rozšířen o fallback načítání secrets z Bitwardenu (`BW_ITEM_ID` / `BW_ITEM_NAME`).
+	- Přidán sync skript `scripts/bitwarden_portainer_secret_sync.ps1`:
+		- `-Mode pull` (Bitwarden -> `.env`)
+		- `-Mode push` (`.env` -> Bitwarden create/update)
+	- Dokumentace doplněna v `gitops/README.md`, `gitops/secrets/README.md`, `gitops/secrets/portainer.env.template`.
+- Dopad:
+	- Secrets lze centrálně spravovat v Bitwardenu a zároveň synchronizovat do lokálního runtime bez ukládání do Gitu.
+	- Záloha proti výpadku lokálního `.env` a lepší reprodukovatelnost mezi prostředími.
+- Další kroky:
+	- Nastavit standardní název itemu `portainer-deploy-secrets` a ověřit první `pull`/`push` v produkčním trezoru.
+	- Pro CI používat nadále GitHub repository secrets (neinteraktivní runtime), Bitwarden ponechat jako primární správu hodnot.
+
+### 2026-03-03 — Provozní preference: exekuce přes terminál provádí agent
+- Oblast: Spolupráce / operativní workflow
+- Kontext: Uživatelská preference minimalizovat ruční spouštění příkazů a nechat terminálové kroky na agentovi.
+- Zjištění:
+	- Ruční přepisování příkazů vedlo opakovaně k chybám (vložení doprovodného textu místo čistého commandu).
+	- Agent má v tomto workspace potřebná práva pro běžnou operativu a může příkazy spouštět přímo.
+- Rozhodnutí:
+	- Default režim: terminálové kroky (diagnostika, deploy, validace) provádí agent.
+	- Uživatele zapojit pouze při interaktivních krocích, které nejdou bezpečně dokončit bez vstupu (např. OTP/login potvrzení).
+	- Pokud bude potřeba další oprávnění, agent explicitně vyžádá rozšíření privilegií.
+- Dopad:
+	- Rychlejší a stabilnější exekuce bez ručního copy/paste.
+	- Menší chybovost v provozních krocích.
+- Další kroky:
+	- V další práci preferovat přímé spuštění commandů agentem a uživateli předávat hlavně výsledky.
