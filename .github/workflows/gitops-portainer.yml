@@ -112,6 +112,10 @@ jobs:
           if (-not [string]::IsNullOrWhiteSpace($summaryPath)) {
             "## Preflight Checks" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
             "" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
+            "- stack_name: $($preflight.context.stackName)" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
+            "- endpointId: $($preflight.context.endpointId)" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
+            "- repoRevision: $($preflight.context.repoRevision)" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
+            "" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
             "| Check | Result |" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
             "|---|---|" | Out-File -FilePath $summaryPath -Encoding utf8 -Append
             foreach ($name in $required) {
