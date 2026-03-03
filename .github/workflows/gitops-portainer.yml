@@ -77,7 +77,45 @@ jobs:
 
           powershell @args
 
+      - name: Enforce preflight checks
+        shell: pwsh
+        run: |
+          $preflightPath = '.\gitops\preflight-report.json'
+          if (-not (Test-Path -Path $preflightPath)) {
+            throw "Missing preflight report: $preflightPath"
+          }
+
+          $preflight = Get-Content -Path $preflightPath -Raw -Encoding UTF8 | ConvertFrom-Json
+          if ($null -eq $preflight.checks) {
+            throw 'Preflight report missing checks object.'
+          }
+
+          $failedChecks = @()
+          $required = @(
+            'endpointIdMatch',
+            'endpointNameMatch',
+            'dockerNameMatch',
+            'secretsLoaded',
+            'composeLoaded',
+            'requiredFilesPresent',
+            'archMappingPathsPresent'
+          )
+
+          foreach ($name in $required) {
+            $value = $preflight.checks.$name
+            if ($value -ne $true) {
+              $failedChecks += $name
+            }
+          }
+
+          if ($failedChecks.Count -gt 0) {
+            throw ("Preflight checks failed: " + ($failedChecks -join ', '))
+          }
+
+          Write-Host 'Preflight checks passed.'
+
       - name: Upload deploy result
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: gitops-deploy-result
