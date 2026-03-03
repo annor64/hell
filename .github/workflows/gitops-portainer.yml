@@ -84,3 +84,4 @@ jobs:
           path: |
             gitops/deploy-result.json
             gitops/preflight-report.md
+            gitops/preflight-report.json

@@ -86,6 +86,62 @@ function Write-PreflightReport {
     Set-Content -Path $Path -Value ($lines -join "`r`n") -Encoding UTF8
 }
 
+function Write-PreflightReportJson {
+    param(
+        [string]$Path,
+        [hashtable]$Preflight,
+        [hashtable]$Result
+    )
+
+    $dir = Split-Path -Path $Path -Parent
+    if(-not [string]::IsNullOrWhiteSpace($dir) -and -not (Test-Path -Path $dir)) {
+        New-Item -ItemType Directory -Path $dir -Force | Out-Null
+    }
+
+    $report = [ordered]@{
+        generatedAt = (Get-Date).ToString('s')
+        deployApproved = [bool]$Result.ok
+        context = [ordered]@{
+            stackName = $Preflight.stackName
+            stackFile = $Preflight.stackFile
+            endpointId = $Preflight.endpointId
+            expectedEndpointName = $Preflight.expectedEndpointName
+            expectedDockerName = $Preflight.expectedDockerName
+            operator = $Preflight.operator
+            repoRevision = $Preflight.repoRevision
+            timestamp = $Preflight.timestamp
+        }
+        checks = [ordered]@{
+            endpointIdMatch = [bool]$Preflight.endpointIdMatch
+            endpointNameMatch = [bool]$Preflight.endpointNameMatch
+            dockerNameMatch = [bool]$Preflight.dockerNameMatch
+            secretsLoaded = [bool]$Preflight.secretsLoaded
+            composeLoaded = [bool]$Preflight.composeLoaded
+            requiredFilesPresent = [bool]$Preflight.requiredFilesPresent
+            archMappingPathsPresent = [bool]$Preflight.archMappingPathsPresent
+            fallbackReady = [bool]$Preflight.fallbackReady
+        }
+        decision = [ordered]@{
+            approved = [bool]$Result.ok
+            rollbackReference = [string]$Preflight.rollbackReference
+        }
+        outcome = [ordered]@{
+            action = [string]$Result.action
+            stackId = $Result.stackId
+            error = [string]$Result.error
+            containersDetected = @($Result.containers).Count
+        }
+        artifactPaths = [ordered]@{
+            deployResult = 'gitops/deploy-result.json'
+            preflightMarkdown = 'gitops/preflight-report.md'
+            runtimeStatus = 'portainer_update_result.json'
+            optionalLogs = 'ha_deploy_result.json'
+        }
+    }
+
+    $report | ConvertTo-Json -Depth 12 | Set-Content -Path $Path -Encoding UTF8
+}
+
 function Load-DotEnv {
     param([string]$Path)
 
@@ -451,7 +507,10 @@ catch {
 
 $resultPath = '.\gitops\deploy-result.json'
 $preflightPath = '.\gitops\preflight-report.md'
+$preflightJsonPath = '.\gitops\preflight-report.json'
 $result['preflightReportPath'] = $preflightPath
+$result['preflightReportJsonPath'] = $preflightJsonPath
 $result | ConvertTo-Json -Depth 10 | Set-Content -Path $resultPath -Encoding UTF8
 Write-PreflightReport -Path $preflightPath -Preflight $preflight -Result $result
+Write-PreflightReportJson -Path $preflightJsonPath -Preflight $preflight -Result $result
 Write-Output ($result | ConvertTo-Json -Depth 10)
