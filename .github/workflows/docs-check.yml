@@ -1,0 +1,84 @@
+name: Docs Consistency Check
+
+on:
+  pull_request:
+    paths:
+      - "*.md"
+      - ".github/workflows/docs-check.yml"
+      - "gitops/**"
+      - "scripts/**"
+  push:
+    branches: [ main ]
+    paths:
+      - "*.md"
+      - ".github/workflows/docs-check.yml"
+      - "gitops/**"
+      - "scripts/**"
+  workflow_dispatch:
+
+jobs:
+  docs-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate architecture path mapping
+        shell: bash
+        run: |
+          python - << 'PY'
+          import pathlib
+          import re
+          import sys
+
+          root = pathlib.Path('.')
+          arch = root / 'ARCHITEKTURA_DEPLOYMENT_FACTORY.md'
+          if not arch.exists():
+              print('ERROR: Missing ARCHITEKTURA_DEPLOYMENT_FACTORY.md')
+              sys.exit(1)
+
+          text = arch.read_text(encoding='utf-8')
+          section_title = '## 10) Mapování architektura -> repozitář'
+          if section_title not in text:
+              print(f'ERROR: Missing section: {section_title}')
+              sys.exit(1)
+
+          section = text.split(section_title, 1)[1]
+          paths = re.findall(r'`([^`]+)`', section)
+          normalized = []
+          for p in paths:
+              p = p.strip().rstrip('/')
+              if not p:
+                  continue
+              if p.startswith('http://') or p.startswith('https://'):
+                  continue
+              normalized.append(p)
+
+          if not normalized:
+              print('ERROR: No repository paths found in architecture mapping section.')
+              sys.exit(1)
+
+          missing = []
+          for p in normalized:
+              target = root / p
+              if not target.exists():
+                  missing.append(p)
+
+          print('Architecture mapping paths checked:')
+          for p in normalized:
+              print(f' - {p}')
+
+          if missing:
+              print('\nERROR: Missing paths referenced in architecture mapping:')
+              for p in missing:
+                  print(f' - {p}')
+              sys.exit(1)
+
+          print('\nOK: Architecture mapping paths are valid.')
+          PY
+
+      - name: Validate preflight template exists
+        shell: bash
+        run: |
+          test -f gitops/preflight-report.template.md
+          echo "OK: preflight template present"
