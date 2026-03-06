@@ -1,0 +1,119 @@
+// ODI Groovy tool: spuštění scénáře REDAT_SOUBORY_EXT_INT_VIA_EFF_DATE přes OdiStartScen
+// Uprav pouze sekci KONFIGURACE.
+
+def scenarioName = "REDAT_SOUBORY_EXT_INT_VIA_EFF_DATE"
+def scenarioVersion = "001"
+def contextCode = "BT_DWH_PROD"
+def logicalAgent = "BICPRAGENT"
+def logLevel = "5"
+def waitForFinish = false
+
+def variableName = "BICPR_BT_DWH.VAR_EFFECTIVE_DATE"
+def effectiveDay = "20260302"
+
+def pollTimeoutSec = 30
+def pollEverySec = 5
+
+if (effectiveDay == null || effectiveDay.trim().isEmpty()) {
+    throw new IllegalArgumentException("effectiveDay je prázdný.")
+}
+if (!(effectiveDay ==~ /\d{8}/)) {
+    throw new IllegalArgumentException("effectiveDay musí být ve formátu YYYYMMDD, např. 20260302.")
+}
+if (!binding?.variables?.containsKey('jOdiBuilder') || binding.variables['jOdiBuilder'] == null) {
+    throw new IllegalStateException("V tomto Groovy prostředí není dostupný jOdiBuilder.")
+}
+
+def jb = binding.variables['jOdiBuilder']
+def checkConn = odiInstance.getTransactionalWorkConnection()
+
+def querySingleLong = { String sql, List params ->
+    def ps = null
+    def rs = null
+    try {
+        ps = checkConn.prepareStatement(sql)
+        params.eachWithIndex { v, idx ->
+            if (v instanceof Number) ps.setLong(idx + 1, (v as Number).longValue())
+            else ps.setString(idx + 1, String.valueOf(v))
+        }
+        rs = ps.executeQuery()
+        if (rs.next()) return rs.getLong(1)
+        return 0L
+    } finally {
+        try { if (rs != null) rs.close() } catch (Exception ignored) {}
+        try { if (ps != null) ps.close() } catch (Exception ignored) {}
+    }
+}
+
+def baselineSessNo = querySingleLong(
+    "SELECT NVL(MAX(sess_no), 0) FROM snp_session WHERE scen_name = ? AND scen_version = ?",
+    [scenarioName, scenarioVersion]
+)
+
+def commandText = """
+OdiStartScen "-SCEN_NAME=${scenarioName}" "-SCEN_VERSION=${scenarioVersion}" "-CONTEXT=${contextCode}" "-LOG_LEVEL=${logLevel}" "-SYNC_MODE=${waitForFinish ? '1' : '2'}" "-LOGICAL_AGENT=${logicalAgent}" "-${variableName}=${effectiveDay}"
+""".trim()
+
+println "Spouštím ODI scénář: ${scenarioName}"
+println "Verze: ${scenarioVersion}"
+println "Context: ${contextCode}"
+println "Logical Agent: ${logicalAgent}"
+println "${variableName} = ${effectiveDay}"
+println "Příkaz: ${commandText}"
+println "Baseline SESS_NO před spuštěním: ${baselineSessNo}"
+
+def options = [
+    ["CONTEXT", contextCode],
+    ["AGENT_CODE", logicalAgent],
+    ["LOGICAL_AGENT", logicalAgent],
+    ["LOG_LEVEL", logLevel],
+    [variableName, effectiveDay]
+] as String[][]
+
+jb.execute_session(scenarioName as String, scenarioVersion as String, waitForFinish, options)
+println "execute_session odesláno"
+
+def found = false
+def pollStartMs = System.currentTimeMillis()
+
+while (!found && ((System.currentTimeMillis() - pollStartMs) < (pollTimeoutSec * 1000L))) {
+    def ps = null
+    def rs = null
+    try {
+        ps = checkConn.prepareStatement("""
+SELECT sess_no, scen_name, scen_version, sess_status, sess_beg
+FROM (
+    SELECT sess_no, scen_name, scen_version, sess_status, sess_beg
+    FROM snp_session
+    WHERE scen_name = ?
+      AND scen_version = ?
+      AND sess_no > ?
+    ORDER BY sess_no DESC
+)
+WHERE ROWNUM <= 5
+""".trim())
+        ps.setString(1, scenarioName)
+        ps.setString(2, scenarioVersion)
+        ps.setLong(3, baselineSessNo)
+        rs = ps.executeQuery()
+        if (rs.next()) {
+            found = true
+            println "Nalezena nová session: SESS_NO=${rs.getString('sess_no')}, SCEN=${rs.getString('scen_name')}, VER=${rs.getString('scen_version')}, STATUS=${rs.getString('sess_status')}, BEG=${rs.getString('sess_beg')}"
+            break
+        }
+    } finally {
+        try { if (rs != null) rs.close() } catch (Exception ignored) {}
+        try { if (ps != null) ps.close() } catch (Exception ignored) {}
+    }
+
+    def waitedSec = ((System.currentTimeMillis() - pollStartMs) / 1000L) as long
+    println "Operator check: zatím nic (čekám ${waitedSec}/${pollTimeoutSec}s)"
+    try { sleep(pollEverySec * 1000L) } catch (Exception ignored) {}
+}
+
+if (!found) {
+    throw new IllegalStateException("Cílový scénář ${scenarioName}/${scenarioVersion} nevznikl v SNP_SESSION po execute_session.")
+}
+
+return "OK"
+

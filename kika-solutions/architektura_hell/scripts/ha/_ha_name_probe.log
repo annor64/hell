@@ -1,0 +1,4 @@
+﻿START
+CREATE_OK:200
+{"Id":21,"Name":"homeassistant","Type":2,"EndpointId":3,"SwarmId":"","EntryPoint":"docker-compose.yml","Env":[],"ResourceControl":{"Id":16,"ResourceId":"3_homeassistant","SubResourceIds":[],"Type":6,"UserAccesses":[],"TeamAccesses":[],"Public":false,"AdministratorsOnly":true,"System":false},"Status":1,"ProjectPath":"/data/compose/21","CreationDate":1772541356,"CreatedBy":"annor","UpdateDate":0,"UpdatedBy":"","AdditionalFiles":null,"AutoUpdate":null,"Option":null,"GitConfig":null,"FromAppTemplate":false,"Namespace":""}
+FOUND:{"Id":21,"Name":"homeassistant","EndpointId":3,"Status":1}

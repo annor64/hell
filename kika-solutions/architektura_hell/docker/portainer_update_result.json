@@ -1,0 +1,20 @@
+﻿{
+    "timestamp":  "2026-03-03T19:11:14",
+    "updateSuccess":  false,
+    "updateError":  "Stack \u0027smart-workspace\u0027 not found",
+    "stackId":  null,
+    "stackName":  "smart-workspace",
+    "stackStatus":  "unknown",
+    "stackContainers":  [
+
+                        ],
+    "localDisk":  {
+                      "drive":  "C:",
+                      "freeGB":  131.38,
+                      "usedGB":  821.56,
+                      "totalGB":  952.94,
+                      "freePct":  13.79,
+                      "warning":  null
+                  },
+    "remoteDocker":  null
+}

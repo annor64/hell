@@ -1,0 +1,205 @@
+// ODI Groovy tool: spuštění scénáře TEST_REDAT_A vždy přes agenta BICPRAGENTEXCEL
+
+def scenarioName = "TEST_REDAT_A"
+def scenarioVersion = "-1"          // -1 = poslední verze scénáře (v runtime převedeme na konkrétní)
+def contextCode = "BT_DWH_PROD"      // uprav dle potřeby
+def logicalAgent = "BICPRAGENTEXCEL"
+def logLevel = "5"
+def waitForFinish = false
+
+def pollTimeoutSec = 30
+def pollEverySec = 5
+
+if (!binding?.variables?.containsKey('jOdiBuilder') || binding.variables['jOdiBuilder'] == null) {
+    throw new IllegalStateException("V tomto Groovy prostředí není dostupný jOdiBuilder.")
+}
+
+def jb = binding.variables['jOdiBuilder']
+def checkConn = odiInstance.getTransactionalWorkConnection()
+
+def querySingleLong = { String sql, List params ->
+    def ps = null
+    def rs = null
+    try {
+        ps = checkConn.prepareStatement(sql)
+        params.eachWithIndex { v, idx ->
+            if (v instanceof Number) ps.setLong(idx + 1, (v as Number).longValue())
+            else ps.setString(idx + 1, String.valueOf(v))
+        }
+        rs = ps.executeQuery()
+        if (rs.next()) return rs.getLong(1)
+        return 0L
+    } finally {
+        try { if (rs != null) rs.close() } catch (Exception ignored) {}
+        try { if (ps != null) ps.close() } catch (Exception ignored) {}
+    }
+}
+
+def querySingleString = { String sql, List params ->
+    def ps = null
+    def rs = null
+    try {
+        ps = checkConn.prepareStatement(sql)
+        params.eachWithIndex { v, idx ->
+            ps.setString(idx + 1, String.valueOf(v))
+        }
+        rs = ps.executeQuery()
+        if (rs.next()) return rs.getString(1)
+        return null
+    } finally {
+        try { if (rs != null) rs.close() } catch (Exception ignored) {}
+        try { if (ps != null) ps.close() } catch (Exception ignored) {}
+    }
+}
+
+def resolvedVersion = scenarioVersion
+if ("-1".equals(scenarioVersion)) {
+    resolvedVersion = querySingleString(
+        """
+SELECT scen_version
+FROM (
+    SELECT scen_version
+    FROM snp_scen
+    WHERE scen_name = ?
+    ORDER BY scen_version DESC
+)
+WHERE ROWNUM = 1
+""".trim(),
+        [scenarioName]
+    )
+    if (resolvedVersion == null || resolvedVersion.trim().isEmpty()) {
+        throw new IllegalStateException("Scénář ${scenarioName} nebyl nalezen v SNP_SCEN.")
+    }
+}
+
+def baselineSessNo = querySingleLong(
+    "SELECT NVL(MAX(sess_no), 0) FROM snp_session WHERE scen_name = ?",
+    [scenarioName]
+)
+
+def commandText = """
+OdiStartScen "-SCEN_NAME=${scenarioName}" \
+             "-SCEN_VERSION=${resolvedVersion}" \
+			 "-CONTEXT=${contextCode}" \
+			 "-LOG_LEVEL=${logLevel}" \
+			 "-SYNC_MODE=${waitForFinish ? '1' : '2'}" \
+			 "-LOGICAL_AGENT=${logicalAgent}"
+""".trim()
+
+println "Spouštím ODI scénář: ${scenarioName}"
+println "Verze (resolved): ${resolvedVersion}"
+println "Agent: ${logicalAgent}"
+println "Příkaz: ${commandText}"
+println "Baseline SESS_NO před spuštěním: ${baselineSessNo}"
+
+def optionsBase = [
+    ["CONTEXT", contextCode],
+    ["AGENT_CODE", logicalAgent],
+    ["LOGICAL_AGENT", logicalAgent],
+    ["LOG_LEVEL", logLevel]
+] as String[][]
+
+def optionsTool = [
+    ["SCEN_NAME", scenarioName],
+    ["SCEN_VERSION", resolvedVersion],
+    ["CONTEXT", contextCode],
+    ["AGENT_CODE", logicalAgent],
+    ["LOGICAL_AGENT", logicalAgent],
+    ["LOG_LEVEL", logLevel]
+] as String[][]
+
+def launchAttempts = [
+    [label: "A1 name+resolvedVersion+base", arg1: scenarioName, arg2: resolvedVersion, opts: optionsBase],
+    [label: "A2 name+context+base",         arg1: scenarioName, arg2: contextCode,     opts: optionsBase],
+    [label: "A3 OdiStartScen+context+tool", arg1: "OdiStartScen", arg2: contextCode,   opts: optionsTool]
+]
+
+def found = false
+def pollStartMs = System.currentTimeMillis()
+
+def hasTargetSession = {
+    def ps = null
+    def rs = null
+    try {
+        ps = checkConn.prepareStatement("""
+SELECT sess_no, scen_name, scen_version, sess_status, sess_beg
+FROM (
+    SELECT sess_no, scen_name, scen_version, sess_status, sess_beg
+    FROM snp_session
+    WHERE scen_name = ?
+      AND sess_no > ?
+    ORDER BY sess_no DESC
+)
+WHERE ROWNUM <= 5
+""".trim())
+        ps.setString(1, scenarioName)
+        ps.setLong(2, baselineSessNo)
+        rs = ps.executeQuery()
+        if (rs.next()) {
+            println "Nalezena nová session: SESS_NO=${rs.getString('sess_no')}, SCEN=${rs.getString('scen_name')}, VER=${rs.getString('scen_version')}, STATUS=${rs.getString('sess_status')}, BEG=${rs.getString('sess_beg')}"
+            return true
+        }
+        return false
+    } finally {
+        try { if (rs != null) rs.close() } catch (Exception ignored) {}
+        try { if (ps != null) ps.close() } catch (Exception ignored) {}
+    }
+}
+
+for (a in launchAttempts) {
+    if (found) break
+    try {
+        println "Launch pokus: ${a.label}"
+        jb.execute_session(a.arg1 as String, a.arg2 as String, waitForFinish, a.opts as String[][])
+        println "execute_session odesláno: ${a.label}"
+    } catch (Exception e) {
+        println "Launch chyba (${a.label}): ${e.getClass().getSimpleName()}: ${e.getMessage()}"
+        continue
+    }
+    try { sleep(2000) } catch (Exception ignored) {}
+    if (hasTargetSession()) {
+        found = true
+        break
+    }
+}
+
+while (!found && ((System.currentTimeMillis() - pollStartMs) < (pollTimeoutSec * 1000L))) {
+    if (hasTargetSession()) {
+        found = true
+        break
+    }
+
+    def waitedSec = ((System.currentTimeMillis() - pollStartMs) / 1000L) as long
+    println "Operator check: zatím nic (čekám ${waitedSec}/${pollTimeoutSec}s)"
+    try { sleep(pollEverySec * 1000L) } catch (Exception ignored) {}
+}
+
+if (!found) {
+    def psAny = null
+    def rsAny = null
+    try {
+        psAny = checkConn.prepareStatement("""
+SELECT sess_no, scen_name, scen_version, sess_status, sess_beg
+FROM (
+    SELECT sess_no, scen_name, scen_version, sess_status, sess_beg
+    FROM snp_session
+    WHERE sess_no > ?
+    ORDER BY sess_no DESC
+)
+WHERE ROWNUM <= 10
+""".trim())
+        psAny.setLong(1, baselineSessNo)
+        rsAny = psAny.executeQuery()
+        println "Nové session od baseline (libovolné scénáře):"
+        while (rsAny.next()) {
+            println " - SESS_NO=${rsAny.getString('sess_no')}, SCEN=${rsAny.getString('scen_name')}, VER=${rsAny.getString('scen_version')}, STATUS=${rsAny.getString('sess_status')}, BEG=${rsAny.getString('sess_beg')}"
+        }
+    } finally {
+        try { if (rsAny != null) rsAny.close() } catch (Exception ignored) {}
+        try { if (psAny != null) psAny.close() } catch (Exception ignored) {}
+    }
+
+    throw new IllegalStateException("Scénář ${scenarioName} nebyl po execute_session nalezen v SNP_SESSION.")
+}
+
+return "OK"

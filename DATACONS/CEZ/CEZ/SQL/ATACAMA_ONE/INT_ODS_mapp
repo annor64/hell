@@ -1,0 +1,426 @@
+import oracle.odi.domain.mapping.Mapping
+import oracle.odi.domain.mapping.component.DatastoreComponent
+import oracle.odi.domain.mapping.component.FilterComponent
+import oracle.odi.domain.project.OdiProject
+import oracle.odi.domain.project.OdiFolder
+import oracle.odi.domain.model.OdiDataStore
+import oracle.odi.domain.model.finder.IOdiDataStoreFinder
+import oracle.odi.domain.project.finder.IOdiProjectFinder
+import oracle.odi.core.persistence.transaction.support.DefaultTransactionDefinition
+
+// --- KONFIGURACE ---
+def targetProjectCode = "BICPR_BT_DWH"
+def targetFolderName = "ATACCAMA_ONE"
+def ikmName = "IKM Oracle Slowly Changing Dimension BICPR"
+def sourceModelName = "OWNBT_INT"  // Model pro INT_ATO_ tabulky
+def targetModelName = "OWNBT_ODS"  // Model pro INT_OT* tabulky
+def scanOnlyClobReport = true // true = pouze audit CLOB v ODS (bez vytváření/úprav mappingů)
+def overwriteExistingMappings = true // false = existující mappingy se nepřegenerují (zachová ruční UD1/UD2)
+def applyUdFlags = false // v ODI 12.2.1 se UD1/UD2 přes Groovy API nespolehlivě nenastavují -> nastavovat ručně v UI
+def udDiagnostics = false // diagnostika UD property names (jen pro experimenty)
+
+// Definice [Název Mappingu, Zdrojová Tabulka (INT), Cílová Tabulka (ODS)]
+def mapList = [
+    ["INT_OTBTDQ_SD", "INT_ATO_BTDQ", "ODT_ATO_BTDQ"],
+    ["INT_OTBTER_SD", "INT_ATO_BTER", "ODT_ATO_BTER"],
+    ["INT_OTBTSA_SD", "INT_ATO_BTSA", "ODT_ATO_BTSA"],
+    ["INT_OTCIAT_SD", "INT_ATO_CIAT", "ODT_ATO_CIAT"],
+    ["INT_OTCIIA_SD", "INT_ATO_CIIA", "ODT_ATO_CIIA"],
+    ["INT_OTCITA_SD", "INT_ATO_CITA", "ODT_ATO_CITA"],
+    ["INT_OTCITE_SD", "INT_ATO_CITE", "ODT_ATO_CITE"],
+    ["INT_OTCLCS_SD", "INT_ATO_CLCS", "ODT_ATO_CLCS"],
+    ["INT_OTCLIS_SD", "INT_ATO_CLIS", "ODT_ATO_CLIS"],
+    ["INT_OTDQRA_SD", "INT_ATO_DQRA", "ODT_ATO_DQRA"],
+    ["INT_OTDQRI_SD", "INT_ATO_DQRI", "ODT_ATO_DQRI"],
+    ["INT_OTDQRL_SD", "INT_ATO_DQRL", "ODT_ATO_DQRL"],
+    ["INT_OTDQRR_SD", "INT_ATO_DQRR", "ODT_ATO_DQRR"],
+    ["INT_OTDQTI_SD", "INT_ATO_DQTI", "ODT_ATO_DQTI"],
+    ["INT_OTLOC0_SD", "INT_ATO_LOC0", "ODT_ATO_LOC0"],
+    ["INT_OTLOC1_SD", "INT_ATO_LOC1", "ODT_ATO_LOC1"],
+    ["INT_OTLOC2_SD", "INT_ATO_LOC2", "ODT_ATO_LOC2"],
+    ["INT_OTLOC3_SD", "INT_ATO_LOC3", "ODT_ATO_LOC3"],
+    ["INT_OTLOC4_SD", "INT_ATO_LOC4", "ODT_ATO_LOC4"],
+    ["INT_OTMETR_SD", "INT_ATO_METR", "ODT_ATO_METR"],
+    ["INT_OTPROF_SD", "INT_ATO_PROF", "ODT_ATO_PROF"],
+    ["INT_OTPROL_SD", "INT_ATO_PROL", "ODT_ATO_PROL"],
+    ["INT_OTRCAT_SD", "INT_ATO_RCAT", "ODT_ATO_RCAT"],
+    ["INT_OTRTIN_SD", "INT_ATO_RTIN", "ODT_ATO_RTIN"],
+    ["INT_OTRULE_SD", "INT_ATO_RULE", "ODT_ATO_RULE"],
+    ["INT_OTSEMF_SD", "INT_ATO_SEMF", "ODT_ATO_SEMF"],
+    ["INT_OTSOUR_SD", "INT_ATO_SOUR", "ODT_ATO_SOUR"],
+    ["INT_OTSTEW_SD", "INT_ATO_STEW", "ODT_ATO_STEW"],
+    ["INT_OTSUBT_SD", "INT_ATO_SUBT", "ODT_ATO_SUBT"],
+    ["INT_OTSVPM_SD", "INT_ATO_SVPM", "ODT_ATO_SVPM"],
+    ["INT_OTSVRF_SD", "INT_ATO_SVRF", "ODT_ATO_SVRF"],
+    ["INT_OTSVUF_SD", "INT_ATO_SVUF", "ODT_ATO_SVUF"],
+    ["INT_OTTASK_SD", "INT_ATO_TASK", "ODT_ATO_TASK"],
+    ["INT_OTTIAT_SD", "INT_ATO_TIAT", "ODT_ATO_TIAT"],
+    ["INT_OTTREL_SD", "INT_ATO_TREL", "ODT_ATO_TREL"],
+    ["INT_OTVACM_SD", "INT_ATO_VACM", "ODT_ATO_VACM"],
+    ["INT_OTVBDO_SD", "INT_ATO_VBDO", "ODT_ATO_VBDO"],
+    ["INT_OTVCAT_SD", "INT_ATO_VCAT", "ODT_ATO_VCAT"],
+    ["INT_OTVCON_SD", "INT_ATO_VCON", "ODT_ATO_VCON"],
+    ["INT_OTVDQC_SD", "INT_ATO_VDQC", "ODT_ATO_VDQC"],
+    ["INT_OTVLDM_SD", "INT_ATO_VLDM", "ODT_ATO_VLDM"],
+    ["INT_OTVMET_SD", "INT_ATO_VMET", "ODT_ATO_VMET"],
+    ["INT_OTVQOP_SD", "INT_ATO_VQOP", "ODT_ATO_VQOP"],
+    ["INT_OTVRCE_SD", "INT_ATO_VRCE", "ODT_ATO_VRCE"],
+    ["INT_OTWRKS_SD", "INT_ATO_WRKS", "ODT_ATO_WRKS"]
+]
+// -------------------
+
+def findFolderRecursive(parent, folderName) {
+    def subFolders = (parent instanceof OdiProject) ? parent.getFolders() : parent.getSubFolders()
+    def found = subFolders.find { it.getName().equalsIgnoreCase(folderName) }
+    if (found) return found
+    for (subFolder in subFolders) {
+        def result = findFolderRecursive(subFolder, folderName)
+        if (result) return result
+    }
+    return null
+}
+
+def tm = odiInstance.getTransactionManager()
+def t_man = odiInstance.getTransactionalEntityManager()
+def txn = tm.getTransaction(new DefaultTransactionDefinition())
+def mappingsWithClobInTarget = []
+
+def setUdFlagSafe = { attr, int udNo, boolean value ->
+    def attrName = attr.getName()
+    def candidates = [
+        [type: "indicator", key: "UD${udNo}"],
+        [type: "indicator", key: "USER_DEFINED_${udNo}"],
+        [type: "property",  key: "UD${udNo}"],
+        [type: "property",  key: "INDICATOR_UD${udNo}"],
+        [type: "property",  key: "USER_DEFINED_${udNo}"],
+        [type: "property",  key: "INDICATOR_USER_DEFINED_${udNo}"]
+    ]
+
+    for (c in candidates) {
+        try {
+            if (c.type == "indicator") {
+                attr.setIndicator(c.key as String, value)
+            } else {
+                attr.setPropertyValue(c.key as String, value)
+            }
+            println "    [UD${udNo}] ${attrName} = ${value} (${c.type}:${c.key})"
+            return true
+        } catch (Exception ignored) {}
+    }
+
+    try {
+        def pd = attr.getPropertyDefinitions()
+        def pdNames = pd.collect { it.getName() }
+        def udHints = pdNames.findAll { n ->
+            def u = String.valueOf(n).toUpperCase()
+            u.contains("UD${udNo}") || (u.contains("USER") && u.contains("${udNo}"))
+        }
+        println "    [UD${udNo}-WARN] Nelze nastavit pro ${attrName}. Kandidáti API neprošli. Property hints: ${udHints}"
+    } catch (Exception ignored3) {
+        println "    [UD${udNo}-WARN] Nelze nastavit pro ${attrName}. Kandidáti API neprošli."
+    }
+    return false
+}
+
+def isClobAttribute = { attr ->
+    def probes = []
+
+    try { probes << String.valueOf(attr.getDataTypeCode()) } catch (Exception ignored) {}
+    try { probes << String.valueOf(attr.getDataType()) } catch (Exception ignored) {}
+    try { probes << String.valueOf(attr.getJdbcTypeName()) } catch (Exception ignored) {}
+
+    try {
+        def column = attr.getColumn()
+        if (column) {
+            try { probes << String.valueOf(column.getDataTypeCode()) } catch (Exception ignored2) {}
+            try { probes << String.valueOf(column.getDataType()) } catch (Exception ignored2) {}
+            try { probes << String.valueOf(column.getJdbcTypeName()) } catch (Exception ignored2) {}
+        }
+    } catch (Exception ignored) {}
+
+    return probes.findAll { it != null }.any { it.toUpperCase().contains("CLOB") }
+}
+
+def getClobColumnsFromDatastore = { ds ->
+    def columns = []
+    try {
+        ds.getColumns().each { col ->
+            def probes = []
+            try { probes << String.valueOf(col.getDataTypeCode()) } catch (Exception ignored) {}
+            try { probes << String.valueOf(col.getDataType()) } catch (Exception ignored) {}
+            try { probes << String.valueOf(col.getJdbcTypeName()) } catch (Exception ignored) {}
+
+            def isClob = probes.findAll { it != null }.any { it.toUpperCase().contains("CLOB") }
+            if (isClob) {
+                columns << col.getName()
+            }
+        }
+    } catch (Exception ignored) {}
+    return columns.unique()
+}
+
+try {
+    def projFinder = (IOdiProjectFinder) t_man.getFinder(OdiProject.class)
+    def dsFinder = (IOdiDataStoreFinder) t_man.getFinder(OdiDataStore.class)
+    def project = projFinder.findByCode(targetProjectCode)
+    def folder = findFolderRecursive(project, targetFolderName)
+    def targetIKM = project.getIKMs().find { it.getName() == ikmName }
+    if (targetIKM == null) { println "VAROVÁNÍ: IKM ${ikmName} nenalezen" }
+
+    if (!folder) { println "CHYBA: Složka ${targetFolderName} nenalezena"; return }
+    if (!applyUdFlags) {
+        println "[INFO] UD1/UD2 auto-nastavení je vypnuto; v této ODI verzi nastavujte UD1/UD2 ručně v Mapping Attributes."
+    }
+
+    if (scanOnlyClobReport) {
+        println "--- CLOB AUDIT (ODS) ---"
+        mapList.each { row ->
+            def mapName = row[0]; def tgtName = row[2]
+            try {
+                def tgtCandidates = dsFinder.findByName(tgtName, targetModelName)
+                if (!tgtCandidates || !tgtCandidates.iterator().hasNext()) {
+                    println "  [WARN] ${mapName} | ${tgtName} | tabulka nenalezena v modelu ${targetModelName}"
+                    return
+                }
+                def tgtDS = tgtCandidates.iterator().next()
+                def clobCols = getClobColumnsFromDatastore.call(tgtDS)
+                if (!clobCols.isEmpty()) {
+                    mappingsWithClobInTarget << [mapping: mapName, target: tgtName, columns: clobCols]
+                    println "  [CLOB] ${mapName} | ${tgtName} | sloupce: ${clobCols.join(', ')}"
+                }
+            } catch (Exception exAudit) {
+                println "  [WARN] ${mapName} | ${tgtName} | chyba auditu: ${exAudit.message}"
+            }
+        }
+
+        if (mappingsWithClobInTarget.isEmpty()) {
+            println "[CLOB-SUMMARY] V cílových ODS modelech nebyly detekovány žádné CLOB sloupce."
+        } else {
+            println "[CLOB-SUMMARY] Přehled tabulek s CLOB v ODS:"
+            mappingsWithClobInTarget.each { item ->
+                println "  - ${item.target} | CLOB: ${item.columns.join(', ')}"
+            }
+        }
+
+        tm.commit(txn)
+        println "--- HOTOVO (AUDIT ONLY) ---"
+        return
+    }
+
+    mapList.each { row ->
+        def mapName = row[0]; def srcName = row[1]; def tgtName = row[2]
+        def tableCode = mapName.replace("INT_OT", "").replace("_SD", "")
+        println "--- Zpracovávám: ${mapName} ---"
+
+        try {
+            def map = folder.getMappings().find { it.getName() == mapName }
+            if (map == null) {
+                println "    [INFO] Mapping ${mapName} neexistuje, vytvářím nový"
+                map = new Mapping(mapName, folder)
+                t_man.persist(map)  // Persistujeme ihned po vytvoření
+            } else {
+                if (!overwriteExistingMappings) {
+                    println "    [SKIP] Mapping ${mapName} existuje a overwriteExistingMappings=false (zachovávám ruční UD nastavení)"
+                    return
+                }
+                println "    [INFO] Mapping ${mapName} nalezen, čistím komponenty"
+                if (map.getComponents().size() > 0) {
+                    map.getComponents().each { map.removeComponent(it) }
+                }
+            }
+
+            def srcDS = dsFinder.findByName(srcName, sourceModelName).iterator().next()
+            def tgtDS = dsFinder.findByName(tgtName, targetModelName).iterator().next()
+
+            def srcComp = new DatastoreComponent(map, srcDS)
+            def tgtComp = new DatastoreComponent(map, tgtDS)
+            map.addComponent(srcComp)
+            map.addComponent(tgtComp)
+            
+            // Vytvoření filtru pomocí reflection (jako v IT_OT a IKM)
+            def clFiltComp = Class.forName("oracle.odi.domain.mapping.component.FilterComponent")
+            def filter = clFiltComp.constructors.find { it.parameterTypes.size() == 2 && it.parameterTypes[1] == String.class }.newInstance(map, "FILTER")
+            
+            srcComp.getOutputConnectorPoints()[0].connectTo(filter.getInputConnectorPoints()[0])
+            filter.getOutputConnectorPoints()[0].connectTo(tgtComp.getInputConnectorPoints()[0])
+            
+            // Nastavení filtru podle konkrétního INT modelu (např. ITBTER_EFFECTIVE_DATE)
+            def expectedEffectiveDateAttr = "IT${tableCode}_EFFECTIVE_DATE".toUpperCase()
+            def effectiveDateAttr = srcComp.getAttributes().find {
+                it.getName().toUpperCase() == expectedEffectiveDateAttr
+            } ?: srcComp.getAttributes().find {
+                it.getName().toUpperCase().endsWith("_EFFECTIVE_DATE")
+            }
+
+            if (effectiveDateAttr) {
+                filter.setFilterCondition("${effectiveDateAttr.getName()} = #VAR_EFFECTIVE_DATE")
+            } else {
+                filter.setFilterCondition("IT${tableCode}_EFFECTIVE_DATE = #VAR_EFFECTIVE_DATE")
+                println "    [VAROVÁNÍ] Nenalezen *_EFFECTIVE_DATE sloupec ve zdroji ${srcName}, použit fallback IT${tableCode}_EFFECTIVE_DATE"
+            }
+
+            // LOGIKA MAPPINGU ATRIBUTŮ - SCD2 Slowly Changing Dimension
+            def clobColumnsInTarget = []
+            tgtComp.getAttributes().each { targetAttr ->
+                def name = targetAttr.getName()
+                def expr = ""
+                def tNameUpper = name.toUpperCase()
+                def isCreatedManaged = (tNameUpper.endsWith("_CREATED_DATE") || tNameUpper.endsWith("_CREATED_PROCESS"))
+                def isModifiedManaged = (tNameUpper.endsWith("_MODIFIED_DATE") || tNameUpper.endsWith("_MODIFIED_PROCESS"))
+                def isCreatedDate = tNameUpper.endsWith("_CREATED_DATE")
+                def isModifiedDate = tNameUpper.endsWith("_MODIFIED_DATE")
+                def isClobTarget = isClobAttribute.call(targetAttr)
+
+                if (isClobTarget) {
+                    clobColumnsInTarget << name
+                }
+                
+                // SCD2 Klíč (ORIG_ID jako INDEX)
+                if (name == "OT${tableCode}_ORIG_ID") {
+                    try { 
+                        targetAttr.setIndicator("INDEX", true) 
+                    } catch(e) { 
+                        try { 
+                            targetAttr.setPropertyValue("INDICATOR_KEY", true) 
+                        } catch(e2) {} 
+                    }
+                }
+
+                // Nastavení výrazů podle typu sloupce
+                if (name == "OT${tableCode}_ID") {
+                    // Primární klíč ze sekvence
+                    expr = ":${targetProjectCode}.OT${tableCode}_ID_SEQ.NEXTVAL"
+                }
+                else if (name == "OT${tableCode}_ORIG_ID") {
+                    // ORIG_ID z ID zdrojové tabulky
+                    def origIdCandidates = [
+                        "OT${tableCode}_ID",
+                        "ITOT${tableCode}_ID",
+                        "IT${tableCode}_ID",
+                        "${tableCode}_ID"
+                    ]
+                    def srcOrigId = srcComp.getAttributes().find { a ->
+                        origIdCandidates.any { c -> a.getName().equalsIgnoreCase(c) }
+                    }
+                    if (srcOrigId) {
+                        expr = "${srcComp.getName()}.${srcOrigId.getName()}"
+                    } else {
+                        println "    [VAROVÁNÍ] Nenalezen zdrojový ORIG_ID sloupec pro ${name} (kandidáti: ${origIdCandidates.join(', ')})"
+                    }
+                }
+                else if (isCreatedDate || isModifiedDate) {
+                    expr = "SYSDATE"
+                }
+                else if (tNameUpper.contains("VALID_FROM")) {
+                    expr = "#VAR_EFFECTIVE_DATE"
+                }
+                else if (tNameUpper.contains("VALID_TO")) {
+                    expr = "30001231"
+                }
+                else if (tNameUpper.contains("CURRENT_FLAG")) {
+                    expr = "0"
+                }
+                else if (tNameUpper.contains("PROCESS")) {
+                    expr = "<%=odiRef.getSession(\"SESS_NO\")%>"
+                }
+                else if (tNameUpper.contains("EFFECTIVE_DATE")) {
+                    expr = "#BICPR_BT_DWH.VAR_EFFECTIVE_DATE"
+                    targetAttr.setPropertyValue("EXECUTE_ON_HINT", "TARGET")
+                    targetAttr.setInsertIndicator(true)
+                    targetAttr.setUpdateIndicator(true)
+                    println "    [SCD] ${name} -> VAR_EFFECTIVE_DATE s Insert/Update"
+                }
+                else {
+                    // Přímé mapování ostatních atributů
+                    def base = name.replace("OT${tableCode}_", "")
+                    def srcAttr = srcComp.getAttributes().find { 
+                        it.getName().toUpperCase() == base || 
+                        it.getName().toUpperCase().endsWith("_" + base) ||
+                        it.getName().toUpperCase() == "${tableCode}_${base}".toUpperCase()
+                    }
+                    if (srcAttr) {
+                        expr = "${srcComp.getName()}.${srcAttr.getName()}"
+                    }
+                }
+                
+                if (expr) {
+                    targetAttr.setExpressionText(expr)
+                    targetAttr.setPropertyValue("EXECUTE_ON_HINT", "TARGET")
+
+                    if (udDiagnostics && (isCreatedManaged || isModifiedManaged)) {
+                        try {
+                            def pdNames = targetAttr.getPropertyDefinitions().collect { it.getName() }
+                            println "    [UD-DIAG] ${name} property names: ${pdNames}"
+                        } catch (Exception ignoredDiag) {
+                            println "    [UD-DIAG] ${name} property names nelze načíst"
+                        }
+                    }
+
+                    def insertFlag = true
+                    def updateFlag = true
+
+                    if (isCreatedManaged) {
+                        insertFlag = true
+                        updateFlag = false
+                        if (applyUdFlags) {
+                            setUdFlagSafe.call(targetAttr, 1, true)
+                            setUdFlagSafe.call(targetAttr, 2, false)
+                        }
+                    } else if (isModifiedManaged) {
+                        insertFlag = false
+                        updateFlag = true
+                        if (applyUdFlags) {
+                            setUdFlagSafe.call(targetAttr, 1, false)
+                            setUdFlagSafe.call(targetAttr, 2, true)
+                        }
+                    }
+
+                    targetAttr.setInsertIndicator(insertFlag)
+                    targetAttr.setUpdateIndicator(updateFlag)
+                }
+            }
+
+            if (!clobColumnsInTarget.isEmpty()) {
+                def clobUnique = clobColumnsInTarget.unique()
+                mappingsWithClobInTarget << [mapping: mapName, target: tgtName, columns: clobUnique]
+                println "    [CLOB] ODS ${tgtName} obsahuje CLOB sloupce: ${clobUnique.join(', ')}"
+            }
+
+            // FYZICKÁ ÚROVEŇ (IKM a Parametry)
+            map.getPhysicalDesigns().each { phys ->
+                phys.getPhysicalNodes().each { node ->
+                    if (node.isTargetNode()) {
+                        if (targetIKM) node.setIKM(targetIKM)
+
+                        // Nastavení parametrů IKM pro SCD
+                        node.getIKMOptionValues().each { opt ->
+                            def n = opt.getName()
+                            if (n == "FLOW_CONTROL") opt.setValue(false)
+                            if (n == "UPDATE" || n == "DELETE") opt.setValue(false)
+                            if (n == "INSERT" || n == "COMMIT") opt.setValue(true)
+                        }
+                    }
+                }
+            }
+            t_man.persist(map)
+            println "    [OK] Mapping uložen"
+        } catch (Exception ex) {
+            println "    [CHYBA] ${ex.message}"
+        }
+    }
+
+    if (mappingsWithClobInTarget.isEmpty()) {
+        println "[CLOB-SUMMARY] V cílových ODS modelech nebyly detekovány žádné CLOB sloupce."
+    } else {
+        println "[CLOB-SUMMARY] Přehled mappingů s CLOB v cílovém ODS modelu:"
+        mappingsWithClobInTarget.each { item ->
+            println "  - ${item.mapping} | ${item.target} | CLOB: ${item.columns.join(', ')}"
+        }
+    }
+
+    tm.commit(txn)
+    println "--- HOTOVO ---"
+} catch (e) {
+    if (txn) tm.rollback(txn)
+    e.printStackTrace()
+}

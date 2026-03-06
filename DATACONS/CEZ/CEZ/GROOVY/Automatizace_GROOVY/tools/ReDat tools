@@ -1,0 +1,34 @@
+-- INT
+select ittops_effective_date,ittops_effective_date_minute,count(*) pocet
+from ownbt_int.INT_RDT_TOPS
+where ittops_effective_date>20260228
+group by ittops_effective_date,ittops_effective_date_minute
+order by 1
+; 
+
+-- ODS
+select ottops_valid_from_minute,count(*) pocet
+from ownbt_ods.ODT_RDT_TOPS
+where ottops_valid_from_minute>202602280000
+group by ottops_valid_from_minute
+order by 1
+;
+
+-- Pomocná tabulka
+select xttops_effective_date,count(*) pocet
+from mrencakar.RDTT_TOPS_IMPORT_CSV
+group by xttops_effective_date
+order by 1
+;
+-- Smazání tabulky a nepotřebných záznamů 
+delete from mrencakar.RDTT_TOPS_IMPORT_CSV;
+commit;
+-- rollback;
+
+-- Posun INTu k vytvoření správné časové souslednosti pro SCD
+UPDATE ownbt_int.INT_RDT_TOPS
+  SET ittops_effective_date_minute=202602281803
+WHERE ittops_effective_date=20260228 AND ittops_effective_date_minute=202602280803
+;
+COMMIT; -- potvrdit
+-- ROLLBACK; -- vrátit se zpět

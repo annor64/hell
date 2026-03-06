@@ -1,0 +1,17 @@
+﻿{
+    "timestamp":  "2026-03-03T20:52:15",
+    "ok":  false,
+    "action":  "",
+    "stackName":  "homeassistant",
+    "stackId":  null,
+    "endpointId":  3,
+    "expectedEndpointId":  3,
+    "expectedEndpointName":  "local",
+    "expectedDockerName":  "hell",
+    "error":  "Nadřízené připojení bylo uzavřeno: Došlo k neočekávané chybě při odeslání.",
+    "containers":  [
+
+                   ],
+    "preflightReportPath":  ".\\gitops\\preflight-report.md",
+    "preflightReportJsonPath":  ".\\gitops\\preflight-report.json"
+}

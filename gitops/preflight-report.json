@@ -1,0 +1,40 @@
+﻿{
+    "generatedAt":  "2026-03-03T20:52:15",
+    "deployApproved":  false,
+    "context":  {
+                    "stackName":  "homeassistant",
+                    "stackFile":  ".\\gitops\\stacks\\homeassistant\\compose.yml",
+                    "endpointId":  3,
+                    "expectedEndpointName":  "local",
+                    "expectedDockerName":  "hell",
+                    "operator":  "jkika",
+                    "repoRevision":  "f2bf5ca",
+                    "timestamp":  "2026-03-03 20:52:15"
+                },
+    "checks":  {
+                   "endpointIdMatch":  true,
+                   "endpointNameMatch":  false,
+                   "dockerNameMatch":  false,
+                   "secretsLoaded":  true,
+                   "composeLoaded":  true,
+                   "requiredFilesPresent":  true,
+                   "archMappingPathsPresent":  true,
+                   "fallbackReady":  false
+               },
+    "decision":  {
+                     "approved":  false,
+                     "rollbackReference":  "ARCHITEKTURA_DEPLOYMENT_FACTORY.md"
+                 },
+    "outcome":  {
+                    "action":  "",
+                    "stackId":  null,
+                    "error":  "Nadřízené připojení bylo uzavřeno: Došlo k neočekávané chybě při odeslání.",
+                    "containersDetected":  0
+                },
+    "artifactPaths":  {
+                          "deployResult":  "gitops/deploy-result.json",
+                          "preflightMarkdown":  "gitops/preflight-report.md",
+                          "runtimeStatus":  "portainer_update_result.json",
+                          "optionalLogs":  "ha_deploy_result.json"
+                      }
+}

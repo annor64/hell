@@ -1,0 +1,97 @@
+﻿{
+    "timestamp":  "2026-03-03 08:16:01",
+    "drive":  {
+                  "name":  "C:",
+                  "freeGB":  59.76,
+                  "totalGB":  952.94,
+                  "freePct":  6.27
+              },
+    "topGrowth":  [
+                      {
+                          "path":  "C:\\Users\\jkika\\AppData\\Local\\Packages",
+                          "exists":  true,
+                          "sizeGB":  1.837,
+                          "deltaMB":  0,
+                          "growthPerMinMB":  0
+                      },
+                      {
+                          "path":  "C:\\Users\\jkika\\SQL",
+                          "exists":  true,
+                          "sizeGB":  0.028,
+                          "deltaMB":  0.001,
+                          "growthPerMinMB":  0.001
+                      },
+                      {
+                          "path":  "C:\\Users\\jkika\\AppData\\Roaming\\Code\\User\\workspaceStorage",
+                          "exists":  true,
+                          "sizeGB":  0.11,
+                          "deltaMB":  0.616,
+                          "growthPerMinMB":  0.616
+                      },
+                      {
+                          "path":  "C:\\Users\\jkika\\AppData\\Local\\Temp",
+                          "exists":  true,
+                          "sizeGB":  3.666,
+                          "deltaMB":  0,
+                          "growthPerMinMB":  0
+                      },
+                      {
+                          "path":  "C:\\Users\\jkika\\AppData\\Roaming\\Code\\logs",
+                          "exists":  true,
+                          "sizeGB":  0.009,
+                          "deltaMB":  0,
+                          "growthPerMinMB":  0
+                      }
+                  ],
+    "allTargets":  [
+                       {
+                           "path":  "C:\\Users\\jkika\\AppData\\Local\\Temp",
+                           "exists":  true,
+                           "sizeGB":  3.666,
+                           "deltaMB":  0,
+                           "growthPerMinMB":  0
+                       },
+                       {
+                           "path":  "C:\\Users\\jkika\\AppData\\Roaming\\Code\\logs",
+                           "exists":  true,
+                           "sizeGB":  0.009,
+                           "deltaMB":  0,
+                           "growthPerMinMB":  0
+                       },
+                       {
+                           "path":  "C:\\Users\\jkika\\AppData\\Roaming\\Code\\User\\workspaceStorage",
+                           "exists":  true,
+                           "sizeGB":  0.11,
+                           "deltaMB":  0.616,
+                           "growthPerMinMB":  0.616
+                       },
+                       {
+                           "path":  "C:\\Users\\jkika\\AppData\\Local\\Packages",
+                           "exists":  true,
+                           "sizeGB":  1.837,
+                           "deltaMB":  0,
+                           "growthPerMinMB":  0
+                       },
+                       {
+                           "path":  "C:\\ProgramData\\Docker",
+                           "exists":  false,
+                           "sizeGB":  null,
+                           "deltaMB":  null,
+                           "growthPerMinMB":  null
+                       },
+                       {
+                           "path":  "C:\\ProgramData\\DockerDesktop",
+                           "exists":  false,
+                           "sizeGB":  null,
+                           "deltaMB":  null,
+                           "growthPerMinMB":  null
+                       },
+                       {
+                           "path":  "C:\\Users\\jkika\\SQL",
+                           "exists":  true,
+                           "sizeGB":  0.028,
+                           "deltaMB":  0.001,
+                           "growthPerMinMB":  0.001
+                       }
+                   ]
+}

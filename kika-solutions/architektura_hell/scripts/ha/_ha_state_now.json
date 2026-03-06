@@ -1,0 +1,18 @@
+﻿{
+    "stack":  {
+                  "Id":  21,
+                  "Name":  "homeassistant",
+                  "Status":  1,
+                  "CreationDate":  1772541356,
+                  "UpdateDate":  0,
+                  "UpdatedBy":  ""
+              },
+    "containers":  [
+                       {
+                           "Name":  "homeassistant-ping-1",
+                           "State":  "running",
+                           "Status":  "Up 43 seconds",
+                           "Image":  "busybox:latest"
+                       }
+                   ]
+}

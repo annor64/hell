@@ -1,0 +1,35 @@
+{
+  "deploy": [
+    {
+      "stack": "homeassistant",
+      "ok": true,
+      "action": "updated",
+      "stackId": 21
+    },
+    {
+      "stack": "smart-workspace",
+      "ok": false,
+      "error": "HTTP Error 500: Internal Server Error"
+    }
+  ],
+  "stackNames": [
+    "sw1",
+    "ha-min-test",
+    "homeassistant"
+  ],
+  "homeassistant": [
+    {
+      "name": "homeassistant",
+      "state": "running",
+      "status": "Up Less than a second",
+      "image": "ghcr.io/home-assistant/home-assistant:stable"
+    },
+    {
+      "name": "homeassistant-ping-1",
+      "state": "exited",
+      "status": "Exited (0) 6 hours ago",
+      "image": "alpine:latest"
+    }
+  ],
+  "smartWorkspace": []
+}

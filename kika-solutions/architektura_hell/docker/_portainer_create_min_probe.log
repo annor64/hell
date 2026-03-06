@@ -1,0 +1,5 @@
+﻿MIN_PROBE_START
+AUTH_OK
+CREATE_OK:200
+{"Id":20,"Name":"ha-min-test","Type":2,"EndpointId":3,"SwarmId":"","EntryPoint":"docker-compose.yml","Env":[],"ResourceControl":{"Id":15,"ResourceId":"3_ha-min-test","SubResourceIds":[],"Type":6,"UserAccesses":[],"TeamAccesses":[],"Public":false,"AdministratorsOnly":true,"System":false},"Status":1,"ProjectPath":"/data/compose/20","CreationDate":1772535342,"CreatedBy":"annor","UpdateDate":0,"UpdatedBy":"","AdditionalFiles":null,"AutoUpdate":null,"Option":null,"GitConfig":null,"FromAppTemplate":false,"Namespace":""}
+FOUND_AFTER
