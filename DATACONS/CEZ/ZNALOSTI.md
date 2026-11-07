@@ -19,6 +19,25 @@ Tento soubor slouží jako centrální místo pro průběžné poznatky, rozhodn
 ---
 
 ## Záznamy
+### 2026-11-07 — Synology NAS jako síťový disk
+- Oblast: Infrastruktura / úložiště
+- Kontext: Zprovoznění Synology jako mapovaného disku z Windows (`annor`).
+- Zjištění:
+	- DSM: `http://192.168.88.245:5000/` (user `admin`, heslo v Bitwardenu — položka `Synology`).
+	- SSH: port `22` (zapnuto 2026-11-07).
+	- SMB: port `445` (mapování síťového disku).
+	- Cloud Agent z veřejného cloudu na `192.168.88.0/24` nedosáhne; mapování musí běžet na stroji v LAN (Windows `annor` / self-hosted worker).
+- Rozhodnutí:
+	- Mapovat přes SMB skriptem `scripts/map_synology_drive.ps1`.
+	- Heslo necommitovat; držet v Bitwardenu.
+- Dopad:
+	- Opakovatelné připojení NAS jako písmeno disku (default `Z:`).
+- Jak namapovat (na Windows v LAN):
+	1. Ulož heslo do Bitwardenu jako položku `Synology` (URL `http://192.168.88.245:5000/`, user `admin`).
+	2. V PowerShellu: `powershell -ExecutionPolicy Bypass -File .\scripts\map_synology_drive.ps1`
+	3. Heslo zadej na prompt, nebo nastav `$env:SYNOLOGY_PASSWORD` jen pro danou session.
+	4. Volitelně: `-Share data -DriveLetter Z`
+
 ### 2026-03-05 — Stav Proxmox/Portainer a přístup k Home Assistant
 - Oblast: Infrastruktura / Docker / Home Assistant
 - Kontext: Operativní stav k 2026-03-05, ověření běžících služeb a návod na připojení k Home Assistant.
