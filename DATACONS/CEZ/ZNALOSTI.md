@@ -34,9 +34,13 @@ Tento soubor slouží jako centrální místo pro průběžné poznatky, rozhodn
 	- Opakovatelné připojení NAS jako písmeno disku (default `Z:`).
 - Jak namapovat (na Windows v LAN):
 	1. Ulož heslo do Bitwardenu jako položku `Synology` (URL `http://192.168.88.245:5000/`, user `admin`).
-	2. V PowerShellu: `powershell -ExecutionPolicy Bypass -File .\scripts\map_synology_drive.ps1 -DriveLetter J`
-	3. Heslo zadej na prompt, nebo nastav `$env:SYNOLOGY_PASSWORD` jen pro danou session.
-	4. Volitelně: `-Share data` (default písmeno je `J:`)
+	2. V DSM zapni SMB: Control Panel → File Services → SMB → Enable.
+	3. Vytvoř/ověř Shared Folder (např. `data`) a práva pro uživatele; `homes` funguje jen když je zapnuté User home service.
+	4. V PowerShellu: `powershell -ExecutionPolicy Bypass -File .\scripts\map_synology_drive.ps1 -DriveLetter J`
+	5. Heslo zadej na prompt, nebo nastav `$env:SYNOLOGY_PASSWORD` jen pro danou session.
+- Typické chyby Windows:
+	- Error 5 (Přístup odepřen) u `net view` → nejdřív `net use \\IP\IPC$ /user:...`, nebo DSM blokuje `admin` na SMB.
+	- Error 67 (Síťový název nelze nalézt) → share neexistuje / SMB vypnuté; ověř `net view` po IPC$ a seznam ve Shared Folder.
 
 ### 2026-03-05 — Stav Proxmox/Portainer a přístup k Home Assistant
 - Oblast: Infrastruktura / Docker / Home Assistant
