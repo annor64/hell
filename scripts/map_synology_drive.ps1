@@ -2,7 +2,7 @@ param(
     [string]$NasHost = '192.168.88.245',
     [string]$User = 'admin',
     [string]$Share = '',
-    [string]$DriveLetter = 'Z',
+    [string]$DriveLetter = 'J',
     [SecureString]$Password
 )
 
